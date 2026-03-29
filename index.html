@@ -31,6 +31,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet"/>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -191,19 +193,38 @@
 
     /* EQUIPO */
     #equipo{background:var(--navy2)}
-    .equipogrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:3rem}
+    /* Fundador — fila completa arriba */
+    .founder-row{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;align-items:stretch}
+    .founder-story{background:var(--navy3);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:2.8rem 3rem;display:flex;flex-direction:column;justify-content:center}
+    .founder-tag{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#64AAEB;margin-bottom:1rem}
+    .founder-name{font-size:1.8rem;font-weight:700;color:var(--white);letter-spacing:-.025em;line-height:1.1;margin-bottom:.3rem}
+    .founder-role{font-size:.8rem;font-weight:600;color:#64AAEB;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.5rem}
+    .founder-quote{font-size:1.15rem;font-style:italic;color:var(--white);line-height:1.6;font-weight:300;position:relative;padding-left:1.5rem;border-left:3px solid var(--blue);margin-bottom:1.5rem}
+    .founder-body{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.8;font-weight:300}
+    .founder-body strong{color:rgba(255,255,255,.85);font-weight:500}
+    .founder-creds{display:flex;flex-direction:column;gap:.4rem;margin-top:1.5rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.06)}
+    .founder-cred{font-size:.78rem;color:rgba(255,255,255,.3);display:flex;align-items:flex-start;gap:.4rem}
+    .founder-cred::before{content:'·';color:var(--blue);flex-shrink:0}
+    .founder-foto{background:var(--navy4);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);overflow:hidden;min-height:400px;display:flex;align-items:center;justify-content:center;position:relative}
+    .founder-foto img{width:100%;height:100%;object-fit:cover;object-position:top center;position:absolute;inset:0}
+    .founder-foto-ph{display:flex;flex-direction:column;align-items:center;gap:1rem;position:relative;z-index:1}
+    .founder-init{width:100px;height:100px;border-radius:50%;border:2px solid rgba(100,170,235,.3);background:rgba(42,109,181,.15);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700;color:#64AAEB}
+    .founder-foto-name{font-size:1.1rem;font-weight:600;color:var(--white)}
+    .founder-foto-sub{font-size:.78rem;color:rgba(255,255,255,.35);text-align:center;max-width:180px}
+    /* Equipo secundario */
+    .equipogrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.2rem}
     .ecard{background:var(--navy3);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);overflow:hidden;transition:transform .25s,box-shadow .3s}
     .ecard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.25)}
-    .efoto{height:220px;background:var(--navy4);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .efoto{height:180px;background:var(--navy4);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     .efoto img{width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0}
     .efoto-ph{display:flex;flex-direction:column;align-items:center;gap:.7rem;position:relative;z-index:1}
-    .einit{width:70px;height:70px;border-radius:50%;border:2px solid rgba(100,170,235,.3);background:rgba(42,109,181,.2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;color:#64AAEB;letter-spacing:-.02em}
-    .einfo{padding:1.4rem 1.5rem}
-    .ename{font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.25rem;letter-spacing:-.01em}
-    .erole{font-size:.78rem;color:#64AAEB;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+    .einit{width:60px;height:60px;border-radius:50%;border:2px solid rgba(100,170,235,.3);background:rgba(42,109,181,.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:#64AAEB}
+    .einfo{padding:1.3rem 1.4rem}
+    .ename{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.22rem;letter-spacing:-.01em}
+    .erole{font-size:.75rem;color:#64AAEB;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.55rem}
     .ebio{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;font-weight:300}
-    .ecreds{display:flex;flex-direction:column;gap:.35rem;margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.06)}
-    .ecred{font-size:.76rem;color:rgba(255,255,255,.3);display:flex;align-items:flex-start;gap:.4rem}
+    .ecreds{display:flex;flex-direction:column;gap:.32rem;margin-top:.85rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.06)}
+    .ecred{font-size:.75rem;color:rgba(255,255,255,.3);display:flex;align-items:flex-start;gap:.4rem}
     .ecred::before{content:'·';color:var(--blue);flex-shrink:0}
     .erehab-title{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#64AAEB;margin-top:.9rem;margin-bottom:.4rem}
     .erehab{display:flex;flex-direction:column;gap:.3rem}
@@ -309,6 +330,8 @@
       .procpanel{display:none}
       .equipogrid{grid-template-columns:1fr}
       #equipo{padding:4rem 5%}
+      .founder-row{grid-template-columns:1fr}
+      .founder-foto{min-height:280px}
       .testgrid{grid-template-columns:1fr}
       .bloggrid{grid-template-columns:1fr}
       #contacto{grid-template-columns:1fr;gap:3rem;padding:4rem 5%}
@@ -601,37 +624,43 @@
 
 <!-- EQUIPO -->
 <section id="equipo">
-  <div class="tag tagw">Nuestro equipo</div>
+  <div class="tag tagw">El equipo</div>
   <h2 class="sh shw">Las personas detrás<br/>de Dolor Sin Humo</h2>
-  <p class="sdesc sdescw">Fisioterapeutas con formación rigurosa, experiencia clínica real y el mismo compromiso: explicar bien, tratar bien y acompañar hasta el final.</p>
+  <p class="sdesc sdescw">Fisioterapeutas formados en la Universidad del Rosario, con experiencia clínica real y el mismo compromiso de siempre: explicar bien, tratar bien, acompañar hasta el final.</p>
+
+  <!-- FUNDADOR — FILA PRINCIPAL -->
+  <div class="founder-row">
+    <div class="founder-story">
+      <div class="founder-tag">✦ Fundador</div>
+      <div class="founder-name">Nicolás Castillo</div>
+      <div class="founder-role">Fisioterapeuta · Fundador de Dolor Sin Humo</div>
+      <div class="founder-quote">"Siempre quise ser futbolista. Una lesión me lo impidió. Lo que aprendí en ese proceso fue más valioso que cualquier gol: entendí lo que significa no saber qué tienes, no entender por qué duele y no saber cuándo vas a volver."</div>
+      <p class="founder-body">Creé Dolor Sin Humo porque estaba cansado de ver cómo las redes sociales venden respuestas mágicas para el dolor — una crema, un aparato, una técnica milagrosa — mientras la gente sigue sufriendo sin entender qué le pasa.<br/><br/>
+      Quiero llegar a las personas de verdad. <strong>Influir en su vida, generar un cambio real.</strong> Que nadie tenga que pasar por lo que yo pasé sin una guía honesta a su lado.</p>
+      <div class="founder-creds">
+        <div class="founder-cred">Universidad del Rosario, Bogotá</div>
+        <div class="founder-cred">Análisis biomecánico — Vicon, Noraxon</div>
+        <div class="founder-cred">Deporte de alto rendimiento · Geriatría · Neurología</div>
+      </div>
+    </div>
+    <!-- FOTO NICOLÁS: sube "nicolas-castillo.jpg" al repo, borra el bloque founder-foto-ph y descomenta el img -->
+    <div class="founder-foto">
+      <!-- <img src="nicolas-castillo.jpg" alt="Nicolás Castillo — Fundador Dolor Sin Humo"/> -->
+      <div class="founder-foto-ph">
+        <div class="founder-init">NC</div>
+        <div class="founder-foto-name">Nicolás Castillo</div>
+        <div class="founder-foto-sub">Foto próximamente</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUIPO SECUNDARIO -->
   <div class="equipogrid">
 
     <div class="ecard">
-      <!-- FOTO NICOLÁS CASTILLO: sube foto como "nicolas-castillo.jpg" al repo y descomenta la línea de abajo -->
-      <!-- <img src="nicolas-castillo.jpg" alt="Nicolás Castillo — Dolor Sin Humo"> -->
-      <div class="efoto">
-        <div class="efoto-ph">
-          <div class="einit">NC</div>
-        </div>
-      </div>
-      <div class="einfo">
-        <div class="ename">Nicolás Castillo</div>
-        <div class="erole">Fisioterapeuta</div>
-        <div class="ebio">Formado en biomecánica y análisis del movimiento. Experiencia en deporte de alto rendimiento, rehabilitación funcional y atención clínica con paciente geriátrico.</div>
-        <div class="ecreds">
-          <div class="ecred">Universidad del Rosario, Bogotá</div>
-          <div class="ecred">Análisis biomecánico — Vicon, Noraxon</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ecard">
-      <!-- FOTO NICOLÁS ROJAS: sube foto como "nicolas-rojas.jpg" y descomenta -->
       <!-- <img src="nicolas-rojas.jpg" alt="Nicolás Rojas — Dolor Sin Humo"> -->
       <div class="efoto">
-        <div class="efoto-ph">
-          <div class="einit">NR</div>
-        </div>
+        <div class="efoto-ph"><div class="einit">NR</div></div>
       </div>
       <div class="einfo">
         <div class="ename">Nicolás Rojas</div>
@@ -645,12 +674,9 @@
     </div>
 
     <div class="ecard">
-      <!-- FOTO SANTIAGO HERNÁNDEZ: sube foto como "santiago-hernandez.jpg" y descomenta -->
       <!-- <img src="santiago-hernandez.jpg" alt="Santiago Hernández — Dolor Sin Humo"> -->
       <div class="efoto">
-        <div class="efoto-ph">
-          <div class="einit">SH</div>
-        </div>
+        <div class="efoto-ph"><div class="einit">SH</div></div>
       </div>
       <div class="einfo">
         <div class="ename">Santiago Hernández</div>
@@ -664,7 +690,7 @@
 
   </div>
 
-  <!-- BLOQUE COMPARTIDO: LO QUE ATENDEMOS -->
+  <!-- LO QUE ATENDEMOS -->
   <div class="equipo-atiende">
     <div class="ea-title">Lo que atendemos</div>
     <div class="ea-grid">
@@ -727,49 +753,34 @@
   <div class="tag">Blog y contenido</div>
   <h2 class="sh">Aprende sobre tu cuerpo<br/>con contenido gratuito</h2>
   <p class="sdesc">En Dolor Sin Humo publicamos artículos y videos sobre dolor, movimiento y rehabilitación. Sin pseudociencia, sin miedo innecesario.</p>
-  <div class="bloggrid">
-    <div class="blogcard">
-      <!-- IMAGEN BLOG 1: sube como "blog-1.jpg" y reemplaza el placeholder -->
-      <div class="blogthumb">
-        <div class="blogthumb-ph"><span>📝</span><div>Imagen del artículo</div></div>
-        <div class="blogtag">Artículo</div>
-      </div>
-      <div class="blogbody">
-        <div class="blogdate">Próximamente</div>
-        <h3>¿Por qué el reposo no es siempre la solución para el dolor?</h3>
-        <p>Uno de los mitos más comunes en rehabilitación: creer que descansar es sinónimo de recuperarse. Te explicamos cuándo moverse es la mejor medicina.</p>
-        <a href="#blog" class="bloglink">Leer más →</a>
-      </div>
-    </div>
-    <div class="blogcard">
-      <div class="blogthumb">
-        <div class="blogthumb-ph"><span>🎥</span><div>Video del tema</div></div>
-        <div class="blogtag">Video</div>
-      </div>
-      <div class="blogbody">
-        <div class="blogdate">Próximamente</div>
-        <h3>Ejercicios para el dolor de cuello por trabajo en computador</h3>
-        <p>Una rutina de 10 minutos, basada en evidencia, para aliviar la tensión acumulada después de un día frente a la pantalla.</p>
-        <a href="#blog" class="bloglink">Ver video →</a>
-      </div>
-    </div>
-    <div class="blogcard">
-      <div class="blogthumb">
-        <div class="blogthumb-ph"><span>📝</span><div>Imagen del artículo</div></div>
-        <div class="blogtag">Artículo</div>
-      </div>
-      <div class="blogbody">
-        <div class="blogdate">Próximamente</div>
-        <h3>Fisioterapia a domicilio en Bogotá: qué esperar en la primera sesión</h3>
-        <p>Si nunca has recibido fisioterapia en casa, te contamos exactamente cómo es el proceso, qué traemos y cómo funciona la valoración inicial.</p>
-        <a href="#blog" class="bloglink">Leer más →</a>
-      </div>
-    </div>
+  <div class="bloggrid" id="blog-grid">
+    <!-- Los posts se cargan dinámicamente desde posts.json -->
+    <div class="blog-loading">Cargando artículos...</div>
   </div>
   <div class="blogcta">
     <a href="https://www.instagram.com/dolorsinhumo" target="_blank" rel="noopener" class="btnoutline">Ver todo el contenido en Instagram →</a>
   </div>
 </section>
+
+<!-- MODAL LECTURA POST -->
+<div id="post-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(12,31,63,0.92);backdrop-filter:blur(12px);overflow-y:auto;padding:2rem 5%">
+  <div style="max-width:720px;margin:0 auto;background:var(--white);border-radius:var(--r);overflow:hidden">
+    <div style="background:var(--navy);padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center">
+      <span id="modal-tipo" style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#64AAEB"></span>
+      <button onclick="closeModal()" style="background:rgba(255,255,255,.1);border:none;color:var(--white);padding:.4rem 1rem;border-radius:3px;cursor:pointer;font-family:var(--f);font-size:.82rem">✕ Cerrar</button>
+    </div>
+    <div id="modal-img-wrap"></div>
+    <div style="padding:2.5rem 2.5rem 3rem">
+      <div id="modal-fecha" style="font-size:.78rem;color:var(--gray3);margin-bottom:.6rem"></div>
+      <h2 id="modal-titulo" style="font-size:1.8rem;font-weight:700;letter-spacing:-.025em;line-height:1.15;color:var(--text);margin-bottom:1.5rem"></h2>
+      <div id="modal-contenido" style="font-size:.96rem;line-height:1.85;color:var(--text2)"></div>
+      <div id="modal-video" style="margin-top:1.5rem"></div>
+      <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--gray1)">
+        <a href="https://wa.me/573171370271?text=Hola%2C%20le%C3%AD%20el%20blog%20y%20quiero%20saber%20m%C3%A1s" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:var(--white);padding:.85rem 1.8rem;border-radius:var(--r);font-size:.88rem;font-weight:600;text-decoration:none">💬 ¿Tienes preguntas? Escríbenos</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- REDES -->
 <section id="redes">
@@ -861,53 +872,114 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('s', window.scrollY > 40), {passive:true});
 
-  // Animaciones — arrancan visibles, JS añade la clase de transición progresiva
-  const animEls = document.querySelectorAll('.pqcard,.servcard,.tcard,.ecard,.blogcard,.pritem,.step');
+  // Animaciones
+  const animEls = document.querySelectorAll('.pqcard,.servcard,.tcard,.ecard,.pritem,.step');
   if('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if(e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'none';
-          io.unobserve(e.target);
-        }
+        if(e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='none'; io.unobserve(e.target); }
       });
-    }, {threshold: 0.08, rootMargin:'0px 0px -40px 0px'});
+    }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
     animEls.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(18px)';
-      el.style.transition = 'opacity .55s cubic-bezier(0.22,1,0.36,1), transform .55s cubic-bezier(0.22,1,0.36,1)';
+      el.style.opacity='0'; el.style.transform='translateY(18px)';
+      el.style.transition='opacity .55s cubic-bezier(0.22,1,0.36,1), transform .55s cubic-bezier(0.22,1,0.36,1)';
       io.observe(el);
     });
-    // Forzar visibilidad de lo que ya está en viewport al cargar
-    setTimeout(() => {
-      animEls.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if(rect.top < window.innerHeight) {
-          el.style.opacity = '1';
-          el.style.transform = 'none';
-        }
-      });
-    }, 100);
+    setTimeout(() => { animEls.forEach(el => { const r=el.getBoundingClientRect(); if(r.top<window.innerHeight){el.style.opacity='1';el.style.transform='none';} }); }, 100);
   }
 
   // Hamburger
   function toggleMenu() {
     const l = document.querySelector('.navl');
-    if(l.style.display === 'flex') {
-      l.style.cssText = '';
-    } else {
-      l.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(12,31,63,0.98);backdrop-filter:blur(16px);justify-content:center;align-items:center;gap:2.5rem;z-index:300;';
-      l.querySelectorAll('a').forEach(a => { a.style.fontSize='1.2rem'; a.style.color='rgba(255,255,255,.8)'; });
-    }
+    if(l.style.display==='flex'){l.style.cssText='';}
+    else{l.style.cssText='display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(12,31,63,0.98);backdrop-filter:blur(16px);justify-content:center;align-items:center;gap:2.5rem;z-index:300;';l.querySelectorAll('a').forEach(a=>{a.style.fontSize='1.2rem';a.style.color='rgba(255,255,255,.8)';});}
   }
 
   // Form submit
   function handleSubmit(e) {
     e.preventDefault();
-   
+    const b = e.target;
+    b.textContent = '✓ Recibido — te contactamos pronto';
+    b.style.background = 'var(--blue)';
+    setTimeout(() => { b.textContent = 'Enviar mensaje →'; b.style.background = ''; }, 4000);
+  }
+
+  // ── BLOG ──
+  // Carga posts.json y renderiza las tarjetas
+  async function loadBlog() {
+    const grid = document.getElementById('blog-grid');
+    try {
+      const res = await fetch('posts.json?v=' + Date.now());
+      if (!res.ok) throw new Error('no posts');
+      const data = await res.json();
+      const posts = (data.posts || []).slice().reverse(); // más recientes primero
+      if (!posts.length) { grid.innerHTML = '<p style="color:var(--text3);font-size:.9rem">Próximamente publicaremos artículos aquí.</p>'; return; }
+      grid.innerHTML = posts.slice(0, 3).map((p, i) => `
+        <div class="blogcard" style="cursor:pointer" onclick="openPost(${JSON.stringify(data.posts).replace(/"/g,'&quot;')}, ${data.posts.length - 1 - i})">
+          <div class="blogthumb">
+            ${p.imagen ? `<img src="${p.imagen}" alt="${p.titulo}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"/>` : `<div class="blogthumb-ph"><span>${p.tipo==='Video'?'🎥':'📝'}</span></div>`}
+            <div class="blogtag">${p.tipo}</div>
+          </div>
+          <div class="blogbody">
+            <div class="blogdate">${p.fecha}</div>
+            <h3>${p.titulo}</h3>
+            <p>${p.resumen}</p>
+            <span class="bloglink">${p.tipo==='Video'?'Ver video':'Leer más'} →</span>
+          </div>
+        </div>
+      `).join('');
+    } catch(err) {
+      grid.innerHTML = '<p style="color:var(--text3);font-size:.9rem">Próximamente publicaremos artículos aquí.</p>';
+    }
+  }
+
+  function openPost(postsArr, idx) {
+    const p = postsArr[idx];
+    document.getElementById('modal-tipo').textContent = p.tipo;
+    document.getElementById('modal-fecha').textContent = p.fecha;
+    document.getElementById('modal-titulo').textContent = p.titulo;
+    // Imagen
+    const imgWrap = document.getElementById('modal-img-wrap');
+    imgWrap.innerHTML = p.imagen ? `<img src="${p.imagen}" alt="${p.titulo}" style="width:100%;max-height:340px;object-fit:cover;display:block"/>` : '';
+    // Contenido markdown
+    const contenido = document.getElementById('modal-contenido');
+    contenido.innerHTML = typeof marked !== 'undefined' ? marked.parse(p.contenido || '') : (p.contenido || '').replace(/\n/g,'<br>');
+    // Aplicar estilos al contenido renderizado
+    contenido.querySelectorAll('h2,h3').forEach(h => { h.style.cssText='font-size:1.25rem;font-weight:700;color:var(--text);margin:1.5rem 0 .6rem;letter-spacing:-.01em'; });
+    contenido.querySelectorAll('p').forEach(p => { p.style.cssText='margin-bottom:1rem'; });
+    contenido.querySelectorAll('ul,ol').forEach(l => { l.style.cssText='padding-left:1.4rem;margin-bottom:1rem'; });
+    contenido.querySelectorAll('li').forEach(l => { l.style.cssText='margin-bottom:.35rem'; });
+    contenido.querySelectorAll('strong').forEach(s => { s.style.cssText='color:var(--text);font-weight:600'; });
+    // Video
+    const vidWrap = document.getElementById('modal-video');
+    vidWrap.innerHTML = p.video_url ? `<a href="${p.video_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--sky);color:var(--blue);padding:.75rem 1.4rem;border-radius:var(--r);font-size:.88rem;font-weight:600;text-decoration:none">▶ Ver video completo</a>` : '';
+    // Mostrar modal
+    const modal = document.getElementById('post-modal');
+    modal.style.display = 'block';
+    modal.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('post-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // Cerrar modal con Escape
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+  // Netlify Identity redirect tras login
+  if(window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', user => {
+      if(!user) { window.netlifyIdentity.on('login', () => { document.location.href='/admin/'; }); }
+    });
+  }
+
+  // Cargar blog al iniciar
+  loadBlog();
+</script>
