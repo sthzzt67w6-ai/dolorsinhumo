@@ -1005,6 +1005,331 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .aerobic-save-hint{font-size:11px;color:var(--text-muted);font-style:italic}
 .aerobic-save-hint.has-result{color:var(--green);font-style:normal;font-weight:500}
 
+/* ── MOBILE SIDEBAR DRAWER ───────────────────────── */
+@media (max-width: 768px) {
+  .layout { flex-direction: column; }
+  .sidebar {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    min-width: 0;
+    max-height: 100vh;
+    z-index: 500;
+    border-right: none;
+    border-top: 2px solid var(--teal);
+    padding-bottom: 80px;
+    background: var(--surface);
+    top: 0;
+    overflow-y: auto;
+  }
+  .sidebar.mobile-open { display: block; animation: fadeIn .2s ease; }
+  .sidebar-mobile-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px; background: var(--navy-deep);
+    border-bottom: 1px solid rgba(0,180,166,.3); margin-bottom: 4px;
+  }
+  .sidebar-mobile-header span { font-size: 14px; font-weight: 700; color: #fff; }
+  .main { padding: 12px; }
+  .tests-grid { grid-template-columns: 1fr; }
+  .tabs { flex-wrap: wrap; gap: 3px; }
+  .tab { flex: 1 1 calc(50% - 4px); font-size: 11px; padding: 8px 6px; }
+  .topbar-stats { display: none; }
+  .session-bar { padding: 0 12px; }
+  .session-label { font-size: 11px; }
+  .cloud-bar { padding: 0 12px; }
+  .cloud-label { font-size: 10px; }
+  /* filter FAB */
+  .filter-fab {
+    display: flex;
+    position: fixed;
+    bottom: 20px; right: 16px;
+    z-index: 490;
+    background: var(--teal); color: var(--navy-deep);
+    border: none; border-radius: 28px;
+    padding: 12px 20px; font-size: 13px; font-weight: 700;
+    box-shadow: 0 4px 16px rgba(0,180,166,.4);
+    cursor: pointer; align-items: center; gap: 8px;
+    font-family: inherit;
+    transition: var(--transition);
+  }
+  .filter-fab:hover { background: #00D4C4; transform: scale(1.04); }
+  .filter-fab-count {
+    background: var(--navy-deep); color: #fff;
+    border-radius: 12px; padding: 1px 7px; font-size: 11px;
+  }
+  .filter-overlay-bg {
+    display: none; position: fixed; inset: 0; z-index: 499;
+    background: rgba(15,37,64,.5); backdrop-filter: blur(2px);
+  }
+  .filter-overlay-bg.open { display: block; }
+  /* hide sidebar on mobile by default */
+  .sidebar-mobile-header { display: flex; }
+}
+@media (min-width: 769px) {
+  .filter-fab { display: none; }
+  .sidebar-mobile-header { display: none; }
+  .filter-overlay-bg { display: none !important; }
+}
+
+/* ── REVISIÓN POR SISTEMAS ───────────────────────── */
+.revision-layout { display: flex; gap: 16px; }
+.revision-nav {
+  width: 200px; min-width: 200px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 8px 0;
+  position: sticky; top: 160px; height: fit-content;
+}
+.rev-nav-btn {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 9px 14px; border: none; background: none;
+  font-family: inherit; font-size: 13px; color: var(--text-muted);
+  cursor: pointer; transition: var(--transition); text-align: left;
+  border-left: 3px solid transparent;
+}
+.rev-nav-btn:hover { background: var(--surface2); color: var(--text); }
+.rev-nav-btn.active { background: var(--teal-light); color: var(--navy); font-weight: 600; border-left-color: var(--teal); }
+.rev-nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); flex-shrink: 0; transition: .3s; }
+.rev-nav-dot.has-data { background: var(--teal); }
+.rev-nav-dot.has-flag { background: var(--red); }
+
+.revision-main { flex: 1; min-width: 0; }
+.rev-system { display: none; }
+.rev-system.active { display: block; animation: fadeIn .2s ease; }
+
+.rev-card {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; margin-bottom: 14px;
+}
+.rev-card-header {
+  padding: 14px 16px; background: linear-gradient(90deg, var(--navy-deep), var(--navy-mid));
+  display: flex; align-items: center; gap: 10px;
+}
+.rev-card-icon { font-size: 20px; }
+.rev-card-title { font-family: 'DM Serif Display', serif; font-size: 16px; color: #fff; font-weight: 400; }
+.rev-card-sub { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 2px; }
+.rev-card-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+.rev-field-row { display: grid; gap: 10px; }
+.rev-field-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.rev-field-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.rev-field-row.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.rev-field { display: flex; flex-direction: column; gap: 4px; }
+.rev-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .7px; color: var(--teal);
+}
+.rev-input {
+  padding: 8px 10px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 13px; background: var(--surface); color: var(--text);
+  outline: none; transition: var(--transition); width: 100%;
+}
+.rev-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,180,166,.1); }
+.rev-input.flag { border-color: var(--red); background: #fff8f8; }
+.rev-select {
+  padding: 8px 10px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 13px; background: var(--surface); color: var(--text);
+  outline: none; cursor: pointer; width: 100%; transition: var(--transition);
+}
+.rev-select:focus { border-color: var(--teal); }
+.rev-select.flag { border-color: var(--red); background: #fff8f8; }
+.rev-textarea {
+  padding: 9px 11px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 13px; background: var(--surface); color: var(--text);
+  outline: none; resize: vertical; width: 100%; min-height: 70px; transition: var(--transition);
+}
+.rev-textarea:focus { border-color: var(--teal); }
+
+.rev-result-box {
+  border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px;
+  display: none; animation: fadeIn .2s ease; margin-top: 4px;
+}
+.rev-result-box.show { display: block; }
+.rev-normal { background: #E8F5E9; border-left: 4px solid #2E7D32; color: #1B5E20; }
+.rev-borderline { background: #FFF3CD; border-left: 4px solid #F9A825; color: #5D4037; }
+.rev-abnormal { background: #FFEBEE; border-left: 4px solid #C62828; color: #7F0000; }
+.rev-flag { background: #311B92; border-left: 4px solid #FF1744; color: #fff; }
+.rev-result-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+
+.rev-divider { height: 1px; background: var(--border); margin: 4px 0; }
+.rev-section-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--text-muted); margin-bottom: 2px;
+  padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+
+/* Checkboxes revisión */
+.rev-check-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.rev-check-item {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 10px; border: 1.5px solid var(--border); border-radius: 20px;
+  cursor: pointer; transition: var(--transition); font-size: 12px; color: var(--text-muted);
+  user-select: none;
+}
+.rev-check-item:hover { border-color: var(--teal); color: var(--navy); }
+.rev-check-item.selected { background: var(--teal-light); border-color: var(--teal); color: var(--navy); font-weight: 600; }
+.rev-check-item.flag-item.selected { background: #FFEBEE; border-color: var(--red); color: #7F0000; }
+.rev-check-item input { display: none; }
+
+/* Summary bar */
+.rev-summary-bar {
+  background: linear-gradient(135deg, var(--navy-deep), var(--navy-mid));
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.rev-summary-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.rev-summary-pill {
+  font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600;
+}
+.rev-pill-ok { background: rgba(46,125,50,.3); border: 1px solid #4CAF50; color: #A5D6A7; }
+.rev-pill-flag { background: rgba(198,40,40,.3); border: 1px solid #EF9A9A; color: #FFCDD2; }
+.rev-pill-pending { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.6); }
+.rev-add-session-btn {
+  padding: 8px 16px; border-radius: 20px; border: none;
+  background: var(--teal); color: var(--navy-deep);
+  font-family: inherit; font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: var(--transition);
+}
+.rev-add-session-btn:hover { background: #00D4C4; transform: scale(1.03); }
+.rev-add-session-btn.saved { background: var(--green); color: #fff; }
+.rev-add-session-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+
+@media (max-width: 768px) {
+  .revision-layout { flex-direction: column; }
+  .revision-nav { width: 100%; min-width: 0; position: static; display: flex; flex-wrap: wrap; padding: 8px; gap: 4px; }
+  .rev-nav-btn { flex: 1 1 calc(50% - 4px); border-radius: 8px; border-left: none; border: 1.5px solid var(--border); justify-content: center; }
+  .rev-nav-btn.active { border-color: var(--teal); }
+  .rev-field-row.cols-4 { grid-template-columns: 1fr 1fr; }
+  .rev-field-row.cols-3 { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── ANÁLISIS POSTURAL ───────────────────────────── */
+.postura-intro { margin-bottom: 16px; }
+.postura-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.postura-view-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.postura-view-header {
+  background: linear-gradient(90deg, var(--navy-deep), var(--navy-mid));
+  padding: 10px 14px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.postura-view-title { font-size: 13px; font-weight: 600; color: #fff; }
+.postura-view-badge { font-size: 10px; color: var(--teal); background: rgba(0,180,166,.15); border: 1px solid rgba(0,180,166,.3); padding: 2px 8px; border-radius: 10px; }
+.postura-canvas-wrap {
+  position: relative;
+  background: #1a1a2e;
+  min-height: 300px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: crosshair;
+}
+.postura-canvas-wrap canvas {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+.postura-canvas-wrap img.postura-img {
+  display: block;
+  max-width: 100%; max-height: 420px;
+  object-fit: contain;
+  position: relative; z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.postura-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; color: rgba(255,255,255,.4); font-size: 13px;
+  padding: 40px; text-align: center; z-index: 1;
+}
+.postura-placeholder-icon { font-size: 36px; }
+.postura-upload-btn {
+  padding: 8px 18px; border-radius: 20px;
+  background: var(--teal); color: var(--navy-deep);
+  border: none; font-family: inherit; font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: var(--transition);
+}
+.postura-upload-btn:hover { background: #00D4C4; transform: scale(1.04); }
+
+.postura-toolbar {
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+}
+.postura-tool-btn {
+  padding: 5px 11px; border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: var(--surface2); color: var(--text-muted);
+  font-family: inherit; font-size: 11px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+}
+.postura-tool-btn:hover { border-color: var(--teal); color: var(--navy); }
+.postura-tool-btn.active { background: var(--teal-light); border-color: var(--teal); color: var(--navy); }
+.postura-tool-btn.danger { border-color: transparent; }
+.postura-tool-btn.danger:hover { border-color: var(--red); color: var(--red); }
+
+.postura-angles-panel {
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--surface2);
+  display: none;
+}
+.postura-angles-panel.show { display: block; }
+.postura-angles-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; color: var(--teal); margin-bottom: 8px; }
+.postura-angles-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.postura-angle-chip {
+  font-size: 11px; padding: 4px 10px; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text);
+}
+.postura-angle-chip.normal { border-color: #4CAF50; background: #E8F5E9; color: #1B5E20; }
+.postura-angle-chip.altered { border-color: #F9A825; background: #FFF3CD; color: #5D4037; }
+.postura-angle-chip.significant { border-color: var(--red); background: #FFEBEE; color: #7F0000; }
+
+.postura-obs-section { padding: 10px 14px; border-top: 1px solid var(--border); }
+.postura-obs-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; color: var(--teal); margin-bottom: 6px; }
+.postura-obs-textarea {
+  width: 100%; min-height: 60px; resize: vertical;
+  padding: 8px 10px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 12px; background: var(--surface); color: var(--text);
+  outline: none; transition: var(--transition);
+}
+.postura-obs-textarea:focus { border-color: var(--teal); }
+
+.postura-ai-status {
+  font-size: 11px; padding: 4px 10px; border-radius: 10px;
+  display: none;
+}
+.postura-ai-status.loading { display: inline-block; background: var(--gold-light); color: #7B5500; border: 1px solid #F9C74F; }
+.postura-ai-status.done { display: inline-block; background: #E8F5E9; color: #2E7D32; border: 1px solid #4CAF50; }
+.postura-ai-status.error { display: inline-block; background: #FFEBEE; color: #7F0000; border: 1px solid var(--red); }
+
+/* Point colors on canvas — handled in JS */
+.postura-session-bar {
+  margin-top: 14px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; flex-wrap: wrap;
+}
+.postura-save-btn {
+  padding: 8px 18px; border-radius: 20px; border: none;
+  background: var(--teal); color: var(--navy-deep);
+  font-family: inherit; font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: var(--transition);
+}
+.postura-save-btn:hover { background: #00D4C4; transform: scale(1.03); }
+.postura-save-btn.saved { background: var(--green); color: #fff; }
+.postura-save-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+
+@media (max-width: 768px) {
+  .postura-grid { grid-template-columns: 1fr; }
+}
+
 /* ── CLOUD SYNC ─────────────────────────────────── */
 .cloud-bar{
   background:linear-gradient(90deg,#0a1a2e,#0F2540);
@@ -1268,7 +1593,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 <div class="layout">
 
 <!-- SIDEBAR -->
-<aside class="sidebar">
+<aside class="sidebar" id="main-sidebar">
+  <!-- mobile header -->
+  <div class="sidebar-mobile-header">
+    <span>🔽 Filtros</span>
+    <button onclick="closeMobileSidebar()" style="background:none;border:none;cursor:pointer;font-size:22px;color:rgba(255,255,255,.7);line-height:1">×</button>
+  </div>
   <!-- search -->
   <div class="search-box">
     <span class="search-icon">🔍</span>
@@ -1326,6 +1656,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <button class="tab" onclick="switchTab('baterias',this)">🔗 Baterías (15)</button>
     <button class="tab" onclick="switchTab('lr',this)">⚡ LR+ Alto</button>
     <button class="tab" onclick="switchTab('goniometria',this)">📐 Goniómetro</button>
+    <button class="tab" onclick="switchTab('postura',this)">🧍 Postura</button>
+    <button class="tab" onclick="switchTab('revision',this)">🩺 Rev. por Sistemas</button>
   </div>
 
   <!-- TAB: TESTS -->
@@ -1428,9 +1760,532 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
   </div>
 
+  <!-- TAB: POSTURA -->
+  <div id="tab-postura" style="display:none">
+
+    <div class="clusters-intro postura-intro">
+      <div>
+        <h2>Análisis Postural</h2>
+        <p>Sube la foto, la IA detecta los puntos corporales. Ajusta arrastrando. Las líneas y ángulos se calculan automáticamente.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="postura-ai-status" id="postura-ai-global"></span>
+        <button class="postura-save-btn" id="postura-session-btn" onclick="savePosturaToSession()" disabled>＋ Agregar al informe</button>
+      </div>
+    </div>
+
+    <!-- MediaPipe load status -->
+    <div id="postura-mp-status" style="display:none;margin-bottom:12px;padding:8px 14px;background:var(--gold-light);border:1px solid #F9C74F;border-radius:8px;font-size:12px;color:#7B5500">
+      ⏳ Cargando modelo de IA (MediaPipe Pose)… puede tardar unos segundos la primera vez.
+    </div>
+
+    <div class="postura-grid" id="postura-grid">
+      <!-- 4 views injected by JS -->
+    </div>
+
+    <div style="margin-top:14px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--teal);margin-bottom:8px">Observaciones posturales generales</div>
+      <textarea class="postura-obs-textarea" id="postura-obs-global" style="min-height:80px" placeholder="Hallazgos generales, patrones compensatorios, correlación con motivo de consulta…" oninput="posturaMarkDirty()"></textarea>
+    </div>
+
+  </div><!-- /tab-postura -->
+
+  <!-- TAB: REVISIÓN POR SISTEMAS -->
+  <div id="tab-revision" style="display:none">
+
+    <!-- Summary bar -->
+    <div class="rev-summary-bar">
+      <div>
+        <div style="font-family:'DM Serif Display',serif;font-size:17px;color:#fff;font-weight:400">Revisión por Sistemas · APTA 4.0</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:2px">Screening multisistémico previo a la valoración fisioterapéutica</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <div class="rev-summary-pills">
+          <span class="rev-summary-pill rev-pill-ok" id="rev-pill-ok">0 sistemas OK</span>
+          <span class="rev-summary-pill rev-pill-flag" id="rev-pill-flag">0 alertas</span>
+          <span class="rev-summary-pill rev-pill-pending" id="rev-pill-pending">8 pendientes</span>
+        </div>
+        <button class="rev-add-session-btn" id="rev-session-btn" onclick="saveRevisionToSession()" disabled>＋ Agregar al informe</button>
+      </div>
+    </div>
+
+    <div class="revision-layout">
+      <!-- Nav -->
+      <nav class="revision-nav" id="revision-nav">
+        <button class="rev-nav-btn active" onclick="switchRevSystem('cardio',this)"><span class="rev-nav-dot" id="rnd-cardio"></span>❤️ Cardiovascular</button>
+        <button class="rev-nav-btn" onclick="switchRevSystem('pulmonar',this)"><span class="rev-nav-dot" id="rnd-pulmonar"></span>🫁 Pulmonar</button>
+        <button class="rev-nav-btn" onclick="switchRevSystem('neuro',this)"><span class="rev-nav-dot" id="rnd-neuro"></span>🧠 Neurológico</button>
+        <button class="rev-nav-btn" onclick="switchRevSystem('msk',this)"><span class="rev-nav-dot" id="rnd-msk"></span>🦴 MSK General</button>
+        <button class="rev-nav-btn" onclick="switchRevSystem('integumento',this)"><span class="rev-nav-dot" id="rnd-integumento"></span>🩹 Integumentario</button>
+        <button class="rev-nav-btn" onclick="switchRevSystem('gi',this)"><span class="rev-nav-dot" id="rnd-gi"></span>🫃 GI / Urinario</button>
+        <button class="rev-nav-btn" onclick="switchRevSystem('endocrino',this)"><span class="rev-nav-dot" id="rnd-endocrino"></span>⚗️ Endocrino / Met.</button>
+        <button class="rev-nav-btn" onclick="switchRevSystem('psicosocial',this)"><span class="rev-nav-dot" id="rnd-psicosocial"></span>🧘 Psicosocial</button>
+      </nav>
+
+      <!-- Systems panels -->
+      <div class="revision-main">
+
+        <!-- ══ CARDIOVASCULAR ══ -->
+        <div class="rev-system active" id="rev-cardio">
+          <div class="rev-card">
+            <div class="rev-card-header">
+              <span class="rev-card-icon">❤️</span>
+              <div><div class="rev-card-title">Sistema Cardiovascular</div><div class="rev-card-sub">Signos vitales · Historia cardíaca · Screening de riesgo</div></div>
+            </div>
+            <div class="rev-card-body">
+
+              <div class="rev-section-label">Signos vitales en reposo</div>
+              <div class="rev-field-row cols-4">
+                <div class="rev-field">
+                  <div class="rev-label">FC (lpm)</div>
+                  <input class="rev-input" type="number" id="cv-fc" min="30" max="250" placeholder="60–100" oninput="evalCardio()">
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">TA sistólica (mmHg)</div>
+                  <input class="rev-input" type="number" id="cv-tas" min="60" max="250" placeholder="&lt;120" oninput="evalCardio()">
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">TA diastólica (mmHg)</div>
+                  <input class="rev-input" type="number" id="cv-tad" min="40" max="160" placeholder="&lt;80" oninput="evalCardio()">
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">SpO₂ reposo (%)</div>
+                  <input class="rev-input" type="number" id="cv-spo2" min="70" max="100" placeholder="≥95" oninput="evalCardio()">
+                </div>
+              </div>
+              <div class="rev-field-row cols-3">
+                <div class="rev-field">
+                  <div class="rev-label">FR (rpm)</div>
+                  <input class="rev-input" type="number" id="cv-fr" min="4" max="60" placeholder="12–20" oninput="evalCardio()">
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Temperatura (°C)</div>
+                  <input class="rev-input" type="number" id="cv-temp" min="34" max="42" step="0.1" placeholder="36.5–37.5" oninput="evalCardio()">
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Ritmo cardíaco</div>
+                  <select class="rev-select" id="cv-ritmo" onchange="evalCardio()">
+                    <option value="">— Seleccionar —</option>
+                    <option value="regular">Regular</option>
+                    <option value="irregular">Irregular</option>
+                    <option value="irregular_regular">Irregularmente irregular</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="cv-vitals-result" class="rev-result-box"></div>
+
+              <div class="rev-divider"></div>
+              <div class="rev-section-label">Historia cardiovascular</div>
+              <div class="rev-check-group" id="cv-hx-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="IAM" onchange="evalCardio()"> 🚨 IAM previo</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="ACV" onchange="evalCardio()"> 🚨 ACV / TIA</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="insuf_card" onchange="evalCardio()"> 🚨 Insuf. cardíaca</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="arritmia" onchange="evalCardio()"> ⚠ Arritmia conocida</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="marcapaso" onchange="evalCardio()"> ⚠ Marcapaso / DAI</label>
+                <label class="rev-check-item"><input type="checkbox" value="hta" onchange="evalCardio()"> HTA controlada</label>
+                <label class="rev-check-item"><input type="checkbox" value="dislipidemia" onchange="evalCardio()"> Dislipidemia</label>
+                <label class="rev-check-item"><input type="checkbox" value="dm" onchange="evalCardio()"> Diabetes Mellitus</label>
+                <label class="rev-check-item"><input type="checkbox" value="tabaco" onchange="evalCardio()"> Tabaquismo</label>
+                <label class="rev-check-item"><input type="checkbox" value="ninguno" onchange="evalCardio()"> Sin antecedentes</label>
+              </div>
+
+              <div class="rev-divider"></div>
+              <div class="rev-section-label">Síntomas actuales</div>
+              <div class="rev-check-group" id="cv-sx-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="dolor_toracico" onchange="evalCardio()"> 🚨 Dolor torácico</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="sincope" onchange="evalCardio()"> 🚨 Síncope / pre-síncope</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="palpitaciones" onchange="evalCardio()"> ⚠ Palpitaciones</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="disnea_reposo" onchange="evalCardio()"> ⚠ Disnea en reposo</label>
+                <label class="rev-check-item"><input type="checkbox" value="disnea_esfuerzo" onchange="evalCardio()"> Disnea al esfuerzo</label>
+                <label class="rev-check-item"><input type="checkbox" value="edema" onchange="evalCardio()"> Edema en extremidades</label>
+                <label class="rev-check-item"><input type="checkbox" value="claudicacion" onchange="evalCardio()"> Claudicación</label>
+                <label class="rev-check-item"><input type="checkbox" value="ninguno_sx" onchange="evalCardio()"> Asintomático</label>
+              </div>
+
+              <div class="rev-divider"></div>
+              <div class="rev-section-label">Medicación cardiovascular</div>
+              <div class="rev-field-row cols-2">
+                <div class="rev-field">
+                  <div class="rev-label">Medicamentos actuales</div>
+                  <textarea class="rev-textarea" id="cv-meds" placeholder="Ej: metoprolol 50mg, atorvastatina 20mg…" oninput="revMarkDirty('cardio')"></textarea>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Observaciones / Contexto clínico</div>
+                  <textarea class="rev-textarea" id="cv-obs" placeholder="Ej: última consulta cardio hace 3 meses, examen normal…" oninput="revMarkDirty('cardio')"></textarea>
+                </div>
+              </div>
+
+              <div id="cv-main-result" class="rev-result-box"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ PULMONAR ══ -->
+        <div class="rev-system" id="rev-pulmonar">
+          <div class="rev-card">
+            <div class="rev-card-header">
+              <span class="rev-card-icon">🫁</span>
+              <div><div class="rev-card-title">Sistema Pulmonar / Respiratorio</div><div class="rev-card-sub">Función ventilatoria · Síntomas respiratorios · Riesgo</div></div>
+            </div>
+            <div class="rev-card-body">
+              <div class="rev-section-label">Función respiratoria</div>
+              <div class="rev-field-row cols-3">
+                <div class="rev-field">
+                  <div class="rev-label">SpO₂ en actividad (%)</div>
+                  <input class="rev-input" type="number" id="pulm-spo2act" min="70" max="100" placeholder="≥92" oninput="evalPulmonar()">
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Patrón respiratorio</div>
+                  <select class="rev-select" id="pulm-patron" onchange="evalPulmonar()">
+                    <option value="">— Seleccionar —</option>
+                    <option value="normal">Normal (diafragmático)</option>
+                    <option value="toracico">Torácico alto</option>
+                    <option value="paradojico">Paradójico</option>
+                    <option value="kussmaul">Kussmaul</option>
+                    <option value="cheyne">Cheyne-Stokes</option>
+                  </select>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Uso músculos accesorios</div>
+                  <select class="rev-select" id="pulm-acces" onchange="evalPulmonar()">
+                    <option value="">— Seleccionar —</option>
+                    <option value="no">No</option>
+                    <option value="leve">Leve</option>
+                    <option value="marcado">Marcado</option>
+                  </select>
+                </div>
+              </div>
+              <div class="rev-section-label">Antecedentes y síntomas</div>
+              <div class="rev-check-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="embolismo" onchange="evalPulmonar()"> 🚨 TEP previo</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="hemoptisis" onchange="evalPulmonar()"> 🚨 Hemoptisis</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="neumotorax" onchange="evalPulmonar()"> 🚨 Neumotórax previo</label>
+                <label class="rev-check-item"><input type="checkbox" value="asma" onchange="evalPulmonar()"> Asma / Broncoespasmo</label>
+                <label class="rev-check-item"><input type="checkbox" value="epoc" onchange="evalPulmonar()"> EPOC</label>
+                <label class="rev-check-item"><input type="checkbox" value="tos_cronica" onchange="evalPulmonar()"> Tos crónica</label>
+                <label class="rev-check-item"><input type="checkbox" value="sibilancias" onchange="evalPulmonar()"> Sibilancias</label>
+                <label class="rev-check-item"><input type="checkbox" value="sin_ant" onchange="evalPulmonar()"> Sin antecedentes</label>
+              </div>
+              <div class="rev-field">
+                <div class="rev-label">Observaciones</div>
+                <textarea class="rev-textarea" id="pulm-obs" placeholder="Ej: fumador 10 años, espirometría pendiente…" oninput="revMarkDirty('pulmonar')"></textarea>
+              </div>
+              <div id="pulm-result" class="rev-result-box"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ NEUROLÓGICO ══ -->
+        <div class="rev-system" id="rev-neuro">
+          <div class="rev-card">
+            <div class="rev-card-header">
+              <span class="rev-card-icon">🧠</span>
+              <div><div class="rev-card-title">Sistema Neurológico</div><div class="rev-card-sub">Screening central · Síntomas banderas rojas · Estado cognitivo</div></div>
+            </div>
+            <div class="rev-card-body">
+              <div class="rev-section-label">Banderas rojas neurológicas</div>
+              <div class="rev-check-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="cefalea_tronante" onchange="evalNeuro()"> 🚨 Cefalea en trueno</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="cola_caballo" onchange="evalNeuro()"> 🚨 Cauda equina (incont.)</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="deficit_progresivo" onchange="evalNeuro()"> 🚨 Déficit motor progresivo</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="alteracion_conciencia" onchange="evalNeuro()"> 🚨 Alteración consciencia</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="disfagia" onchange="evalNeuro()"> ⚠ Disfagia / disartria</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="diplopia" onchange="evalNeuro()"> ⚠ Diplopía / visión borrosa</label>
+                <label class="rev-check-item"><input type="checkbox" value="hormigueo" onchange="evalNeuro()"> Hormigueo / parestesias</label>
+                <label class="rev-check-item"><input type="checkbox" value="debilidad_focal" onchange="evalNeuro()"> Debilidad focal</label>
+                <label class="rev-check-item"><input type="checkbox" value="mareo" onchange="evalNeuro()"> Mareo / vértigo</label>
+                <label class="rev-check-item"><input type="checkbox" value="sin_sx" onchange="evalNeuro()"> Sin síntomas</label>
+              </div>
+              <div class="rev-section-label">Antecedentes neurológicos</div>
+              <div class="rev-check-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="acv_prev" onchange="evalNeuro()"> 🚨 ACV previo</label>
+                <label class="rev-check-item"><input type="checkbox" value="epilepsia" onchange="evalNeuro()"> Epilepsia</label>
+                <label class="rev-check-item"><input type="checkbox" value="em" onchange="evalNeuro()"> EM / Parkinson</label>
+                <label class="rev-check-item"><input type="checkbox" value="tce" onchange="evalNeuro()"> TCE previo</label>
+                <label class="rev-check-item"><input type="checkbox" value="neuropatia" onchange="evalNeuro()"> Neuropatía periférica</label>
+                <label class="rev-check-item"><input type="checkbox" value="sin_ant_neuro" onchange="evalNeuro()"> Sin antecedentes</label>
+              </div>
+              <div class="rev-section-label">Screening cognitivo rápido</div>
+              <div class="rev-field-row cols-3">
+                <div class="rev-field">
+                  <div class="rev-label">Orientación</div>
+                  <select class="rev-select" id="neuro-orient" onchange="evalNeuro()">
+                    <option value="">— Evaluar —</option>
+                    <option value="completa">Completa (T-P-E-L)</option>
+                    <option value="parcial">Parcial</option>
+                    <option value="desorientado">Desorientado</option>
+                    <option value="no_eval">No evaluado</option>
+                  </select>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Lenguaje / Comunicación</div>
+                  <select class="rev-select" id="neuro-lenguaje" onchange="evalNeuro()">
+                    <option value="">— Evaluar —</option>
+                    <option value="normal">Normal</option>
+                    <option value="afasia_leve">Afasia leve</option>
+                    <option value="afasia_moderada">Afasia moderada</option>
+                    <option value="no_eval">No evaluado</option>
+                  </select>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Dolor de cabeza</div>
+                  <select class="rev-select" id="neuro-cefalea" onchange="evalNeuro()">
+                    <option value="">— Seleccionar —</option>
+                    <option value="no">No</option>
+                    <option value="tension">Tensional habitual</option>
+                    <option value="migrania">Migraña conocida</option>
+                    <option value="nuevo_severo">Nuevo y severo 🚨</option>
+                  </select>
+                </div>
+              </div>
+              <div class="rev-field">
+                <div class="rev-label">Observaciones</div>
+                <textarea class="rev-textarea" id="neuro-obs" placeholder="Ej: reflejos osteotendinosos normales, sin déficit sensorial evidente…" oninput="revMarkDirty('neuro')"></textarea>
+              </div>
+              <div id="neuro-result" class="rev-result-box"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ MSK GENERAL ══ -->
+        <div class="rev-system" id="rev-msk">
+          <div class="rev-card">
+            <div class="rev-card-header">
+              <span class="rev-card-icon">🦴</span>
+              <div><div class="rev-card-title">Sistema Musculoesquelético General</div><div class="rev-card-sub">Screening óseo · Banderas rojas MSK · Historia quirúrgica</div></div>
+            </div>
+            <div class="rev-card-body">
+              <div class="rev-section-label">Banderas rojas MSK</div>
+              <div class="rev-check-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="tumor_conocido" onchange="evalMSK()"> 🚨 Tumor / Ca conocido</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="perdida_peso" onchange="evalMSK()"> 🚨 Pérdida peso inexplicada</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="fiebre_nocturna" onchange="evalMSK()"> 🚨 Fiebre / sudoración nocturna</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="dolor_reposo_msk" onchange="evalMSK()"> 🚨 Dolor en reposo severo</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="trauma_mayor" onchange="evalMSK()"> ⚠ Trauma de alta energía reciente</label>
+                <label class="rev-check-item"><input type="checkbox" value="osteoporosis" onchange="evalMSK()"> Osteoporosis / Osteopenia</label>
+                <label class="rev-check-item"><input type="checkbox" value="artritis" onchange="evalMSK()"> Artritis reumatoide / Espondiloartropatía</label>
+                <label class="rev-check-item"><input type="checkbox" value="sin_flag_msk" onchange="evalMSK()"> Sin banderas rojas</label>
+              </div>
+              <div class="rev-section-label">Historia quirúrgica / Procedimientos</div>
+              <div class="rev-field-row cols-2">
+                <div class="rev-field">
+                  <div class="rev-label">Cirugías previas relevantes</div>
+                  <textarea class="rev-textarea" id="msk-cx" placeholder="Ej: ACL reconstrucción derecha 2022, menisectomía parcial…" oninput="revMarkDirty('msk')"></textarea>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Implantes / Dispositivos</div>
+                  <textarea class="rev-textarea" id="msk-implantes" placeholder="Ej: prótesis total cadera izquierda, tornillos tibia…" oninput="revMarkDirty('msk')"></textarea>
+                </div>
+              </div>
+              <div class="rev-field-row cols-3">
+                <div class="rev-field">
+                  <div class="rev-label">Fracturas previas</div>
+                  <input class="rev-input" type="text" id="msk-fx" placeholder="Ej: radio distal 2019" oninput="revMarkDirty('msk')">
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Actividad física habitual</div>
+                  <select class="rev-select" id="msk-actividad" onchange="evalMSK()">
+                    <option value="">— Seleccionar —</option>
+                    <option value="sedentario">Sedentario</option>
+                    <option value="leve">Leve (1–2 días/sem)</option>
+                    <option value="moderado">Moderado (3–4 días/sem)</option>
+                    <option value="alto">Alto (5+ días/sem)</option>
+                    <option value="elite">Deportista de élite</option>
+                  </select>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">IMC aproximado</div>
+                  <input class="rev-input" type="number" id="msk-imc" min="10" max="60" step="0.1" placeholder="kg/m²" oninput="evalMSK()">
+                </div>
+              </div>
+              <div id="msk-result" class="rev-result-box"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ INTEGUMENTARIO ══ -->
+        <div class="rev-system" id="rev-integumento">
+          <div class="rev-card">
+            <div class="rev-card-header">
+              <span class="rev-card-icon">🩹</span>
+              <div><div class="rev-card-title">Sistema Integumentario</div><div class="rev-card-sub">Piel · Cicatrices · Heridas · Edema</div></div>
+            </div>
+            <div class="rev-card-body">
+              <div class="rev-section-label">Hallazgos en piel</div>
+              <div class="rev-check-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="herida_abierta" onchange="evalIntegumento()"> 🚨 Herida abierta / úlcera</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="infeccion_piel" onchange="evalIntegumento()"> 🚨 Signos infección</label>
+                <label class="rev-check-item"><input type="checkbox" value="cicatriz_activa" onchange="evalIntegumento()"> Cicatriz adherente / activa</label>
+                <label class="rev-check-item"><input type="checkbox" value="edema" onchange="evalIntegumento()"> Edema localizado</label>
+                <label class="rev-check-item"><input type="checkbox" value="hematoma" onchange="evalIntegumento()"> Hematoma / equimosis</label>
+                <label class="rev-check-item"><input type="checkbox" value="calor_local" onchange="evalIntegumento()"> Calor / rubor local</label>
+                <label class="rev-check-item"><input type="checkbox" value="sin_alt_piel" onchange="evalIntegumento()"> Sin alteraciones</label>
+              </div>
+              <div class="rev-section-label">Cicatrices y procedimientos</div>
+              <div class="rev-field-row cols-2">
+                <div class="rev-field">
+                  <div class="rev-label">Descripción de cicatrices relevantes</div>
+                  <textarea class="rev-textarea" id="integ-cicatriz" placeholder="Localización, tipo, madurez…" oninput="revMarkDirty('integumento')"></textarea>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Sensibilidad de la piel</div>
+                  <select class="rev-select" id="integ-sensib" onchange="evalIntegumento()">
+                    <option value="">— Evaluar —</option>
+                    <option value="normal">Normal bilateralmente</option>
+                    <option value="hiperestesia">Hiperestesia</option>
+                    <option value="hipoestesia">Hipoestesia</option>
+                    <option value="anestesia">Anestesia focal</option>
+                    <option value="no_eval">No evaluado</option>
+                  </select>
+                </div>
+              </div>
+              <div id="integ-result" class="rev-result-box"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ GI / URINARIO ══ -->
+        <div class="rev-system" id="rev-gi">
+          <div class="rev-card">
+            <div class="rev-card-header">
+              <span class="rev-card-icon">🫃</span>
+              <div><div class="rev-card-title">Sistema GI / Genitourinario</div><div class="rev-card-sub">Disfunción visceral referida · Screening de banderas rojas abdominales</div></div>
+            </div>
+            <div class="rev-card-body">
+              <div class="rev-section-label">Banderas rojas viscerales</div>
+              <div class="rev-check-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="sangre_heces" onchange="evalGI()"> 🚨 Sangre en heces / orina</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="incontinencia_nueva" onchange="evalGI()"> 🚨 Incontinencia urinaria nueva</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="disfuncion_sexual" onchange="evalGI()"> ⚠ Disfunción sexual nueva</label>
+                <label class="rev-check-item"><input type="checkbox" value="dolor_abdominal" onchange="evalGI()"> Dolor abdominal difuso</label>
+                <label class="rev-check-item"><input type="checkbox" value="nauseas" onchange="evalGI()"> Náuseas / vómito recurrente</label>
+                <label class="rev-check-item"><input type="checkbox" value="cambio_habito" onchange="evalGI()"> Cambio hábito intestinal</label>
+                <label class="rev-check-item"><input type="checkbox" value="disuria" onchange="evalGI()"> Disuria / polaquiuria</label>
+                <label class="rev-check-item"><input type="checkbox" value="sin_alt_gi" onchange="evalGI()"> Sin alteraciones</label>
+              </div>
+              <div class="rev-field">
+                <div class="rev-label">Observaciones</div>
+                <textarea class="rev-textarea" id="gi-obs" placeholder="Contexto clínico relevante…" oninput="revMarkDirty('gi')"></textarea>
+              </div>
+              <div id="gi-result" class="rev-result-box"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ ENDOCRINO / METABÓLICO ══ -->
+        <div class="rev-system" id="rev-endocrino">
+          <div class="rev-card">
+            <div class="rev-card-header">
+              <span class="rev-card-icon">⚗️</span>
+              <div><div class="rev-card-title">Sistema Endocrino / Metabólico</div><div class="rev-card-sub">Condiciones metabólicas que afectan el plan de tratamiento</div></div>
+            </div>
+            <div class="rev-card-body">
+              <div class="rev-check-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="dm_descontrolada" onchange="evalEndocrino()"> 🚨 DM descontrolada (glucosa &gt;300)</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="hipotiroidismo_severo" onchange="evalEndocrino()"> ⚠ Hipotiroidismo severo no tratado</label>
+                <label class="rev-check-item"><input type="checkbox" value="dm_controlada" onchange="evalEndocrino()"> DM controlada</label>
+                <label class="rev-check-item"><input type="checkbox" value="hipotiroidismo" onchange="evalEndocrino()"> Hipotiroidismo tratado</label>
+                <label class="rev-check-item"><input type="checkbox" value="hipertiroidismo" onchange="evalEndocrino()"> Hipertiroidismo</label>
+                <label class="rev-check-item"><input type="checkbox" value="obesidad" onchange="evalEndocrino()"> Obesidad (IMC &gt;30)</label>
+                <label class="rev-check-item"><input type="checkbox" value="corticoides" onchange="evalEndocrino()"> Uso crónico de corticoides</label>
+                <label class="rev-check-item"><input type="checkbox" value="sin_alt_endo" onchange="evalEndocrino()"> Sin alteraciones</label>
+              </div>
+              <div class="rev-field-row cols-2">
+                <div class="rev-field">
+                  <div class="rev-label">Glucemia actual (mg/dL)</div>
+                  <input class="rev-input" type="number" id="endo-glucosa" min="40" max="600" placeholder="70–100 ayunas" oninput="evalEndocrino()">
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Medicación metabólica</div>
+                  <input class="rev-input" type="text" id="endo-meds" placeholder="Ej: metformina, levotiroxina…" oninput="revMarkDirty('endocrino')">
+                </div>
+              </div>
+              <div id="endo-result" class="rev-result-box"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ PSICOSOCIAL ══ -->
+        <div class="rev-system" id="rev-psicosocial">
+          <div class="rev-card">
+            <div class="rev-card-header">
+              <span class="rev-card-icon">🧘</span>
+              <div><div class="rev-card-title">Factores Psicosociales</div><div class="rev-card-sub">Screening STarT · Yellow flags · Contexto bio-psico-social</div></div>
+            </div>
+            <div class="rev-card-body">
+              <div class="rev-section-label">Screening STarT Back (Keele) — Ítems principales</div>
+              <div class="rev-check-group">
+                <label class="rev-check-item flag-item"><input type="checkbox" value="catastrofismo" onchange="evalPsico()"> ⚠ Catastrofismo ("nunca voy a mejorar")</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="kinesiofobia" onchange="evalPsico()"> ⚠ Kinesiofobia / miedo al movimiento</label>
+                <label class="rev-check-item flag-item"><input type="checkbox" value="depresion_ansiedad" onchange="evalPsico()"> ⚠ Depresión / ansiedad activa</label>
+                <label class="rev-check-item"><input type="checkbox" value="dolor_irradiado" onchange="evalPsico()"> Dolor irradiado a extremidades</label>
+                <label class="rev-check-item"><input type="checkbox" value="discapacidad_percibida" onchange="evalPsico()"> Discapacidad percibida alta</label>
+                <label class="rev-check-item"><input type="checkbox" value="litigio" onchange="evalPsico()"> Litigio / compensación laboral</label>
+                <label class="rev-check-item"><input type="checkbox" value="soporte_social" onchange="evalPsico()"> Buena red de soporte social</label>
+                <label class="rev-check-item"><input type="checkbox" value="sin_flags_psico" onchange="evalPsico()"> Sin yellow flags</label>
+              </div>
+              <div class="rev-section-label">Contexto laboral / funcional</div>
+              <div class="rev-field-row cols-3">
+                <div class="rev-field">
+                  <div class="rev-label">Situación laboral</div>
+                  <select class="rev-select" id="psico-trabajo" onchange="evalPsico()">
+                    <option value="">— Seleccionar —</option>
+                    <option value="activo">Trabajando activamente</option>
+                    <option value="incapacidad">En incapacidad</option>
+                    <option value="pensionado">Pensionado</option>
+                    <option value="desempleado">Desempleado</option>
+                    <option value="estudiante">Estudiante</option>
+                  </select>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Expectativa del paciente</div>
+                  <select class="rev-select" id="psico-expectativa" onchange="evalPsico()">
+                    <option value="">— Seleccionar —</option>
+                    <option value="realista">Realista y motivada</option>
+                    <option value="alta">Alta pero alcanzable</option>
+                    <option value="irreal">Poco realista</option>
+                    <option value="baja">Baja / pesimista</option>
+                  </select>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Adherencia estimada</div>
+                  <select class="rev-select" id="psico-adherencia" onchange="evalPsico()">
+                    <option value="">— Seleccionar —</option>
+                    <option value="alta">Alta</option>
+                    <option value="moderada">Moderada</option>
+                    <option value="baja">Baja</option>
+                  </select>
+                </div>
+              </div>
+              <div class="rev-field-row cols-2">
+                <div class="rev-field">
+                  <div class="rev-label">Objetivos del paciente (con sus palabras)</div>
+                  <textarea class="rev-textarea" id="psico-objetivos" placeholder="Ej: volver a jugar fútbol en 3 meses…" oninput="revMarkDirty('psicosocial')"></textarea>
+                </div>
+                <div class="rev-field">
+                  <div class="rev-label">Observaciones psicosociales</div>
+                  <textarea class="rev-textarea" id="psico-obs" placeholder="Contexto familiar, barreras, facilitadores…" oninput="revMarkDirty('psicosocial')"></textarea>
+                </div>
+              </div>
+              <div id="psico-result" class="rev-result-box"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /revision-main -->
+    </div><!-- /revision-layout -->
+  </div><!-- /tab-revision -->
+
 
 </main>
-</div>
+
+<!-- MOBILE FILTER FAB -->
+<button class="filter-fab" id="filter-fab" onclick="openMobileSidebar()">
+  ⚙ Filtros <span class="filter-fab-count" id="filter-fab-count">0</span>
+</button>
+<div class="filter-overlay-bg" id="filter-overlay-bg" onclick="closeMobileSidebar()"></div>
+
 
 <script>
 // ── DATA ──────────────────────────────────────────────────────────────────
@@ -1656,6 +2511,7 @@ function renderTests(){
       </div>
     </div>
   </div>`).join('');
+  if(typeof updateFilterFabCount === 'function') updateFilterFabCount();
 }
 
 // ── RENDER BATTERIES ──────────────────────────────────────────────────────
@@ -1846,18 +2702,50 @@ function goToTest(name){
 // ── TAB SWITCH ────────────────────────────────────────────────────────────
 let gonioInitialized = false;
 function switchTab(name, btn){
-  ['tests','baterias','lr','goniometria'].forEach(t=>{
+  ['tests','baterias','lr','goniometria','postura','revision'].forEach(t=>{
     const el = document.getElementById(`tab-${t}`);
     if(el) el.style.display = t===name ? 'block' : 'none';
   });
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   if(btn) btn.classList.add('active');
-  else document.querySelectorAll('.tab')[['tests','baterias','lr','goniometria'].indexOf(name)]?.classList.add('active');
+  else document.querySelectorAll('.tab')[['tests','baterias','lr','goniometria','postura','revision'].indexOf(name)]?.classList.add('active');
   if(name==='goniometria' && !gonioInitialized){
     initGoniometry();
     gonioInitialized = true;
   }
+  if(name==='postura' && !posturaInitialized){
+    initPostura();
+    posturaInitialized = true;
+  }
+  // Hide FAB on non-tests tabs
+  const fab = document.getElementById('filter-fab');
+  if(fab) fab.style.display = name === 'tests' ? '' : 'none';
 }
+
+// ── MOBILE SIDEBAR ─────────────────────────────────────────────
+function openMobileSidebar(){
+  document.getElementById('main-sidebar').classList.add('mobile-open');
+  document.getElementById('filter-overlay-bg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileSidebar(){
+  document.getElementById('main-sidebar').classList.remove('mobile-open');
+  document.getElementById('filter-overlay-bg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function updateFilterFabCount(){
+  // Count active filters
+  const regionActive = document.querySelectorAll('#region-filters .filter-chip.active').length;
+  const tipoActive   = document.querySelectorAll('#tipo-filters .filter-chip.active').length;
+  const evActive     = document.querySelectorAll('#ev-filters .filter-chip.active').length;
+  const momentoActive= document.querySelectorAll('.momento-pill.active').length;
+  const searchVal    = document.getElementById('search-input')?.value?.trim().length > 0 ? 1 : 0;
+  const total = regionActive + tipoActive + evActive + momentoActive + searchVal;
+  const badge = document.getElementById('filter-fab-count');
+  if(badge) badge.textContent = total;
+  if(badge) badge.style.background = total > 0 ? '#0F2540' : 'rgba(15,37,64,.5)';
+}
+
 
 
 // ══════════════════════════════════════════════════════════════
@@ -2648,13 +3536,38 @@ function updateReport(){
   const statusEmoji = {normal:'✓',leve:'⚠',positivo:'✗',info:'ℹ'};
   const statusLabel = {normal:'NEGATIVO / NORMAL',leve:'BORDERLINE',positivo:'POSITIVO',info:'INFORMATIVO'};
 
-  // Group by region
+  // Separate results into 3 buckets: revision, postura, rest
+  const revResult     = SESSION.results.find(r => r.testId === 'revision_sistemas');
+  const posturaResult = SESSION.results.find(r => r.testId === 'analisis_postural');
+  const testResults   = SESSION.results.filter(r => r.testId !== 'revision_sistemas' && r.testId !== 'analisis_postural');
+
+  // Group test results by region
   const byRegion = {};
-  SESSION.results.forEach(r => {
+  testResults.forEach(r => {
     const reg = r.region || 'Sin región';
     if(!byRegion[reg]) byRegion[reg] = [];
     byRegion[reg].push(r);
   });
+
+  const renderResult = (r) => {
+    const sym = statusEmoji[r.cls] || '·';
+    const lbl = statusLabel[r.cls] || '';
+    let out = [];
+    out.push(`${sym} ${r.testName}`);
+    out.push(`  Resultado: ${lbl}`);
+    out.push(`  ${r.header}`);
+    const words = r.body.split(' ');
+    let line = '  ';
+    words.forEach(w => {
+      if((line+w).length > 57){ out.push(line.trimEnd()); line = '  '+w+' '; }
+      else { line += w+' '; }
+    });
+    if(line.trim()) out.push(line.trimEnd());
+    if(r.lr) out.push(`  📊 ${r.lr}`);
+    out.push(`  [${r.timestamp}]`);
+    out.push('');
+    return out.join('\n');
+  };
 
   let lines = [];
   lines.push('═══════════════════════════════════════════════════════');
@@ -2675,32 +3588,33 @@ function updateReport(){
   lines.push(`Hora inicio:    ${hora}`);
   lines.push(`Tests realizados: ${SESSION.results.length}`);
   lines.push('');
-  lines.push('RESULTADOS POR REGIÓN');
-  lines.push('═══════════════════════════════════════════════════════');
 
-  Object.entries(byRegion).forEach(([region, tests]) => {
-    lines.push('');
-    lines.push(`▸ ${region.toUpperCase()}`);
-    lines.push('─────────────────────────────────────────────────────');
-    tests.forEach(r => {
-      const sym = statusEmoji[r.cls] || '·';
-      const lbl = statusLabel[r.cls] || '';
-      lines.push(`${sym} ${r.testName}`);
-      lines.push(`  Resultado: ${lbl}`);
-      lines.push(`  ${r.header}`);
-      // Break body into 55-char lines
-      const words = r.body.split(' ');
-      let line = '  ';
-      words.forEach(w => {
-        if((line+w).length > 57){ lines.push(line.trimEnd()); line = '  '+w+' '; }
-        else { line += w+' '; }
-      });
-      if(line.trim()) lines.push(line.trimEnd());
-      if(r.lr) lines.push(`  📊 ${r.lr}`);
-      lines.push(`  [${r.timestamp}]`);
+  // ── 1. REVISIÓN POR SISTEMAS ──────────────────────────────────
+  if(revResult) {
+    lines.push('1. REVISIÓN POR SISTEMAS (APTA 4.0)');
+    lines.push('═══════════════════════════════════════════════════════');
+    lines.push(renderResult(revResult));
+  }
+
+  // ── 2. ANÁLISIS POSTURAL ─────────────────────────────────────
+  if(posturaResult) {
+    lines.push('2. ANÁLISIS POSTURAL');
+    lines.push('═══════════════════════════════════════════════════════');
+    lines.push(renderResult(posturaResult));
+  }
+
+  // ── 3. RESULTADOS POR REGIÓN ──────────────────────────────────
+  if(testResults.length > 0) {
+    const sectionNum = revResult || posturaResult ? (revResult && posturaResult ? '3' : '2') : '1';
+    lines.push(`${sectionNum}. RESULTADOS POR REGIÓN`);
+    lines.push('═══════════════════════════════════════════════════════');
+    Object.entries(byRegion).forEach(([region, tests]) => {
       lines.push('');
+      lines.push(`▸ ${region.toUpperCase()}`);
+      lines.push('─────────────────────────────────────────────────────');
+      tests.forEach(r => { lines.push(renderResult(r)); });
     });
-  });
+  }
 
   lines.push('═══════════════════════════════════════════════════════');
   lines.push('  Generado con DSH Clinical App · dolorsinhumo.com');
@@ -4049,6 +4963,938 @@ renderTests();
 renderBatteries();
 renderLR();
 sessionInit();
+
+// ══════════════════════════════════════════════════════════════
+// ANÁLISIS POSTURAL — MediaPipe Pose + Canvas Editor
+// ══════════════════════════════════════════════════════════════
+
+let posturaInitialized = false;
+let mpPose = null;
+let mpReady = false;
+
+const POSTURA_VIEWS = [
+  { id: 'anterior',   label: 'Vista Anterior',   icon: '⬆', refLines: ['shoulder','pelvis','knee','ankle','plumb'] },
+  { id: 'posterior',  label: 'Vista Posterior',  icon: '⬇', refLines: ['shoulder','pelvis','knee','ankle','plumb'] },
+  { id: 'lateral_d',  label: 'Lateral Derecho',  icon: '➡', refLines: ['ear_shoulder','shoulder_hip','hip_knee','knee_ankle','plumb_lat'] },
+  { id: 'lateral_i',  label: 'Lateral Izquierdo',icon: '⬅', refLines: ['ear_shoulder','shoulder_hip','hip_knee','knee_ankle','plumb_lat'] },
+];
+
+// Per-view state
+const posturaState = {};
+POSTURA_VIEWS.forEach(v => {
+  posturaState[v.id] = {
+    img: null, imgEl: null,
+    points: {},          // landmark_name → {x,y} in canvas coords (0–1 normalized)
+    angles: {},
+    tool: 'select',      // 'select' | 'plumb' | 'hline' | 'erase'
+    customLines: [],     // [{x1,y1,x2,y2,color}]
+    dragging: null,      // landmark name being dragged
+    obs: '',
+    analyzed: false,
+    dirty: false,
+  };
+});
+
+// MediaPipe landmark indices we care about
+const MP_LANDMARKS = {
+  nose:        0,  left_eye: 2,   right_eye: 5,
+  left_ear:    7,  right_ear: 8,
+  left_shoulder:  11, right_shoulder: 12,
+  left_elbow:     13, right_elbow:    14,
+  left_wrist:     15, right_wrist:    16,
+  left_hip:       23, right_hip:      24,
+  left_knee:      25, right_knee:     26,
+  left_ankle:     27, right_ankle:    28,
+  left_heel:      29, right_heel:     30,
+  left_foot:      31, right_foot:     32,
+};
+
+const POINT_COLORS = {
+  nose:'#FF6B6B', left_ear:'#FFD93D', right_ear:'#FFD93D',
+  left_shoulder:'#6BCB77', right_shoulder:'#6BCB77',
+  left_hip:'#4D96FF', right_hip:'#4D96FF',
+  left_knee:'#FF6BDB', right_knee:'#FF6BDB',
+  left_ankle:'#FF9F43', right_ankle:'#FF9F43',
+  left_heel:'#FFA07A', right_heel:'#FFA07A',
+  left_foot:'#DDA0DD', right_foot:'#DDA0DD',
+  default:'#00B4A6'
+};
+
+function initPostura() {
+  const grid = document.getElementById('postura-grid');
+  if(!grid) return;
+  grid.innerHTML = POSTURA_VIEWS.map(v => buildViewCard(v)).join('');
+  // Load MediaPipe
+  loadMediaPipe();
+}
+
+function buildViewCard(v) {
+  return `
+  <div class="postura-view-card" id="pvc-${v.id}">
+    <div class="postura-view-header">
+      <span class="postura-view-title">${v.icon} ${v.label}</span>
+      <span class="postura-ai-status" id="ai-status-${v.id}"></span>
+    </div>
+    <div class="postura-canvas-wrap" id="wrap-${v.id}" style="min-height:320px">
+      <div class="postura-placeholder" id="placeholder-${v.id}">
+        <div class="postura-placeholder-icon">📷</div>
+        <div>Sube una foto para ${v.label.toLowerCase()}</div>
+        <label class="postura-upload-btn">
+          Seleccionar foto
+          <input type="file" accept="image/*" style="display:none" onchange="handlePosturaPhoto(event,'${v.id}')">
+        </label>
+      </div>
+      <img id="img-${v.id}" class="postura-img" style="display:none;position:relative;z-index:1">
+      <canvas id="canvas-${v.id}" style="display:none;position:absolute;top:0;left:0;z-index:2;width:100%;height:100%"></canvas>
+    </div>
+    <div class="postura-toolbar" id="toolbar-${v.id}" style="display:none">
+      <button class="postura-tool-btn active" id="tool-select-${v.id}" onclick="setPosturaTool('${v.id}','select',this)">↖ Mover puntos</button>
+      <button class="postura-tool-btn" id="tool-plumb-${v.id}" onclick="setPosturaTool('${v.id}','plumb',this)">│ Plomada</button>
+      <button class="postura-tool-btn" id="tool-hline-${v.id}" onclick="setPosturaTool('${v.id}','hline',this)">— Horizontal</button>
+      <button class="postura-tool-btn" id="tool-erase-${v.id}" onclick="setPosturaTool('${v.id}','erase',this)">✕ Borrar línea</button>
+      <button class="postura-tool-btn danger" onclick="reanalyzePostura('${v.id}')">🔄 Re-analizar IA</button>
+      <button class="postura-tool-btn danger" onclick="clearPosturaView('${v.id}')">🗑 Limpiar</button>
+    </div>
+    <div class="postura-angles-panel" id="angles-${v.id}">
+      <div class="postura-angles-title">Ángulos y referencias calculadas</div>
+      <div class="postura-angles-grid" id="angles-chips-${v.id}"></div>
+    </div>
+    <div class="postura-obs-section" id="obs-section-${v.id}" style="display:none">
+      <div class="postura-obs-label">Observaciones — ${v.label}</div>
+      <textarea class="postura-obs-textarea" id="obs-${v.id}" placeholder="Hallazgos, asimetrías, compensaciones…" oninput="posturaMarkDirty()"></textarea>
+    </div>
+  </div>`;
+}
+
+function loadMediaPipe() {
+  if(mpReady || mpPose) return;
+  const status = document.getElementById('postura-mp-status');
+  if(status) status.style.display = 'block';
+  // Load MediaPipe via CDN
+  const script1 = document.createElement('script');
+  script1.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5.1675469404/pose.js';
+  script1.onload = () => {
+    const script2 = document.createElement('script');
+    script2.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js';
+    script2.onload = () => initMpPose();
+    document.head.appendChild(script2);
+  };
+  script1.onerror = () => {
+    if(status) { status.style.display='block'; status.textContent='⚠ No se pudo cargar MediaPipe. Revisa conexión. Los puntos se pueden ajustar manualmente.'; }
+    mpReady = false;
+  };
+  document.head.appendChild(script1);
+}
+
+function initMpPose() {
+  try {
+    mpPose = new Pose({ locateFile: file => `https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.5.1675469404/${file}` });
+    mpPose.setOptions({ modelComplexity: 1, smoothLandmarks: false, enableSegmentation: false, minDetectionConfidence: 0.5, minTrackingConfidence: 0.5 });
+    mpPose.onResults(onMpResults);
+    mpPose.initialize().then(() => {
+      mpReady = true;
+      const status = document.getElementById('postura-mp-status');
+      if(status) { status.style.display='none'; }
+      // If any photos were queued, process them
+      POSTURA_VIEWS.forEach(v => {
+        if(posturaState[v.id].img && !posturaState[v.id].analyzed) runMpOnView(v.id);
+      });
+    });
+  } catch(e) {
+    console.warn('MediaPipe init failed:', e);
+    const status = document.getElementById('postura-mp-status');
+    if(status) { status.textContent = '⚠ MediaPipe no disponible. Ajusta los puntos manualmente.'; }
+  }
+}
+
+let _currentAnalyzingView = null;
+
+function onMpResults(results) {
+  const vid = _currentAnalyzingView;
+  if(!vid) return;
+  const st = posturaState[vid];
+  const aiStatus = document.getElementById(`ai-status-${vid}`);
+
+  if(results.poseLandmarks && results.poseLandmarks.length > 0) {
+    const canvas = document.getElementById(`canvas-${vid}`);
+    const W = canvas.width, H = canvas.height;
+    // Map MP normalized coords to canvas coords
+    Object.entries(MP_LANDMARKS).forEach(([name, idx]) => {
+      const lm = results.poseLandmarks[idx];
+      if(lm && lm.visibility > 0.3) {
+        st.points[name] = { x: lm.x, y: lm.y }; // keep normalized 0-1
+      }
+    });
+    st.analyzed = true;
+    if(aiStatus) { aiStatus.textContent='✓ IA detectó puntos'; aiStatus.className='postura-ai-status done'; }
+  } else {
+    if(aiStatus) { aiStatus.textContent='⚠ No se detectó cuerpo. Ajusta manualmente.'; aiStatus.className='postura-ai-status error'; }
+  }
+  drawPosturaCanvas(vid);
+  calcAngles(vid);
+  _currentAnalyzingView = null;
+}
+
+function runMpOnView(vid) {
+  if(!mpReady || !mpPose) return;
+  const st = posturaState[vid];
+  if(!st.imgEl) return;
+  const aiStatus = document.getElementById(`ai-status-${vid}`);
+  if(aiStatus) { aiStatus.textContent='⏳ Analizando…'; aiStatus.className='postura-ai-status loading'; }
+  _currentAnalyzingView = vid;
+  // Draw image to offscreen canvas for MP
+  const off = document.createElement('canvas');
+  off.width = st.imgEl.naturalWidth; off.height = st.imgEl.naturalHeight;
+  off.getContext('2d').drawImage(st.imgEl, 0, 0);
+  mpPose.send({ image: off }).catch(e => {
+    if(aiStatus) { aiStatus.textContent='⚠ Error IA'; aiStatus.className='postura-ai-status error'; }
+    _currentAnalyzingView = null;
+  });
+}
+
+function handlePosturaPhoto(event, vid) {
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const st = posturaState[vid];
+    st.img = e.target.result;
+    st.points = {};
+    st.customLines = [];
+    st.analyzed = false;
+
+    const imgEl = document.getElementById(`img-${vid}`);
+    const canvas = document.getElementById(`canvas-${vid}`);
+    const wrap = document.getElementById(`wrap-${vid}`);
+    const placeholder = document.getElementById(`placeholder-${vid}`);
+    const toolbar = document.getElementById(`toolbar-${vid}`);
+    const obsSection = document.getElementById(`obs-section-${vid}`);
+
+    imgEl.onload = () => {
+      st.imgEl = imgEl;
+      // Size canvas to image
+      const rect = imgEl.getBoundingClientRect();
+      canvas.width = imgEl.naturalWidth;
+      canvas.height = imgEl.naturalHeight;
+      placeholder.style.display = 'none';
+      imgEl.style.display = 'block';
+      canvas.style.display = 'block';
+      toolbar.style.display = 'flex';
+      obsSection.style.display = 'block';
+      wrap.style.minHeight = 'auto';
+      // Attach events
+      attachCanvasEvents(vid, canvas);
+      // Try MediaPipe
+      if(mpReady) {
+        runMpOnView(vid);
+      } else if(!mpPose) {
+        loadMediaPipe();
+        const aiStatus = document.getElementById(`ai-status-${vid}`);
+        if(aiStatus) { aiStatus.textContent='⏳ Cargando IA…'; aiStatus.className='postura-ai-status loading'; }
+      }
+      drawPosturaCanvas(vid);
+    };
+    imgEl.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function attachCanvasEvents(vid, canvas) {
+  canvas.removeEventListener('mousedown', canvas._mdown);
+  canvas.removeEventListener('mousemove', canvas._mmove);
+  canvas.removeEventListener('mouseup',   canvas._mup);
+  canvas.removeEventListener('touchstart', canvas._tstart);
+  canvas.removeEventListener('touchmove',  canvas._tmove);
+  canvas.removeEventListener('touchend',   canvas._tend);
+
+  function getPos(e) {
+    const r = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    // Normalized 0-1 coords
+    return {
+      x: (clientX - r.left) / r.width,
+      y: (clientY - r.top) / r.height
+    };
+  }
+
+  canvas._mdown = (e) => { e.preventDefault(); onPosturaDown(vid, getPos(e), e.shiftKey); };
+  canvas._mmove = (e) => { e.preventDefault(); onPosturaMove(vid, getPos(e)); };
+  canvas._mup   = (e) => { e.preventDefault(); onPosturaUp(vid); };
+  canvas._tstart= (e) => { e.preventDefault(); onPosturaDown(vid, getPos(e), false); };
+  canvas._tmove = (e) => { e.preventDefault(); onPosturaMove(vid, getPos(e)); };
+  canvas._tend  = (e) => { e.preventDefault(); onPosturaUp(vid); };
+
+  canvas.addEventListener('mousedown',  canvas._mdown);
+  canvas.addEventListener('mousemove',  canvas._mmove);
+  canvas.addEventListener('mouseup',    canvas._mup);
+  canvas.addEventListener('touchstart', canvas._tstart, { passive: false });
+  canvas.addEventListener('touchmove',  canvas._tmove,  { passive: false });
+  canvas.addEventListener('touchend',   canvas._tend,   { passive: false });
+}
+
+let _lineStart = null;
+
+function onPosturaDown(vid, pos, shift) {
+  const st = posturaState[vid];
+  if(st.tool === 'select') {
+    // Find closest point within 3% radius
+    let best = null, bestDist = 0.035;
+    Object.entries(st.points).forEach(([name, p]) => {
+      const d = Math.hypot(p.x - pos.x, p.y - pos.y);
+      if(d < bestDist) { bestDist = d; best = name; }
+    });
+    st.dragging = best;
+  } else if(st.tool === 'plumb' || st.tool === 'hline') {
+    _lineStart = pos;
+  } else if(st.tool === 'erase') {
+    // Remove closest custom line
+    let best = null, bestDist = 0.04;
+    st.customLines.forEach((ln, i) => {
+      const midX = (ln.x1 + ln.x2)/2, midY = (ln.y1 + ln.y2)/2;
+      const d = Math.hypot(midX - pos.x, midY - pos.y);
+      if(d < bestDist) { bestDist = d; best = i; }
+    });
+    if(best !== null) { st.customLines.splice(best, 1); drawPosturaCanvas(vid); }
+  }
+}
+
+function onPosturaMove(vid, pos) {
+  const st = posturaState[vid];
+  if(st.dragging) {
+    st.points[st.dragging] = { x: pos.x, y: pos.y };
+    drawPosturaCanvas(vid);
+    calcAngles(vid);
+    posturaMarkDirty();
+  }
+}
+
+function onPosturaUp(vid) {
+  const st = posturaState[vid];
+  if((st.tool === 'plumb' || st.tool === 'hline') && _lineStart) {
+    const canvas = document.getElementById(`canvas-${vid}`);
+    const W = canvas.width, H = canvas.height;
+    // Snap plumb to vertical, hline to horizontal
+    let x2 = _lineStart.x, y2 = _lineStart.y;
+    if(st.tool === 'plumb') { x2 = _lineStart.x; y2 = 0.99; }
+    if(st.tool === 'hline') { x2 = 0.99; y2 = _lineStart.y; }
+    st.customLines.push({
+      x1: st.tool === 'hline' ? 0 : _lineStart.x, 
+      y1: st.tool === 'plumb' ? 0 : _lineStart.y,
+      x2, y2,
+      color: st.tool === 'plumb' ? '#FF6B6B' : '#FFD93D',
+      type: st.tool
+    });
+    _lineStart = null;
+    drawPosturaCanvas(vid);
+    posturaMarkDirty();
+  }
+  posturaState[vid].dragging = null;
+}
+
+function drawPosturaCanvas(vid) {
+  const st = posturaState[vid];
+  const canvas = document.getElementById(`canvas-${vid}`);
+  if(!canvas || !st.imgEl) return;
+  const W = canvas.width, H = canvas.height;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+
+  // Draw image (canvas overlays it)
+  // Actually canvas is transparent over img — only draw overlays
+
+  // Helper: normalized → pixel
+  const px = (nx) => nx * W;
+  const py = (ny) => ny * H;
+
+  // ── Auto reference lines from landmarks ──────────────────────
+  const pts = st.points;
+  const line = (n1, n2, color='rgba(0,180,166,0.85)', dash=[]) => {
+    const a = pts[n1], b = pts[n2];
+    if(!a || !b) return;
+    ctx.save();
+    ctx.strokeStyle = color; ctx.lineWidth = 2.5;
+    ctx.setLineDash(dash);
+    ctx.beginPath(); ctx.moveTo(px(a.x), py(a.y)); ctx.lineTo(px(b.x), py(b.y)); ctx.stroke();
+    ctx.restore();
+  };
+  const midLine = (n1, n2, n3, n4, color) => {
+    const a = pts[n1], b = pts[n2], c = pts[n3], d = pts[n4];
+    if(!a||!b||!c||!d) return;
+    line('_mid_'+n1+n2, '_mid_'+n3+n4, color);
+    const m1 = {x:(a.x+b.x)/2, y:(a.y+b.y)/2};
+    const m2 = {x:(c.x+d.x)/2, y:(c.y+d.y)/2};
+    ctx.save(); ctx.strokeStyle=color; ctx.lineWidth=2.5; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(px(m1.x),py(m1.y)); ctx.lineTo(px(m2.x),py(m2.y)); ctx.stroke();
+    ctx.restore();
+  };
+
+  // Shoulder horizontal
+  if(pts.left_shoulder && pts.right_shoulder) {
+    const ls=pts.left_shoulder, rs=pts.right_shoulder;
+    ctx.save(); ctx.strokeStyle='#6BCB77'; ctx.lineWidth=2.5; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(px(ls.x),py(ls.y)); ctx.lineTo(px(rs.x),py(rs.y)); ctx.stroke(); ctx.restore();
+  }
+  // Pelvis horizontal
+  if(pts.left_hip && pts.right_hip) {
+    ctx.save(); ctx.strokeStyle='#4D96FF'; ctx.lineWidth=2.5; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(px(pts.left_hip.x),py(pts.left_hip.y)); ctx.lineTo(px(pts.right_hip.x),py(pts.right_hip.y)); ctx.stroke(); ctx.restore();
+  }
+  // Knee horizontal
+  if(pts.left_knee && pts.right_knee) {
+    ctx.save(); ctx.strokeStyle='#FF6BDB'; ctx.lineWidth=2; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(px(pts.left_knee.x),py(pts.left_knee.y)); ctx.lineTo(px(pts.right_knee.x),py(pts.right_knee.y)); ctx.stroke(); ctx.restore();
+  }
+  // Ankle horizontal
+  if(pts.left_ankle && pts.right_ankle) {
+    ctx.save(); ctx.strokeStyle='#FF9F43'; ctx.lineWidth=2; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(px(pts.left_ankle.x),py(pts.left_ankle.y)); ctx.lineTo(px(pts.right_ankle.x),py(pts.right_ankle.y)); ctx.stroke(); ctx.restore();
+  }
+  // Plumb — mid shoulder to mid ankle
+  if(pts.left_shoulder && pts.right_shoulder && pts.left_ankle && pts.right_ankle) {
+    const ms = {x:(pts.left_shoulder.x+pts.right_shoulder.x)/2, y:(pts.left_shoulder.y+pts.right_shoulder.y)/2};
+    const ma = {x:(pts.left_ankle.x+pts.right_ankle.x)/2, y:(pts.left_ankle.y+pts.right_ankle.y)/2};
+    ctx.save(); ctx.strokeStyle='rgba(255,107,107,0.7)'; ctx.lineWidth=1.5; ctx.setLineDash([8,4]);
+    ctx.beginPath(); ctx.moveTo(px(ms.x), 0); ctx.lineTo(px(ms.x), H); ctx.stroke();
+    ctx.restore();
+  }
+  // Lateral plumb — ear to ankle
+  if(pts.left_ear && pts.left_ankle) line('left_ear','left_ankle','rgba(255,107,107,0.6)',[6,4]);
+  if(pts.right_ear && pts.right_ankle) line('right_ear','right_ankle','rgba(255,107,107,0.6)',[6,4]);
+  // Trunk
+  if(pts.left_shoulder && pts.left_hip) line('left_shoulder','left_hip','rgba(0,180,166,0.5)',[]);
+  if(pts.right_shoulder && pts.right_hip) line('right_shoulder','right_hip','rgba(0,180,166,0.5)',[]);
+
+  // ── Custom lines ──────────────────────────────────────────────
+  st.customLines.forEach(ln => {
+    ctx.save(); ctx.strokeStyle=ln.color; ctx.lineWidth=2; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(px(ln.x1),py(ln.y1)); ctx.lineTo(px(ln.x2),py(ln.y2)); ctx.stroke(); ctx.restore();
+  });
+
+  // ── Landmark points ───────────────────────────────────────────
+  Object.entries(pts).forEach(([name, p]) => {
+    const color = POINT_COLORS[name] || POINT_COLORS.default;
+    const isDragging = posturaState[vid].dragging === name;
+    ctx.beginPath();
+    ctx.arc(px(p.x), py(p.y), isDragging ? 9 : 6, 0, Math.PI*2);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Label
+    ctx.fillStyle = '#fff';
+    ctx.font = `bold ${Math.round(W/80)}px DM Sans, sans-serif`;
+    ctx.fillText(name.replace('left_','L ').replace('right_','R '), px(p.x)+8, py(p.y)-4);
+  });
+}
+
+function calcAngles(vid) {
+  const st = posturaState[vid];
+  const pts = st.points;
+  const angles = {};
+
+  function deg(p1, p2) { // angle of line p1→p2 from horizontal
+    if(!p1||!p2) return null;
+    return Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+  }
+  function angDiff(a, b) { // signed diff from horizontal (0°)
+    if(a===null) return null;
+    return parseFloat(a.toFixed(1));
+  }
+
+  // Shoulder obliquity
+  if(pts.left_shoulder && pts.right_shoulder) {
+    const a = deg(pts.right_shoulder, pts.left_shoulder);
+    angles['Oblicuidad hombros'] = { val: Math.abs(a).toFixed(1)+'°', raw: Math.abs(a),
+      cls: Math.abs(a) < 2 ? 'normal' : Math.abs(a) < 5 ? 'altered' : 'significant',
+      side: a > 0 ? 'Hombro izq. más alto' : 'Hombro der. más alto' };
+  }
+  // Pelvic obliquity
+  if(pts.left_hip && pts.right_hip) {
+    const a = deg(pts.right_hip, pts.left_hip);
+    angles['Oblicuidad pélvica'] = { val: Math.abs(a).toFixed(1)+'°', raw: Math.abs(a),
+      cls: Math.abs(a) < 2 ? 'normal' : Math.abs(a) < 5 ? 'altered' : 'significant',
+      side: a > 0 ? 'Cresta izq. más alta' : 'Cresta der. más alta' };
+  }
+  // Knee obliquity
+  if(pts.left_knee && pts.right_knee) {
+    const a = deg(pts.right_knee, pts.left_knee);
+    angles['Oblicuidad rodillas'] = { val: Math.abs(a).toFixed(1)+'°', raw: Math.abs(a),
+      cls: Math.abs(a) < 2 ? 'normal' : Math.abs(a) < 4 ? 'altered' : 'significant' };
+  }
+  // Lateral ear-shoulder angle (head forward posture)
+  const earPt = pts.right_ear || pts.left_ear;
+  const shoulderPt = pts.right_shoulder || pts.left_shoulder;
+  if(earPt && shoulderPt) {
+    const a = deg(shoulderPt, earPt);
+    const deviation = Math.abs(90 - Math.abs(a));
+    angles['Postura cabeza anteriorizada'] = { val: deviation.toFixed(1)+'°', raw: deviation,
+      cls: deviation < 5 ? 'normal' : deviation < 15 ? 'altered' : 'significant',
+      side: 'Desviación de la vertical' };
+  }
+  // Trunk inclination
+  if(pts.left_shoulder && pts.left_hip) {
+    const a = deg(pts.left_hip, pts.left_shoulder);
+    const from90 = Math.abs(90 - Math.abs(a));
+    angles['Inclinación lateral tronco'] = { val: from90.toFixed(1)+'°', raw: from90,
+      cls: from90 < 3 ? 'normal' : from90 < 8 ? 'altered' : 'significant' };
+  }
+
+  st.angles = angles;
+  renderAngleChips(vid);
+  posturaMarkDirty();
+}
+
+function renderAngleChips(vid) {
+  const st = posturaState[vid];
+  const panel = document.getElementById(`angles-${vid}`);
+  const chips = document.getElementById(`angles-chips-${vid}`);
+  if(!chips) return;
+  const entries = Object.entries(st.angles);
+  if(!entries.length) { panel.classList.remove('show'); return; }
+  panel.classList.add('show');
+  chips.innerHTML = entries.map(([name, a]) =>
+    `<span class="postura-angle-chip ${a.cls}" title="${a.side||''}">
+      ${name}: <strong>${a.val}</strong>${a.side ? ' · '+a.side : ''}
+    </span>`
+  ).join('');
+}
+
+function setPosturaTool(vid, tool, btn) {
+  posturaState[vid].tool = tool;
+  document.querySelectorAll(`#toolbar-${vid} .postura-tool-btn`).forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+
+function reanalyzePostura(vid) {
+  posturaState[vid].points = {};
+  posturaState[vid].analyzed = false;
+  drawPosturaCanvas(vid);
+  runMpOnView(vid);
+}
+
+function clearPosturaView(vid) {
+  if(!confirm('¿Limpiar esta vista?')) return;
+  const st = posturaState[vid];
+  st.img = null; st.imgEl = null; st.points = {}; st.customLines = []; st.angles = {}; st.analyzed = false;
+  document.getElementById(`img-${vid}`).style.display = 'none';
+  document.getElementById(`canvas-${vid}`).style.display = 'none';
+  document.getElementById(`placeholder-${vid}`).style.display = 'flex';
+  document.getElementById(`toolbar-${vid}`).style.display = 'none';
+  document.getElementById(`obs-section-${vid}`).style.display = 'none';
+  document.getElementById(`angles-${vid}`).classList.remove('show');
+  const ctx = document.getElementById(`canvas-${vid}`)?.getContext('2d');
+  if(ctx) ctx.clearRect(0,0,9999,9999);
+}
+
+function posturaMarkDirty() {
+  const hasAny = POSTURA_VIEWS.some(v => posturaState[v.id].img);
+  const btn = document.getElementById('postura-session-btn');
+  if(btn) btn.disabled = !hasAny;
+}
+
+function savePosturaToSession() {
+  const analyzed = POSTURA_VIEWS.filter(v => posturaState[v.id].img);
+  if(!analyzed.length) return;
+
+  let bodyParts = [];
+  let allAngles = {};
+  let hasSignificant = false;
+
+  analyzed.forEach(v => {
+    const st = posturaState[v.id];
+    bodyParts.push(`${v.label}: ${Object.keys(st.points).length} puntos detectados`);
+    Object.entries(st.angles).forEach(([name, a]) => {
+      bodyParts.push(`  ${name}: ${a.val}${a.side ? ' ('+a.side+')' : ''} — ${a.cls === 'normal' ? 'Normal' : a.cls === 'altered' ? 'Leve alteración' : 'Alteración significativa'}`);
+      if(a.cls === 'significant') hasSignificant = true;
+    });
+    const obs = document.getElementById(`obs-${v.id}`)?.value;
+    if(obs) bodyParts.push(`  Obs: ${obs}`);
+  });
+
+  const globalObs = document.getElementById('postura-obs-global')?.value;
+  if(globalObs) bodyParts.push('Observaciones generales: ' + globalObs);
+
+  const header = hasSignificant
+    ? `⚠ Alteraciones posturales significativas en ${analyzed.length} vista(s)`
+    : `Análisis postural — ${analyzed.length} vista(s) evaluada(s)`;
+
+  saveResultToSession('analisis_postural', 'Análisis Postural',
+    'Análisis Postural',
+    { header, body: bodyParts.join('\n'), lr: 'MediaPipe Pose + ajuste manual', cls: hasSignificant ? 'leve' : 'normal' }
+  );
+
+  const btn = document.getElementById('postura-session-btn');
+  if(btn) { btn.textContent='✓ Agregado'; btn.classList.add('saved'); setTimeout(()=>{ btn.textContent='＋ Agregar al informe'; btn.classList.remove('saved'); },2500); }
+}
+
+// ══════════════════════════════════════════════════════════════
+// REVISIÓN POR SISTEMAS — APTA 4.0
+// ══════════════════════════════════════════════════════════════
+
+let revisionData = {}; // stores state per system
+let revDirty = {};     // which systems have been touched
+
+const REV_SYSTEMS = ['cardio','pulmonar','neuro','msk','integumento','gi','endocrino','psicosocial'];
+
+function switchRevSystem(name, btn){
+  document.querySelectorAll('.rev-system').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.rev-nav-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('rev-' + name);
+  if(panel) panel.classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+
+function revMarkDirty(sys){ revDirty[sys] = true; revUpdateSummary(); updateNavDots(); }
+
+function getChecked(groupId){
+  return Array.from(document.querySelectorAll(`#${groupId} input[type=checkbox]:checked`)).map(cb => cb.value);
+}
+function getCheckedAll(containerEl){
+  return Array.from(containerEl.querySelectorAll('input[type=checkbox]:checked')).map(cb => cb.value);
+}
+
+// ── Cardiovascular ────────────────────────────────────────────
+function evalCardio(){
+  revDirty['cardio'] = true;
+  const fc   = parseFloat(document.getElementById('cv-fc')?.value);
+  const tas  = parseFloat(document.getElementById('cv-tas')?.value);
+  const tad  = parseFloat(document.getElementById('cv-tad')?.value);
+  const spo2 = parseFloat(document.getElementById('cv-spo2')?.value);
+  const fr   = parseFloat(document.getElementById('cv-fr')?.value);
+  const temp = parseFloat(document.getElementById('cv-temp')?.value);
+  const ritmo= document.getElementById('cv-ritmo')?.value;
+
+  const hxChecked = getChecked('cv-hx-group');
+  const sxChecked = getChecked('cv-sx-group');
+
+  const redFlagHx = ['IAM','ACV','insuf_card'];
+  const redFlagSx = ['dolor_toracico','sincope'];
+  const hasRedHx = hxChecked.some(v => redFlagHx.includes(v));
+  const hasRedSx = sxChecked.some(v => redFlagSx.includes(v));
+
+  // Vitals result
+  const vRes = document.getElementById('cv-vitals-result');
+  let vFlags = [];
+  let vOk = [];
+
+  if(!isNaN(fc)){
+    const fcEl = document.getElementById('cv-fc');
+    if(fc < 50 || fc > 120){ fcEl.classList.add('flag'); vFlags.push(`FC ${fc} lpm — fuera de rango normal (50–100 en reposo)`); }
+    else { fcEl.classList.remove('flag'); vOk.push(`FC ${fc} lpm ✓`); }
+  }
+  if(!isNaN(tas) && !isNaN(tad)){
+    const tasEl = document.getElementById('cv-tas');
+    const tadEl = document.getElementById('cv-tad');
+    if(tas >= 180 || tad >= 110){ tasEl.classList.add('flag'); tadEl.classList.add('flag'); vFlags.push(`TA ${tas}/${tad} mmHg — HTA grado 3 / CRISIS HIPERTENSIVA. Contraindicado ejercicio.`); }
+    else if(tas >= 140 || tad >= 90){ tasEl.classList.add('flag'); tadEl.classList.add('flag'); vFlags.push(`TA ${tas}/${tad} mmHg — HTA grado 1-2. Monitorear durante el tratamiento.`); }
+    else { tasEl.classList.remove('flag'); tadEl.classList.remove('flag'); vOk.push(`TA ${tas}/${tad} mmHg ✓`); }
+  }
+  if(!isNaN(spo2)){
+    const spo2El = document.getElementById('cv-spo2');
+    if(spo2 < 90){ spo2El.classList.add('flag'); vFlags.push(`SpO₂ ${spo2}% — Hipoxemia significativa. Contraindicado ejercicio hasta evaluación médica.`); }
+    else if(spo2 < 95){ spo2El.classList.add('flag'); vFlags.push(`SpO₂ ${spo2}% — Monitorear durante la sesión.`); }
+    else { spo2El.classList.remove('flag'); vOk.push(`SpO₂ ${spo2}% ✓`); }
+  }
+  if(!isNaN(fr)){
+    if(fr < 10 || fr > 25){ vFlags.push(`FR ${fr} rpm — anormal (normal 12–20 rpm)`); }
+    else { vOk.push(`FR ${fr} rpm ✓`); }
+  }
+  if(!isNaN(temp)){
+    if(temp > 38){ vFlags.push(`Temperatura ${temp}°C — Fiebre. Reevaluar indicación de tratamiento.`); }
+    else if(temp < 36){ vFlags.push(`Temperatura ${temp}°C — Hipotermia leve.`); }
+    else { vOk.push(`Temperatura ${temp}°C ✓`); }
+  }
+  if(ritmo && ritmo !== 'regular'){ vFlags.push(`Ritmo ${ritmo === 'irregular' ? 'irregular' : 'irregularmente irregular'} — derivar para evaluación cardiológica.`); }
+
+  if(vFlags.length > 0){
+    vRes.className = 'rev-result-box rev-abnormal show';
+    vRes.innerHTML = `<div class="rev-result-label">⚠ Signos vitales alterados</div>${vFlags.map(f=>`<div>• ${f}</div>`).join('')}`;
+  } else if(vOk.length > 0){
+    vRes.className = 'rev-result-box rev-normal show';
+    vRes.innerHTML = `<div class="rev-result-label">✓ Signos vitales dentro de parámetros</div><div>${vOk.join(' · ')}</div>`;
+  } else {
+    vRes.className = 'rev-result-box';
+  }
+
+  // Main result
+  const mRes = document.getElementById('cv-main-result');
+  if(hasRedSx || (tas >= 180 || tad >= 110)){
+    mRes.className = 'rev-result-box rev-flag show';
+    mRes.innerHTML = `<div class="rev-result-label">🚨 BANDERA ROJA CARDIOVASCULAR — DERIVACIÓN URGENTE</div><div>Síntomas o cifras tensionales que requieren evaluación médica antes de iniciar fisioterapia.</div>`;
+    revisionData['cardio'] = { status: 'flag', label: 'Bandera roja cardiovascular' };
+  } else if(hasRedHx || vFlags.length > 0 || sxChecked.some(v=>['palpitaciones','disnea_reposo'].includes(v))){
+    mRes.className = 'rev-result-box rev-borderline show';
+    mRes.innerHTML = `<div class="rev-result-label">⚠ Sistema cardiovascular — Precaución</div><div>Antecedentes o signos que requieren monitoreo especial durante el tratamiento. Ajustar intensidad según tolerancia.</div>`;
+    revisionData['cardio'] = { status: 'warn', label: 'Precaución cardiovascular' };
+  } else if(sxChecked.includes('ninguno_sx') || vOk.length > 0){
+    mRes.className = 'rev-result-box rev-normal show';
+    mRes.innerHTML = `<div class="rev-result-label">✓ Sistema cardiovascular — Sin contraindicaciones</div><div>No se identifican banderas rojas cardiovasculares. Proceder con evaluación estándar.</div>`;
+    revisionData['cardio'] = { status: 'ok', label: 'Cardiovascular sin contraindicaciones' };
+  } else {
+    mRes.className = 'rev-result-box';
+    revisionData['cardio'] = null;
+  }
+  revUpdateSummary();
+  updateNavDots();
+}
+
+// ── Pulmonar ──────────────────────────────────────────────────
+function evalPulmonar(){
+  revDirty['pulmonar'] = true;
+  const spo2act = parseFloat(document.getElementById('pulm-spo2act')?.value);
+  const patron  = document.getElementById('pulm-patron')?.value;
+  const acces   = document.getElementById('pulm-acces')?.value;
+  const sx = Array.from(document.getElementById('rev-pulmonar').querySelectorAll('input[type=checkbox]:checked')).map(c=>c.value);
+  const res = document.getElementById('pulm-result');
+
+  const redFlags = ['embolismo','hemoptisis','neumotorax'];
+  const hasRed = sx.some(v => redFlags.includes(v));
+  const spo2Low = !isNaN(spo2act) && spo2act < 90;
+  const spo2Border = !isNaN(spo2act) && spo2act >= 90 && spo2act < 94;
+
+  if(hasRed || spo2Low || patron === 'paradojico' || patron === 'cheyne'){
+    res.className = 'rev-result-box rev-flag show';
+    res.innerHTML = `<div class="rev-result-label">🚨 BANDERA ROJA PULMONAR</div><div>Antecedente o hallazgo que requiere derivación médica prioritaria antes de fisioterapia.</div>`;
+    revisionData['pulmonar'] = { status: 'flag', label: 'Bandera roja pulmonar' };
+  } else if(spo2Border || acces === 'marcado' || sx.some(v=>['asma','epoc','tos_cronica','sibilancias'].includes(v))){
+    res.className = 'rev-result-box rev-borderline show';
+    res.innerHTML = `<div class="rev-result-label">⚠ Sistema pulmonar — Monitoreo requerido</div><div>Condición respiratoria presente. Monitorear SpO₂ durante el ejercicio. Tener inhalador disponible si corresponde.</div>`;
+    revisionData['pulmonar'] = { status: 'warn', label: 'Precaución pulmonar' };
+  } else if(sx.includes('sin_ant')){
+    res.className = 'rev-result-box rev-normal show';
+    res.innerHTML = `<div class="rev-result-label">✓ Sistema pulmonar — Sin contraindicaciones</div><div>Sin antecedentes ni síntomas respiratorios activos.</div>`;
+    revisionData['pulmonar'] = { status: 'ok', label: 'Pulmonar sin contraindicaciones' };
+  } else { res.className = 'rev-result-box'; revisionData['pulmonar'] = null; }
+  revUpdateSummary(); updateNavDots();
+}
+
+// ── Neurológico ───────────────────────────────────────────────
+function evalNeuro(){
+  revDirty['neuro'] = true;
+  const sx = Array.from(document.getElementById('rev-neuro').querySelectorAll('input[type=checkbox]:checked')).map(c=>c.value);
+  const orient  = document.getElementById('neuro-orient')?.value;
+  const cefalea = document.getElementById('neuro-cefalea')?.value;
+  const res = document.getElementById('neuro-result');
+  const redFlags = ['cefalea_tronante','cola_caballo','deficit_progresivo','alteracion_conciencia','acv_prev'];
+  const hasRed = sx.some(v => redFlags.includes(v)) || cefalea === 'nuevo_severo' || orient === 'desorientado';
+  const hasWarn = sx.some(v=>['disfagia','diplopia','hormigueo','debilidad_focal','mareo'].includes(v));
+
+  if(hasRed){
+    res.className = 'rev-result-box rev-flag show';
+    res.innerHTML = `<div class="rev-result-label">🚨 BANDERA ROJA NEUROLÓGICA — DERIVACIÓN URGENTE</div><div>Síntoma o signo de compromiso neurológico central. Suspender evaluación MSK y derivar.</div>`;
+    revisionData['neuro'] = { status: 'flag', label: 'Bandera roja neurológica' };
+  } else if(hasWarn){
+    res.className = 'rev-result-box rev-borderline show';
+    res.innerHTML = `<div class="rev-result-label">⚠ Sistema neurológico — Screening ampliado requerido</div><div>Síntomas que requieren evaluación neurológica detallada. Incluir testing sensitivo-motor en la valoración.</div>`;
+    revisionData['neuro'] = { status: 'warn', label: 'Precaución neurológica' };
+  } else if(sx.includes('sin_sx')){
+    res.className = 'rev-result-box rev-normal show';
+    res.innerHTML = `<div class="rev-result-label">✓ Sistema neurológico — Sin banderas rojas</div><div>No se identifican síntomas de alarma neurológica central.</div>`;
+    revisionData['neuro'] = { status: 'ok', label: 'Neurológico sin banderas rojas' };
+  } else { res.className = 'rev-result-box'; revisionData['neuro'] = null; }
+  revUpdateSummary(); updateNavDots();
+}
+
+// ── MSK ───────────────────────────────────────────────────────
+function evalMSK(){
+  revDirty['msk'] = true;
+  const sx = Array.from(document.getElementById('rev-msk').querySelectorAll('input[type=checkbox]:checked')).map(c=>c.value);
+  const imc = parseFloat(document.getElementById('msk-imc')?.value);
+  const res = document.getElementById('msk-result');
+  const redFlags = ['tumor_conocido','perdida_peso','fiebre_nocturna','dolor_reposo_msk'];
+  const hasRed = sx.some(v => redFlags.includes(v));
+  const hasWarn = sx.some(v=>['trauma_mayor','osteoporosis','artritis'].includes(v)) || (!isNaN(imc) && imc > 35);
+
+  if(hasRed){
+    res.className = 'rev-result-box rev-flag show';
+    res.innerHTML = `<div class="rev-result-label">🚨 BANDERA ROJA MSK — Descartar patología sistémica</div><div>Síntomas que pueden indicar patología oncológica, infecciosa o sistémica. Derivar a médico.</div>`;
+    revisionData['msk'] = { status: 'flag', label: 'Bandera roja MSK sistémica' };
+  } else if(hasWarn){
+    res.className = 'rev-result-box rev-borderline show';
+    res.innerHTML = `<div class="rev-result-label">⚠ Sistema MSK — Precauciones especiales</div><div>Condición que modifica el abordaje fisioterapéutico. Ajustar cargas y técnicas según el contexto clínico.</div>`;
+    revisionData['msk'] = { status: 'warn', label: 'Precaución MSK' };
+  } else if(sx.includes('sin_flag_msk')){
+    res.className = 'rev-result-box rev-normal show';
+    res.innerHTML = `<div class="rev-result-label">✓ Sistema MSK — Sin banderas rojas sistémicas</div><div>No se identifican factores de riesgo sistémico. Proceder con valoración regional.</div>`;
+    revisionData['msk'] = { status: 'ok', label: 'MSK sin banderas rojas' };
+  } else { res.className = 'rev-result-box'; revisionData['msk'] = null; }
+  revUpdateSummary(); updateNavDots();
+}
+
+// ── Integumentario ─────────────────────────────────────────────
+function evalIntegumento(){
+  revDirty['integumento'] = true;
+  const sx = Array.from(document.getElementById('rev-integumento').querySelectorAll('input[type=checkbox]:checked')).map(c=>c.value);
+  const res = document.getElementById('integ-result');
+  const hasRed = sx.some(v=>['herida_abierta','infeccion_piel'].includes(v));
+  const hasWarn = sx.some(v=>['cicatriz_activa','edema','hematoma','calor_local'].includes(v));
+
+  if(hasRed){
+    res.className = 'rev-result-box rev-flag show';
+    res.innerHTML = `<div class="rev-result-label">🚨 ALERTA INTEGUMENTARIA</div><div>Herida abierta o signos de infección. Contraindicación para técnicas manuales sobre la zona. Derivar a curación si aplica.</div>`;
+    revisionData['integumento'] = { status: 'flag', label: 'Alerta integumentaria' };
+  } else if(hasWarn){
+    res.className = 'rev-result-box rev-borderline show';
+    res.innerHTML = `<div class="rev-result-label">⚠ Sistema integumentario — Hallazgos relevantes</div><div>Considerar en el plan de tratamiento. Registrar evolución de edema/cicatriz en cada sesión.</div>`;
+    revisionData['integumento'] = { status: 'warn', label: 'Hallazgos integumentarios' };
+  } else if(sx.includes('sin_alt_piel')){
+    res.className = 'rev-result-box rev-normal show';
+    res.innerHTML = `<div class="rev-result-label">✓ Sistema integumentario — Sin alteraciones</div>`;
+    revisionData['integumento'] = { status: 'ok', label: 'Integumentario sin alteraciones' };
+  } else { res.className = 'rev-result-box'; revisionData['integumento'] = null; }
+  revUpdateSummary(); updateNavDots();
+}
+
+// ── GI / Urinario ─────────────────────────────────────────────
+function evalGI(){
+  revDirty['gi'] = true;
+  const sx = Array.from(document.getElementById('rev-gi').querySelectorAll('input[type=checkbox]:checked')).map(c=>c.value);
+  const res = document.getElementById('gi-result');
+  const hasRed = sx.some(v=>['sangre_heces','incontinencia_nueva'].includes(v));
+  const hasWarn = sx.some(v=>['disfuncion_sexual','dolor_abdominal','nauseas','cambio_habito','disuria'].includes(v));
+
+  if(hasRed){
+    res.className = 'rev-result-box rev-flag show';
+    res.innerHTML = `<div class="rev-result-label">🚨 BANDERA ROJA VISCERAL</div><div>Síntoma que requiere descarte de patología visceral antes de atribuir el dolor a origen MSK.</div>`;
+    revisionData['gi'] = { status: 'flag', label: 'Bandera roja visceral' };
+  } else if(hasWarn){
+    res.className = 'rev-result-box rev-borderline show';
+    res.innerHTML = `<div class="rev-result-label">⚠ Sistema GI/Urinario — Evaluar relación con síntomas</div><div>Considerar dolor referido de origen visceral. Correlacionar con presentación del paciente.</div>`;
+    revisionData['gi'] = { status: 'warn', label: 'Síntomas GI/urinarios' };
+  } else if(sx.includes('sin_alt_gi')){
+    res.className = 'rev-result-box rev-normal show';
+    res.innerHTML = `<div class="rev-result-label">✓ Sistema GI/Urinario — Sin alteraciones</div>`;
+    revisionData['gi'] = { status: 'ok', label: 'GI/Urinario sin alteraciones' };
+  } else { res.className = 'rev-result-box'; revisionData['gi'] = null; }
+  revUpdateSummary(); updateNavDots();
+}
+
+// ── Endocrino ─────────────────────────────────────────────────
+function evalEndocrino(){
+  revDirty['endocrino'] = true;
+  const sx = Array.from(document.getElementById('rev-endocrino').querySelectorAll('input[type=checkbox]:checked')).map(c=>c.value);
+  const glucosa = parseFloat(document.getElementById('endo-glucosa')?.value);
+  const res = document.getElementById('endo-result');
+  const hasRed = sx.includes('dm_descontrolada') || (!isNaN(glucosa) && glucosa > 300);
+  const hasWarn = sx.some(v=>['hipotiroidismo_severo','hipertiroidismo','corticoides'].includes(v)) ||
+                  (!isNaN(glucosa) && (glucosa > 200 || glucosa < 70));
+
+  if(hasRed){
+    res.className = 'rev-result-box rev-flag show';
+    res.innerHTML = `<div class="rev-result-label">🚨 ALERTA METABÓLICA</div><div>${!isNaN(glucosa) && glucosa > 300 ? `Glucemia ${glucosa} mg/dL — contraindicado ejercicio intenso. ` : ''}DM descontrolada: contraindicación relativa para ejercicio hasta estabilización.</div>`;
+    revisionData['endocrino'] = { status: 'flag', label: 'Alerta metabólica' };
+  } else if(hasWarn){
+    res.className = 'rev-result-box rev-borderline show';
+    res.innerHTML = `<div class="rev-result-label">⚠ Sistema endocrino — Precauciones</div><div>${!isNaN(glucosa) && glucosa > 200 ? `Glucemia ${glucosa} mg/dL — monitorear durante el ejercicio. ` : ''}${!isNaN(glucosa) && glucosa < 70 ? `Glucemia baja ${glucosa} mg/dL — dar colación antes del ejercicio. ` : ''}Ajustar plan según condición metabólica.</div>`;
+    revisionData['endocrino'] = { status: 'warn', label: 'Precaución endocrina' };
+  } else if(sx.includes('sin_alt_endo')){
+    res.className = 'rev-result-box rev-normal show';
+    res.innerHTML = `<div class="rev-result-label">✓ Sistema endocrino/metabólico — Sin contraindicaciones</div>`;
+    revisionData['endocrino'] = { status: 'ok', label: 'Endocrino sin contraindicaciones' };
+  } else { res.className = 'rev-result-box'; revisionData['endocrino'] = null; }
+  revUpdateSummary(); updateNavDots();
+}
+
+// ── Psicosocial ───────────────────────────────────────────────
+function evalPsico(){
+  revDirty['psicosocial'] = true;
+  const sx = Array.from(document.getElementById('rev-psicosocial').querySelectorAll('input[type=checkbox]:checked')).map(c=>c.value);
+  const expectativa  = document.getElementById('psico-expectativa')?.value;
+  const adherencia   = document.getElementById('psico-adherencia')?.value;
+  const res = document.getElementById('psico-result');
+  const hasRed = sx.some(v=>['catastrofismo','kinesiofobia','depresion_ansiedad'].includes(v));
+  const hasWarn = sx.some(v=>['discapacidad_percibida','litigio'].includes(v)) ||
+                  expectativa === 'irreal' || adherencia === 'baja';
+
+  if(hasRed){
+    res.className = 'rev-result-box rev-abnormal show';
+    res.innerHTML = `<div class="rev-result-label">⚠ Yellow flags psicosociales — Alto riesgo de cronicidad</div><div>Factores psicosociales que predicen mala evolución. Incluir abordaje cognitivo-conductual. Considerar derivación a psicología.</div>`;
+    revisionData['psicosocial'] = { status: 'warn', label: 'Yellow flags psicosociales' };
+  } else if(hasWarn){
+    res.className = 'rev-result-box rev-borderline show';
+    res.innerHTML = `<div class="rev-result-label">⚠ Factores psicosociales presentes</div><div>Contexto que puede afectar la adherencia y evolución. Establecer metas colaborativas y revisión de expectativas.</div>`;
+    revisionData['psicosocial'] = { status: 'warn', label: 'Factores psicosociales' };
+  } else if(sx.includes('sin_flags_psico')){
+    res.className = 'rev-result-box rev-normal show';
+    res.innerHTML = `<div class="rev-result-label">✓ Perfil psicosocial — Sin yellow flags</div><div>Buen pronóstico psicosocial. Contexto favorable para la rehabilitación.</div>`;
+    revisionData['psicosocial'] = { status: 'ok', label: 'Psicosocial sin yellow flags' };
+  } else { res.className = 'rev-result-box'; revisionData['psicosocial'] = null; }
+  revUpdateSummary(); updateNavDots();
+}
+
+// ── Summary bar update ─────────────────────────────────────────
+function revUpdateSummary(){
+  const all = Object.values(revisionData).filter(Boolean);
+  const ok   = all.filter(d => d.status === 'ok').length;
+  const flags = all.filter(d => d.status === 'flag').length;
+  const warns = all.filter(d => d.status === 'warn').length;
+  const pending = REV_SYSTEMS.length - all.length;
+
+  document.getElementById('rev-pill-ok').textContent    = `${ok} sistema${ok!==1?'s':''} OK`;
+  document.getElementById('rev-pill-flag').textContent  = `${flags + warns} alerta${flags+warns!==1?'s':''}`;
+  document.getElementById('rev-pill-pending').textContent = `${pending} pendiente${pending!==1?'s':''}`;
+
+  const btn = document.getElementById('rev-session-btn');
+  if(btn) btn.disabled = all.length === 0;
+}
+
+function updateNavDots(){
+  REV_SYSTEMS.forEach(sys => {
+    const dot = document.getElementById(`rnd-${sys}`);
+    if(!dot) return;
+    const d = revisionData[sys];
+    if(!d){ dot.className = 'rev-nav-dot ' + (revDirty[sys] ? 'has-data' : ''); }
+    else if(d.status === 'flag'){ dot.className = 'rev-nav-dot has-flag'; }
+    else if(d.status === 'warn'){ dot.className = 'rev-nav-dot'; dot.style.background = 'var(--gold)'; }
+    else { dot.className = 'rev-nav-dot has-data'; }
+  });
+}
+
+// ── Save revision to session report ───────────────────────────
+function saveRevisionToSession(){
+  const evaluated = Object.entries(revisionData).filter(([,d]) => d);
+  if(!evaluated.length) return;
+
+  const flagSys  = evaluated.filter(([,d]) => d.status === 'flag');
+  const warnSys  = evaluated.filter(([,d]) => d.status === 'warn');
+  const okSys    = evaluated.filter(([,d]) => d.status === 'ok');
+
+  let headerText = flagSys.length > 0
+    ? `🚨 ${flagSys.length} bandera(s) roja(s) — derivación recomendada`
+    : warnSys.length > 0
+      ? `⚠ ${warnSys.length} sistema(s) con precaución`
+      : `✓ Revisión por sistemas sin contraindicaciones`;
+
+  let bodyParts = [];
+  if(flagSys.length)  bodyParts.push('BANDERAS ROJAS: ' + flagSys.map(([,d])=>d.label).join(' | '));
+  if(warnSys.length)  bodyParts.push('PRECAUCIONES: ' + warnSys.map(([,d])=>d.label).join(' | '));
+  if(okSys.length)    bodyParts.push('SIN CONTRAINDICACIONES: ' + okSys.map(([,d])=>d.label).join(' | '));
+
+  // Vitals snapshot
+  const fc  = document.getElementById('cv-fc')?.value;
+  const tas = document.getElementById('cv-tas')?.value;
+  const tad = document.getElementById('cv-tad')?.value;
+  const spo2= document.getElementById('cv-spo2')?.value;
+  const fr  = document.getElementById('cv-fr')?.value;
+  const temp= document.getElementById('cv-temp')?.value;
+  let vitals = [];
+  if(fc)   vitals.push(`FC: ${fc} lpm`);
+  if(tas && tad) vitals.push(`TA: ${tas}/${tad} mmHg`);
+  if(spo2) vitals.push(`SpO₂: ${spo2}%`);
+  if(fr)   vitals.push(`FR: ${fr} rpm`);
+  if(temp) vitals.push(`T: ${temp}°C`);
+  if(vitals.length) bodyParts.push('Signos vitales: ' + vitals.join(' · '));
+
+  saveResultToSession('revision_sistemas', 'Revisión por Sistemas APTA 4.0',
+    'Screening Multisistémico',
+    { header: headerText, body: bodyParts.join('\n'), lr: `${evaluated.length}/${REV_SYSTEMS.length} sistemas evaluados`, cls: flagSys.length > 0 ? 'positivo' : warnSys.length > 0 ? 'leve' : 'normal' }
+  );
+
+  const btn = document.getElementById('rev-session-btn');
+  if(btn){ btn.textContent = '✓ Agregado al informe'; btn.classList.add('saved'); setTimeout(()=>{ btn.textContent='＋ Agregar al informe'; btn.classList.remove('saved'); }, 2500); }
+}
 
 // ══════════════════════════════════════════════════════════════
 // CLOUD SYNC — Google Sheets via Apps Script
