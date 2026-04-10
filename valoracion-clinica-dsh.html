@@ -183,6 +183,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .card-name{font-size:14px;font-weight:600;color:var(--navy);line-height:1.35;flex:1}
 .card-chevron{color:var(--text-muted);font-size:16px;transition:transform var(--transition);flex-shrink:0;margin-top:2px}
 .test-card.expanded .card-chevron{transform:rotate(180deg)}
+.fav-btn{background:none;border:none;font-size:18px;cursor:pointer;color:var(--border);padding:2px 4px;border-radius:6px;transition:color .15s,transform .15s;line-height:1}
+.fav-btn:hover{color:#F9C74F;transform:scale(1.15)}
+.fav-btn.fav-active{color:#F9C74F}
 
 .card-meta{display:flex;flex-wrap:wrap;gap:6px}
 .badge{font-size:11px;padding:3px 8px;border-radius:20px;font-weight:500;white-space:nowrap}
@@ -1168,8 +1171,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 }
 .rev-check-item:hover { border-color: var(--teal); color: var(--navy); }
 .rev-check-item.selected { background: var(--teal-light); border-color: var(--teal); color: var(--navy); font-weight: 600; }
-.rev-check-item.flag-item.selected { background: #FFEBEE; border-color: var(--red); color: #7F0000; }
+.rev-check-item.flag-item.selected { background: #FFEBEE; border-color: var(--red); color: #7F0000; font-weight: 600; }
 .rev-check-item input { display: none; }
+.rev-check-item { cursor: pointer; user-select: none; }
 
 /* Summary bar */
 .rev-summary-bar {
@@ -1202,6 +1206,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .rev-field-row.cols-4 { grid-template-columns: 1fr 1fr; }
   .rev-field-row.cols-3 { grid-template-columns: 1fr 1fr; }
 }
+
+/* ── ANAMNESIS ───────────────────────────────────── */
+.anam-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+.anam-card-header { background:linear-gradient(90deg,var(--navy-deep),var(--navy-mid)); padding:10px 16px; font-size:13px; font-weight:700; color:#fff; }
+.anam-body { padding:14px; display:flex; flex-direction:column; gap:10px; }
+.anam-row { display:flex; gap:10px; flex-wrap:wrap; }
+.anam-field { display:flex; flex-direction:column; gap:4px; flex:1; min-width:120px; }
+.anam-field.anam-sm { flex:0 0 90px; min-width:70px; }
+.anam-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:var(--teal); }
+.anam-input { padding:7px 10px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-family:inherit; font-size:13px; background:var(--surface2); color:var(--text); outline:none; transition:var(--transition); width:100%; box-sizing:border-box; }
+.anam-input:focus { border-color:var(--teal); background:var(--surface); }
+.anam-textarea { padding:8px 10px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-family:inherit; font-size:12px; background:var(--surface2); color:var(--text); outline:none; resize:vertical; width:100%; box-sizing:border-box; }
+.anam-textarea:focus { border-color:var(--teal); background:var(--surface); }
 
 /* ── ANÁLISIS POSTURAL ───────────────────────────── */
 .postura-intro { margin-bottom: 16px; }
@@ -1653,11 +1670,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <!-- TABS -->
   <div class="tabs">
     <button class="tab active" onclick="switchTab('tests',this)">📋 Tests (250)</button>
+    <button class="tab" onclick="switchTab('mievaluacion',this)">⭐ Mi Evaluación <span id="fav-count-badge" style="background:var(--teal);color:var(--navy-deep);border-radius:10px;padding:1px 7px;font-size:11px;font-weight:700;display:none">0</span></button>
     <button class="tab" onclick="switchTab('baterias',this)">🔗 Baterías (15)</button>
     <button class="tab" onclick="switchTab('lr',this)">⚡ LR+ Alto</button>
     <button class="tab" onclick="switchTab('goniometria',this)">📐 Goniómetro</button>
     <button class="tab" onclick="switchTab('postura',this)">🧍 Postura</button>
     <button class="tab" onclick="switchTab('revision',this)">🩺 Rev. por Sistemas</button>
+    <button class="tab" onclick="switchTab('anamnesis',this)">📝 Anamnesis</button>
   </div>
 
   <!-- TAB: TESTS -->
@@ -1679,6 +1698,26 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <h3>Sin resultados</h3>
       <p>Intenta con otro término o limpia los filtros</p>
     </div>
+  </div>
+
+  <!-- TAB: MI EVALUACIÓN -->
+  <div id="tab-mievaluacion" style="display:none">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+      <div>
+        <h2 style="margin:0 0 4px">⭐ Mi Evaluación</h2>
+        <p style="margin:0;font-size:13px;color:var(--text-muted)">Tests preseleccionados. Márcalos con ⭐ desde la pestaña 📋 Tests.</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="postura-save-btn" style="background:var(--surface2);color:var(--text);border:1.5px solid var(--border)" onclick="expandAllFavs()">▶ Expandir todos</button>
+        <button class="postura-save-btn" style="background:#C62828;color:#fff" onclick="clearAllFavs()">🗑 Limpiar lista</button>
+      </div>
+    </div>
+    <div id="miev-empty" style="text-align:center;padding:60px 20px;color:var(--text-muted);display:none">
+      <div style="font-size:48px;margin-bottom:12px">⭐</div>
+      <h3 style="margin:0 0 8px;color:var(--text)">Sin tests seleccionados</h3>
+      <p style="margin:0">Presiona el ⭐ en cualquier test de la pestaña 📋 para agregarlo aquí.</p>
+    </div>
+    <div class="tests-grid" id="miev-grid"></div>
   </div>
 
   <!-- TAB: BATERÍAS -->
@@ -2277,6 +2316,250 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div><!-- /revision-layout -->
   </div><!-- /tab-revision -->
 
+  <!-- TAB: ANAMNESIS -->
+  <div id="tab-anamnesis" style="display:none">
+
+    <div class="clusters-intro" style="margin-bottom:16px">
+      <div>
+        <h2>Anamnesis del Paciente</h2>
+        <p>Datos clínicos completos, antecedentes y contexto deportivo. Todo se incluye automáticamente en el reporte.</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <button class="postura-save-btn" id="anamnesis-save-btn" onclick="saveAnamnesisToReport()">💾 Guardar en informe</button>
+        <button class="postura-save-btn" style="background:var(--surface2);color:var(--text);border:1.5px solid var(--border)" onclick="clearAnamnesis()">🗑 Limpiar</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+
+      <!-- DATOS PERSONALES -->
+      <div class="anam-card">
+        <div class="anam-card-header">👤 Datos del Paciente</div>
+        <div class="anam-body">
+          <div class="anam-row">
+            <div class="anam-field">
+              <label class="anam-label">Nombre completo</label>
+              <input class="anam-input" id="an-nombre" placeholder="Nombre y apellido" oninput="syncPatientField('pf-nombre','an-nombre')">
+            </div>
+            <div class="anam-field anam-sm">
+              <label class="anam-label">Edad</label>
+              <input class="anam-input" id="an-edad" type="number" placeholder="años" oninput="syncPatientField('pf-edad','an-edad')">
+            </div>
+            <div class="anam-field anam-sm">
+              <label class="anam-label">Sexo</label>
+              <select class="anam-input" id="an-sexo">
+                <option value="">—</option>
+                <option>Masculino</option>
+                <option>Femenino</option>
+                <option>Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="anam-row">
+            <div class="anam-field anam-sm">
+              <label class="anam-label">Peso (kg)</label>
+              <input class="anam-input" id="an-peso" type="number" placeholder="kg">
+            </div>
+            <div class="anam-field anam-sm">
+              <label class="anam-label">Talla (cm)</label>
+              <input class="anam-input" id="an-talla" type="number" placeholder="cm">
+            </div>
+            <div class="anam-field anam-sm">
+              <label class="anam-label">IMC</label>
+              <input class="anam-input" id="an-imc" placeholder="auto" readonly style="background:var(--surface2)">
+            </div>
+            <div class="anam-field anam-sm">
+              <label class="anam-label">Lateralidad</label>
+              <select class="anam-input" id="an-lateralidad">
+                <option value="">—</option>
+                <option>Diestro</option>
+                <option>Zurdo</option>
+                <option>Ambidiestro</option>
+              </select>
+            </div>
+          </div>
+          <div class="anam-row">
+            <div class="anam-field">
+              <label class="anam-label">Ocupación / Cargo</label>
+              <input class="anam-input" id="an-ocupacion" placeholder="Ej. Docente, oficinista, obrero…">
+            </div>
+            <div class="anam-field">
+              <label class="anam-label">Evaluador</label>
+              <input class="anam-input" id="an-evaluador" placeholder="Fisioterapeuta" oninput="syncPatientField('pf-evaluador','an-evaluador')">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOTIVO DE CONSULTA -->
+      <div class="anam-card">
+        <div class="anam-card-header">🩺 Motivo de Consulta</div>
+        <div class="anam-body">
+          <div class="anam-field">
+            <label class="anam-label">Motivo / Hipótesis diagnóstica</label>
+            <input class="anam-input" id="an-motivo" placeholder="Ej. Dolor anterior rodilla post-trauma" oninput="syncPatientField('pf-motivo','an-motivo')">
+          </div>
+          <div class="anam-field">
+            <label class="anam-label">Historia de la lesión / Relato del paciente</label>
+            <textarea class="anam-textarea" id="an-historia" placeholder="¿Cuándo inició? ¿Mecanismo de lesión? ¿Cómo evolucionó?…" rows="4"></textarea>
+          </div>
+          <div class="anam-row">
+            <div class="anam-field">
+              <label class="anam-label">Tiempo de evolución</label>
+              <input class="anam-input" id="an-evolucion" placeholder="Ej. 3 semanas, 2 meses agudo">
+            </div>
+            <div class="anam-field">
+              <label class="anam-label">Dolor actual (EVN 0-10)</label>
+              <div style="display:flex;align-items:center;gap:8px">
+                <input class="anam-input" id="an-dolor-num" type="number" min="0" max="10" placeholder="0-10" style="width:70px" oninput="updateDolrSlider()">
+                <input type="range" id="an-dolor-range" min="0" max="10" value="0" style="flex:1" oninput="document.getElementById('an-dolor-num').value=this.value">
+              </div>
+            </div>
+          </div>
+          <div class="anam-row">
+            <div class="anam-field">
+              <label class="anam-label">Comportamiento del dolor</label>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
+                <label class="rev-check-item"><input type="checkbox" id="an-dolor-reposo" onchange="initRevCheckboxes()"> En reposo</label>
+                <label class="rev-check-item"><input type="checkbox" id="an-dolor-nocturno" onchange="initRevCheckboxes()"> Nocturno</label>
+                <label class="rev-check-item"><input type="checkbox" id="an-dolor-esfuerzo" onchange="initRevCheckboxes()"> Esfuerzo</label>
+                <label class="rev-check-item"><input type="checkbox" id="an-dolor-mecanico" onchange="initRevCheckboxes()"> Mecánico</label>
+                <label class="rev-check-item"><input type="checkbox" id="an-dolor-irradiado" onchange="initRevCheckboxes()"> Irradiado</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANTECEDENTES PERSONALES -->
+      <div class="anam-card">
+        <div class="anam-card-header">📋 Antecedentes Personales</div>
+        <div class="anam-body">
+          <div class="anam-field">
+            <label class="anam-label">Antecedentes médicos relevantes</label>
+            <textarea class="anam-textarea" id="an-antecedentes-med" placeholder="Ej. HTA, DM2, hipotiroidismo, cardiopatía…" rows="2"></textarea>
+          </div>
+          <div class="anam-field">
+            <label class="anam-label">Cirugías / Intervenciones previas</label>
+            <textarea class="anam-textarea" id="an-cirugias" placeholder="Ej. Artroscopia rodilla 2019, apendicectomía…" rows="2"></textarea>
+          </div>
+          <div class="anam-field">
+            <label class="anam-label">Lesiones MSK previas (zona relacionada)</label>
+            <textarea class="anam-textarea" id="an-lesiones-prev" placeholder="Ej. Esguince tobillo recurrente, desgarro isquiotibial…" rows="2"></textarea>
+          </div>
+          <div class="anam-row">
+            <div class="anam-field">
+              <label class="anam-label">Medicación actual</label>
+              <input class="anam-input" id="an-medicacion" placeholder="Ej. AINEs, corticoides, anticoagulantes…">
+            </div>
+            <div class="anam-field">
+              <label class="anam-label">Alergias</label>
+              <input class="anam-input" id="an-alergias" placeholder="Ej. Penicilina, látex, AAS…">
+            </div>
+          </div>
+          <div class="anam-row">
+            <div class="anam-field">
+              <label class="anam-label">Tratamientos previos para esta lesión</label>
+              <input class="anam-input" id="an-tto-previo" placeholder="Ej. Fisioterapia 6 sem, infiltración…">
+            </div>
+            <div class="anam-field">
+              <label class="anam-label">Diagnóstico médico previo</label>
+              <input class="anam-input" id="an-dx-medico" placeholder="Ej. Tendinopatía rotuliana (RMN)">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTEXTO DEPORTIVO -->
+      <div class="anam-card">
+        <div class="anam-card-header">🏃 Contexto Deportivo / Funcional</div>
+        <div class="anam-body">
+          <div class="anam-row">
+            <div class="anam-field">
+              <label class="anam-label">Deporte / Actividad principal</label>
+              <input class="anam-input" id="an-deporte" placeholder="Ej. Fútbol, CrossFit, ciclismo" oninput="syncPatientField('pf-deporte','an-deporte')">
+            </div>
+            <div class="anam-field anam-sm">
+              <label class="anam-label">Nivel</label>
+              <select class="anam-input" id="an-nivel-dep">
+                <option value="">—</option>
+                <option>Recreativo</option>
+                <option>Amateur competitivo</option>
+                <option>Semiprofesional</option>
+                <option>Profesional / Elite</option>
+              </select>
+            </div>
+          </div>
+          <div class="anam-row">
+            <div class="anam-field anam-sm">
+              <label class="anam-label">Frecuencia semanal</label>
+              <input class="anam-input" id="an-frec-dep" placeholder="Ej. 3 días/sem">
+            </div>
+            <div class="anam-field anam-sm">
+              <label class="anam-label">Horas/semana</label>
+              <input class="anam-input" id="an-horas-dep" type="number" placeholder="h/sem">
+            </div>
+            <div class="anam-field">
+              <label class="anam-label">Posición / Rol</label>
+              <input class="anam-input" id="an-posicion" placeholder="Ej. Defensa central, nadador fondo">
+            </div>
+          </div>
+          <div class="anam-field">
+            <label class="anam-label">Estado actual (respecto al deporte)</label>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
+              <label class="rev-check-item"><input type="checkbox" id="an-dep-activo" name="an-dep-estado"> Activo sin restricción</label>
+              <label class="rev-check-item"><input type="checkbox" id="an-dep-modificado" name="an-dep-estado"> Entrenamiento modificado</label>
+              <label class="rev-check-item flag-item"><input type="checkbox" id="an-dep-baja" name="an-dep-estado"> Baja deportiva</label>
+              <label class="rev-check-item flag-item"><input type="checkbox" id="an-dep-rehab" name="an-dep-estado"> En rehabilitación</label>
+            </div>
+          </div>
+          <div class="anam-field">
+            <label class="anam-label">Objetivo del paciente / Metas funcionales</label>
+            <textarea class="anam-textarea" id="an-objetivo" placeholder="Ej. Volver a jugar en 8 semanas, correr sin dolor…" rows="2"></textarea>
+          </div>
+          <div class="anam-row">
+            <div class="anam-field anam-sm">
+              <label class="anam-label">Temporada</label>
+              <select class="anam-input" id="an-temporada">
+                <option value="">—</option>
+                <option>Pre-temporada</option>
+                <option>En temporada</option>
+                <option>Post-temporada</option>
+                <option>Fuera de temporada</option>
+              </select>
+            </div>
+            <div class="anam-field">
+              <label class="anam-label">Próximo evento / competencia</label>
+              <input class="anam-input" id="an-evento" placeholder="Ej. Partido en 3 semanas, maratón nov.">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FACTORES CONTEXTUALES -->
+      <div class="anam-card" style="grid-column:1/-1">
+        <div class="anam-card-header">🔎 Factores Contextuales y Observaciones</div>
+        <div class="anam-body">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+            <div class="anam-field">
+              <label class="anam-label">Factores de riesgo identificados</label>
+              <textarea class="anam-textarea" id="an-factores-riesgo" placeholder="Ej. Hiperpronación, sobreentrenamiento, calzado inadecuado…" rows="3"></textarea>
+            </div>
+            <div class="anam-field">
+              <label class="anam-label">Factores psicosociales / laborales</label>
+              <textarea class="anam-textarea" id="an-psicosocial" placeholder="Ej. Estrés laboral, kinesiofobia, presión de regreso…" rows="3"></textarea>
+            </div>
+            <div class="anam-field">
+              <label class="anam-label">Observaciones adicionales del evaluador</label>
+              <textarea class="anam-textarea" id="an-observaciones" placeholder="Cualquier hallazgo relevante no contemplado…" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+  </div><!-- /tab-anamnesis -->
+
 
 </main>
 
@@ -2426,7 +2709,10 @@ function renderTests(){
     <div class="card-header" onclick="toggleCard(this.closest('.test-card'))">
       <div class="card-top">
         <div class="card-name">${t.nombre}</div>
-        <span class="card-chevron">▾</span>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
+          <button class="fav-btn${FAV_IDS.has(t.id)?' fav-active':''}" onclick="event.stopPropagation();toggleFav('${t.id}',this)" title="Agregar a Mi Evaluación">★</button>
+          <span class="card-chevron">▾</span>
+        </div>
       </div>
       <div class="card-meta">
         ${regionBadge(t.region)}
@@ -2702,13 +2988,13 @@ function goToTest(name){
 // ── TAB SWITCH ────────────────────────────────────────────────────────────
 let gonioInitialized = false;
 function switchTab(name, btn){
-  ['tests','baterias','lr','goniometria','postura','revision'].forEach(t=>{
+  ['tests','mievaluacion','baterias','lr','goniometria','postura','revision','anamnesis'].forEach(t=>{
     const el = document.getElementById(`tab-${t}`);
     if(el) el.style.display = t===name ? 'block' : 'none';
   });
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   if(btn) btn.classList.add('active');
-  else document.querySelectorAll('.tab')[['tests','baterias','lr','goniometria','postura','revision'].indexOf(name)]?.classList.add('active');
+  else document.querySelectorAll('.tab')[['tests','mievaluacion','baterias','lr','goniometria','postura','revision','anamnesis'].indexOf(name)]?.classList.add('active');
   if(name==='goniometria' && !gonioInitialized){
     initGoniometry();
     gonioInitialized = true;
@@ -2717,6 +3003,7 @@ function switchTab(name, btn){
     initPostura();
     posturaInitialized = true;
   }
+  if(name==='mievaluacion') renderFavs();
   // Hide FAB on non-tests tabs
   const fab = document.getElementById('filter-fab');
   if(fab) fab.style.display = name === 'tests' ? '' : 'none';
@@ -3537,9 +3824,10 @@ function updateReport(){
   const statusLabel = {normal:'NEGATIVO / NORMAL',leve:'BORDERLINE',positivo:'POSITIVO',info:'INFORMATIVO'};
 
   // Separate results into 3 buckets: revision, postura, rest
+  const anamnesisResult = SESSION.results.find(r => r.testId === 'anamnesis');
   const revResult     = SESSION.results.find(r => r.testId === 'revision_sistemas');
   const posturaResult = SESSION.results.find(r => r.testId === 'analisis_postural');
-  const testResults   = SESSION.results.filter(r => r.testId !== 'revision_sistemas' && r.testId !== 'analisis_postural');
+  const testResults   = SESSION.results.filter(r => r.testId !== 'revision_sistemas' && r.testId !== 'analisis_postural' && r.testId !== 'anamnesis');
 
   // Group test results by region
   const byRegion = {};
@@ -3589,24 +3877,36 @@ function updateReport(){
   lines.push(`Tests realizados: ${SESSION.results.length}`);
   lines.push('');
 
-  // ── 1. REVISIÓN POR SISTEMAS ──────────────────────────────────
+  let secNum = 1;
+
+  // ── 0. ANAMNESIS ──────────────────────────────────────────────
+  if(anamnesisResult) {
+    lines.push(`${secNum}. ANAMNESIS DEL PACIENTE`);
+    lines.push('═══════════════════════════════════════════════════════');
+    // For anamnesis we output body directly (not wrapped in renderResult)
+    lines.push(anamnesisResult.body);
+    secNum++;
+  }
+
+  // ── REVISIÓN POR SISTEMAS ──────────────────────────────────
   if(revResult) {
-    lines.push('1. REVISIÓN POR SISTEMAS (APTA 4.0)');
+    lines.push(`${secNum}. REVISIÓN POR SISTEMAS (APTA 4.0)`);
     lines.push('═══════════════════════════════════════════════════════');
     lines.push(renderResult(revResult));
+    secNum++;
   }
 
-  // ── 2. ANÁLISIS POSTURAL ─────────────────────────────────────
+  // ── ANÁLISIS POSTURAL ─────────────────────────────────────
   if(posturaResult) {
-    lines.push('2. ANÁLISIS POSTURAL');
+    lines.push(`${secNum}. ANÁLISIS POSTURAL`);
     lines.push('═══════════════════════════════════════════════════════');
     lines.push(renderResult(posturaResult));
+    secNum++;
   }
 
-  // ── 3. RESULTADOS POR REGIÓN ──────────────────────────────────
+  // ── RESULTADOS POR REGIÓN ──────────────────────────────────
   if(testResults.length > 0) {
-    const sectionNum = revResult || posturaResult ? (revResult && posturaResult ? '3' : '2') : '1';
-    lines.push(`${sectionNum}. RESULTADOS POR REGIÓN`);
+    lines.push(`${secNum}. RESULTADOS POR REGIÓN`);
     lines.push('═══════════════════════════════════════════════════════');
     Object.entries(byRegion).forEach(([region, tests]) => {
       lines.push('');
@@ -4958,6 +5258,8 @@ function saveAerobicResult(id){
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────
+// FAV_IDS must exist before renderTests() runs
+const FAV_IDS = new Set(JSON.parse(localStorage.getItem('dsh_favs') || '[]'));
 initFilters();
 renderTests();
 renderBatteries();
@@ -6107,8 +6409,335 @@ function viewSessionReport(idx) {
 document.getElementById('config-overlay')?.addEventListener('click', function(e){ if(e.target===this) closeCloudConfig(); });
 document.getElementById('history-overlay')?.addEventListener('click', function(e){ if(e.target===this) closeHistory(); });
 
+// ── FIX: Rev. por Sistemas checkbox visual toggle ──────────────────────
+function initRevCheckboxes() {
+  document.querySelectorAll('.rev-check-item').forEach(label => {
+    // Remove any old listener to avoid duplicates
+    label.removeEventListener('click', label._revToggle);
+    label._revToggle = function(e) {
+      // Let the default checkbox toggle happen, then sync the class
+      requestAnimationFrame(() => {
+        const cb = label.querySelector('input[type=checkbox]');
+        if (cb) {
+          label.classList.toggle('selected', cb.checked);
+        }
+      });
+    };
+    label.addEventListener('click', label._revToggle);
+  });
+}
+
 // Init cloud on load
 cloudInit();
+// Init rev checkboxes
+initRevCheckboxes();
+
+// ══════════════════════════════════════════════════════════════
+// MI EVALUACIÓN — preselección de tests
+// ══════════════════════════════════════════════════════════════
+
+function saveFavs() {
+  localStorage.setItem('dsh_favs', JSON.stringify([...FAV_IDS]));
+  updateFavBadge();
+}
+
+function updateFavBadge() {
+  const badge = document.getElementById('fav-count-badge');
+  if (!badge) return;
+  if (FAV_IDS.size > 0) {
+    badge.textContent = FAV_IDS.size;
+    badge.style.display = 'inline';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function toggleFav(id, btn) {
+  if (FAV_IDS.has(id)) {
+    FAV_IDS.delete(id);
+    btn?.classList.remove('fav-active');
+  } else {
+    FAV_IDS.add(id);
+    btn?.classList.add('fav-active');
+  }
+  saveFavs();
+  // If Mi Evaluacion tab is visible, re-render
+  const tab = document.getElementById('tab-mievaluacion');
+  if (tab && tab.style.display !== 'none') renderFavs();
+}
+
+function renderFavs() {
+  const grid = document.getElementById('miev-grid');
+  const empty = document.getElementById('miev-empty');
+  if (!grid) return;
+  if (FAV_IDS.size === 0) {
+    grid.innerHTML = '';
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+  const favTests = TESTS.filter(t => FAV_IDS.has(t.id));
+  grid.innerHTML = favTests.map((t, i) => `
+  <div class="test-card" data-testid="${t.id}" style="animation-delay:${Math.min(i*0.03,0.4)}s">
+    <div class="card-header" onclick="toggleCard(this.closest('.test-card'))">
+      <div class="card-top">
+        <div class="card-name">${t.nombre}</div>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
+          <button class="fav-btn fav-active" onclick="event.stopPropagation();toggleFav('${t.id}',this);renderFavs()" title="Quitar de Mi Evaluación">★</button>
+          <span class="card-chevron">▾</span>
+        </div>
+      </div>
+      <div class="card-meta">
+        ${regionBadge(t.region)}
+        ${momentoBadge(t.momento)}
+        ${lrBadge(t.evidencia)}
+      </div>
+    </div>
+    <div class="card-body" onclick="event.stopPropagation()">
+      <div class="card-body-inner">
+        <div class="field-grid">
+          <div class="field field-full"><div class="field-label">Estructura</div><div class="field-value">${t.estructura||'—'}</div></div>
+          <div class="field field-full"><div class="field-label">Posición paciente</div><div class="field-value">${t.pos_paciente||'—'}</div></div>
+          <div class="field field-full"><div class="field-label">Procedimiento</div><div class="field-value">${t.procedimiento||'—'}</div></div>
+          <div class="field"><div class="field-label">Positivo</div><div class="field-value">${t.resultado_positivo||'—'}</div></div>
+          <div class="field"><div class="field-label">Negativo</div><div class="field-value">${t.resultado_negativo||'—'}</div></div>
+          <div class="field field-full"><div class="field-label">Interpretación</div><div class="field-value">${t.interpretacion||'—'}</div></div>
+        </div>
+        ${renderResultSection(t, null, "miev")}
+      </div>
+    </div>
+  </div>`).join('');
+}
+
+function expandAllFavs() {
+  document.querySelectorAll('#miev-grid .test-card').forEach(c => {
+    c.classList.add('expanded');
+  });
+}
+
+function clearAllFavs() {
+  if (!confirm(`¿Quitar los ${FAV_IDS.size} tests de Mi Evaluación?`)) return;
+  FAV_IDS.clear();
+  saveFavs();
+  // Update star buttons in tests grid
+  document.querySelectorAll('.fav-btn.fav-active').forEach(b => b.classList.remove('fav-active'));
+  renderFavs();
+}
+
+// Init favs badge on load
+updateFavBadge();
+
+// ══════════════════════════════════════════════════════════════
+// ANAMNESIS
+// ══════════════════════════════════════════════════════════════
+
+function syncPatientField(pfId, anId) {
+  const anEl = document.getElementById(anId);
+  const pfEl = document.getElementById(pfId);
+  if (anEl && pfEl) {
+    pfEl.value = anEl.value;
+    updateReport();
+  }
+}
+
+function updateDolrSlider() {
+  const num = document.getElementById('an-dolor-num');
+  const range = document.getElementById('an-dolor-range');
+  if (num && range) range.value = num.value;
+}
+
+function clearAnamnesis() {
+  if (!confirm('¿Limpiar todos los datos de anamnesis?')) return;
+  const ids = [
+    'an-nombre','an-edad','an-sexo','an-peso','an-talla','an-imc','an-lateralidad',
+    'an-ocupacion','an-evaluador','an-motivo','an-historia','an-evolucion',
+    'an-dolor-num','an-antecedentes-med','an-cirugias','an-lesiones-prev',
+    'an-medicacion','an-alergias','an-tto-previo','an-dx-medico',
+    'an-deporte','an-nivel-dep','an-frec-dep','an-horas-dep','an-posicion',
+    'an-objetivo','an-temporada','an-evento','an-factores-riesgo',
+    'an-psicosocial','an-observaciones'
+  ];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  // uncheck checkboxes
+  document.querySelectorAll('#tab-anamnesis input[type=checkbox]').forEach(cb => {
+    cb.checked = false;
+    cb.closest('.rev-check-item')?.classList.remove('selected');
+  });
+  document.getElementById('an-dolor-range').value = 0;
+}
+
+// Auto-calc IMC
+['an-peso','an-talla'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', () => {
+    const peso = parseFloat(document.getElementById('an-peso')?.value);
+    const talla = parseFloat(document.getElementById('an-talla')?.value);
+    const imcEl = document.getElementById('an-imc');
+    if (imcEl && peso > 0 && talla > 0) {
+      const imc = (peso / Math.pow(talla/100, 2)).toFixed(1);
+      imcEl.value = imc;
+    }
+  });
+});
+
+function getAnamnesisData() {
+  const g = id => document.getElementById(id)?.value?.trim() || '';
+  const checked = (id) => document.getElementById(id)?.checked;
+
+  const dolorBehavior = [];
+  if (checked('an-dolor-reposo')) dolorBehavior.push('reposo');
+  if (checked('an-dolor-nocturno')) dolorBehavior.push('nocturno');
+  if (checked('an-dolor-esfuerzo')) dolorBehavior.push('esfuerzo');
+  if (checked('an-dolor-mecanico')) dolorBehavior.push('mecánico');
+  if (checked('an-dolor-irradiado')) dolorBehavior.push('irradiado');
+
+  const depEstado = [];
+  if (checked('an-dep-activo')) depEstado.push('activo sin restricción');
+  if (checked('an-dep-modificado')) depEstado.push('entrenamiento modificado');
+  if (checked('an-dep-baja')) depEstado.push('⚠ baja deportiva');
+  if (checked('an-dep-rehab')) depEstado.push('en rehabilitación');
+
+  return {
+    nombre: g('an-nombre'),
+    edad: g('an-edad'),
+    sexo: g('an-sexo'),
+    peso: g('an-peso'),
+    talla: g('an-talla'),
+    imc: g('an-imc'),
+    lateralidad: g('an-lateralidad'),
+    ocupacion: g('an-ocupacion'),
+    evaluador: g('an-evaluador'),
+    motivo: g('an-motivo'),
+    historia: g('an-historia'),
+    evolucion: g('an-evolucion'),
+    dolor: g('an-dolor-num'),
+    dolorBehavior,
+    antecedMed: g('an-antecedentes-med'),
+    cirugias: g('an-cirugias'),
+    lesionesPrev: g('an-lesiones-prev'),
+    medicacion: g('an-medicacion'),
+    alergias: g('an-alergias'),
+    ttoPrevio: g('an-tto-previo'),
+    dxMedico: g('an-dx-medico'),
+    deporte: g('an-deporte'),
+    nivelDep: g('an-nivel-dep'),
+    frecDep: g('an-frec-dep'),
+    horasDep: g('an-horas-dep'),
+    posicion: g('an-posicion'),
+    depEstado,
+    objetivo: g('an-objetivo'),
+    temporada: g('an-temporada'),
+    evento: g('an-evento'),
+    factoresRiesgo: g('an-factores-riesgo'),
+    psicosocial: g('an-psicosocial'),
+    observaciones: g('an-observaciones'),
+  };
+}
+
+function buildAnamnesisText(d) {
+  const lines = [];
+  const row = (label, val) => { if (val) lines.push(`  ${label}: ${val}`); };
+
+  lines.push('DATOS DEL PACIENTE');
+  lines.push('─────────────────────────────────────────────────────');
+  row('Nombre', d.nombre);
+  const fis = [d.edad ? `${d.edad} años` : '', d.sexo].filter(Boolean).join(' · ');
+  if (fis) lines.push(`  Edad / Sexo: ${fis}`);
+  const antrop = [d.peso ? `${d.peso} kg` : '', d.talla ? `${d.talla} cm` : '', d.imc ? `IMC ${d.imc}` : ''].filter(Boolean).join(' · ');
+  if (antrop) lines.push(`  Antropometría: ${antrop}`);
+  row('Lateralidad', d.lateralidad);
+  row('Ocupación', d.ocupacion);
+  row('Evaluador', d.evaluador);
+  lines.push('');
+
+  if (d.motivo || d.historia || d.evolucion || d.dolor) {
+    lines.push('MOTIVO DE CONSULTA');
+    lines.push('─────────────────────────────────────────────────────');
+    row('Motivo / Hipótesis', d.motivo);
+    row('Historia', d.historia);
+    row('Evolución', d.evolucion);
+    if (d.dolor) {
+      const beh = d.dolorBehavior.length ? ` (${d.dolorBehavior.join(', ')})` : '';
+      lines.push(`  Dolor actual: ${d.dolor}/10${beh}`);
+    }
+    lines.push('');
+  }
+
+  const hasAnt = d.antecedMed || d.cirugias || d.lesionesPrev || d.medicacion || d.alergias || d.ttoPrevio || d.dxMedico;
+  if (hasAnt) {
+    lines.push('ANTECEDENTES PERSONALES');
+    lines.push('─────────────────────────────────────────────────────');
+    row('Antecedentes médicos', d.antecedMed);
+    row('Cirugías / Intervenciones', d.cirugias);
+    row('Lesiones MSK previas', d.lesionesPrev);
+    row('Medicación actual', d.medicacion);
+    row('Alergias', d.alergias);
+    row('Tratamientos previos', d.ttoPrevio);
+    row('Diagnóstico médico', d.dxMedico);
+    lines.push('');
+  }
+
+  const hasDep = d.deporte || d.nivelDep || d.frecDep || d.horasDep || d.posicion || d.depEstado.length || d.objetivo || d.temporada || d.evento;
+  if (hasDep) {
+    lines.push('CONTEXTO DEPORTIVO / FUNCIONAL');
+    lines.push('─────────────────────────────────────────────────────');
+    const depInfo = [d.deporte, d.nivelDep].filter(Boolean).join(' — ');
+    if (depInfo) lines.push(`  Deporte: ${depInfo}`);
+    const cargaInfo = [d.frecDep, d.horasDep ? `${d.horasDep} h/sem` : ''].filter(Boolean).join(' · ');
+    if (cargaInfo) lines.push(`  Carga: ${cargaInfo}`);
+    row('Posición / Rol', d.posicion);
+    if (d.depEstado.length) lines.push(`  Estado: ${d.depEstado.join(', ')}`);
+    row('Objetivo del paciente', d.objetivo);
+    row('Temporada', d.temporada);
+    row('Próximo evento', d.evento);
+    lines.push('');
+  }
+
+  const hasCtx = d.factoresRiesgo || d.psicosocial || d.observaciones;
+  if (hasCtx) {
+    lines.push('FACTORES CONTEXTUALES');
+    lines.push('─────────────────────────────────────────────────────');
+    row('Factores de riesgo', d.factoresRiesgo);
+    row('Factores psicosociales', d.psicosocial);
+    row('Observaciones evaluador', d.observaciones);
+    lines.push('');
+  }
+
+  return lines.join('\n');
+}
+
+function saveAnamnesisToReport() {
+  const d = getAnamnesisData();
+  const body = buildAnamnesisText(d);
+
+  // Sync main patient fields
+  if (d.nombre) { const el = document.getElementById('pf-nombre'); if(el) el.value = d.nombre; }
+  if (d.edad) { const el = document.getElementById('pf-edad'); if(el) el.value = d.edad; }
+  if (d.deporte) { const el = document.getElementById('pf-deporte'); if(el) el.value = d.deporte; }
+  if (d.motivo) { const el = document.getElementById('pf-motivo'); if(el) el.value = d.motivo; }
+  if (d.evaluador) { const el = document.getElementById('pf-evaluador'); if(el) el.value = d.evaluador; }
+
+  saveResultToSession('anamnesis', 'Anamnesis del Paciente', 'Anamnesis',
+    { header: `Paciente: ${d.nombre || '—'} · ${d.edad ? d.edad+' años' : ''} · ${d.deporte || '—'}`,
+      body, lr: '', cls: 'info' });
+
+  updateReport();
+
+  const btn = document.getElementById('anamnesis-save-btn');
+  if (btn) {
+    btn.textContent = '✓ Guardado en informe';
+    btn.style.background = 'var(--green)';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = '💾 Guardar en informe';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 2500);
+  }
+}
 
 </script>
 
