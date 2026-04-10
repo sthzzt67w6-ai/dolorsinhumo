@@ -146,7 +146,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .tab.active{background:var(--navy);color:#fff;box-shadow:0 2px 8px rgba(27,58,92,0.2)}
 
 /* ── TESTS GRID ── */
-#tab-tests{display:block}
+#tab-anamnesis{display:block}
 #tab-baterias,#tab-lr,#tab-clusters{display:none}
 
 .results-header{
@@ -1669,14 +1669,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
   <!-- TABS -->
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('tests',this)">📋 Tests (250)</button>
+    <button class="tab active" onclick="switchTab('anamnesis',this)">📝 Anamnesis</button>
+    <button class="tab" onclick="switchTab('revision',this)">🩺 Rev. por Sistemas</button>
+    <button class="tab" onclick="switchTab('tests',this)">📋 Tests (250)</button>
     <button class="tab" onclick="switchTab('mievaluacion',this)">⭐ Mi Evaluación <span id="fav-count-badge" style="background:var(--teal);color:var(--navy-deep);border-radius:10px;padding:1px 7px;font-size:11px;font-weight:700;display:none">0</span></button>
-    <button class="tab" onclick="switchTab('baterias',this)">🔗 Baterías (15)</button>
-    <button class="tab" onclick="switchTab('lr',this)">⚡ LR+ Alto</button>
     <button class="tab" onclick="switchTab('goniometria',this)">📐 Goniómetro</button>
     <button class="tab" onclick="switchTab('postura',this)">🧍 Postura</button>
-    <button class="tab" onclick="switchTab('revision',this)">🩺 Rev. por Sistemas</button>
-    <button class="tab" onclick="switchTab('anamnesis',this)">📝 Anamnesis</button>
+    <button class="tab" onclick="switchTab('baterias',this)">🔗 Baterías (15)</button>
+    <button class="tab" onclick="switchTab('lr',this)">⚡ LR+ Alto</button>
   </div>
 
   <!-- TAB: TESTS -->
@@ -2988,13 +2988,13 @@ function goToTest(name){
 // ── TAB SWITCH ────────────────────────────────────────────────────────────
 let gonioInitialized = false;
 function switchTab(name, btn){
-  ['tests','mievaluacion','baterias','lr','goniometria','postura','revision','anamnesis'].forEach(t=>{
+  ['anamnesis','revision','tests','mievaluacion','goniometria','postura','baterias','lr'].forEach(t=>{
     const el = document.getElementById(`tab-${t}`);
     if(el) el.style.display = t===name ? 'block' : 'none';
   });
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   if(btn) btn.classList.add('active');
-  else document.querySelectorAll('.tab')[['tests','mievaluacion','baterias','lr','goniometria','postura','revision','anamnesis'].indexOf(name)]?.classList.add('active');
+  else document.querySelectorAll('.tab')[['anamnesis','revision','tests','mievaluacion','goniometria','postura','baterias','lr'].indexOf(name)]?.classList.add('active');
   if(name==='goniometria' && !gonioInitialized){
     initGoniometry();
     gonioInitialized = true;
