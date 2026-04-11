@@ -21,6 +21,7 @@ collections:
             summary: "{{fields.titulo}}"
             fields:
               - {label: "Título", name: "titulo", widget: "string"}
+              - {label: "Slug (URL)", name: "slug", widget: "string", hint: "Ej: reposo-y-dolor (sin espacios, sin tildes)"}
               - {label: "Fecha", name: "fecha", widget: "datetime", format: "DD/MM/YYYY", date_format: "DD/MM/YYYY", time_format: false}
               - label: "Tipo"
                 name: "tipo"
@@ -28,7 +29,28 @@ collections:
                 options:
                   - {label: "Artículo", value: "Artículo"}
                   - {label: "Video", value: "Video"}
-              - {label: "Imagen de portada", name: "imagen", widget: "image", required: false, hint: "Sube una imagen horizontal (1200x630px recomendado)"}
-              - {label: "Resumen corto", name: "resumen", widget: "text", hint: "2-3 líneas que aparecen en la tarjeta del blog"}
+              - {label: "Imagen de portada", name: "imagen", widget: "image", required: false}
+              - {label: "Resumen corto", name: "resumen", widget: "text"}
               - {label: "Contenido completo", name: "contenido", widget: "markdown"}
-              - {label: "URL de video (opcional)", name: "video_url", widget: "string", required: false, hint: "Pega el link de YouTube o TikTok si es un post de video"}
+              - {label: "URL de video (opcional)", name: "video_url", widget: "string", required: false}
+
+  - name: "configuracion"
+    label: "Configuración Visual"
+    files:
+      - label: "Imágenes y textos del sitio"
+        name: "site_config"
+        file: "site_config.json"
+        fields:
+          - {label: "Imagen Hero (principal)", name: "hero_imagen", widget: "image", required: false}
+          - {label: "Texto principal Hero", name: "hero_titulo", widget: "string"}
+          - {label: "Subtexto Hero", name: "hero_subtitulo", widget: "text"}
+          - {label: "Logo (URL o imagen)", name: "logo", widget: "image", required: false}
+          - label: "Servicios"
+            name: "servicios"
+            widget: "list"
+            summary: "{{fields.nombre}}"
+            fields:
+              - {label: "Nombre", name: "nombre", widget: "string"}
+              - {label: "Descripción", name: "descripcion", widget: "text"}
+              - {label: "Imagen", name: "imagen", widget: "image", required: false}
+              - {label: "Icono (emoji)", name: "icono", widget: "string", required: false}
