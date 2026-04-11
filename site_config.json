@@ -1,0 +1,38 @@
+{
+  "hero_titulo": "Fisioterapia que sí funciona",
+  "hero_subtitulo": "A domicilio y virtual en Bogotá. Sin mitos, basado en evidencia.",
+  "hero_imagen": "/hero.png",
+  "logo": "",
+  "servicios": [
+    {
+      "nombre": "Fisioterapia Deportiva",
+      "descripcion": "Recuperación y rendimiento para deportistas.",
+      "imagen": "",
+      "icono": "🏃"
+    },
+    {
+      "nombre": "Adulto Mayor",
+      "descripcion": "Movilidad, fuerza y autonomía en casa.",
+      "imagen": "",
+      "icono": "🧓"
+    },
+    {
+      "nombre": "Rehabilitación Neurológica",
+      "descripcion": "ACV, Parkinson, lesiones medulares.",
+      "imagen": "",
+      "icono": "🧠"
+    },
+    {
+      "nombre": "Dolor Crónico",
+      "descripcion": "Abordaje integral sin depender de pastillas.",
+      "imagen": "",
+      "icono": "💊"
+    },
+    {
+      "nombre": "Virtual",
+      "descripcion": "Sesiones online desde cualquier lugar.",
+      "imagen": "",
+      "icono": "💻"
+    }
+  ]
+}
