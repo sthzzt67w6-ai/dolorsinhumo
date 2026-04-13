@@ -2,7 +2,7 @@ backend:
   name: github
   repo: sthzzt67w6-ai/dolorsinhumo
   branch: main
-  base_url: https://cms-oauth.sthzzt67w6-ai.workers.dev
+  base_url: https://cms-oauth.sthzzt67w6.workers.dev
 
 media_folder: "images/blog"
 public_folder: "/images/blog"
