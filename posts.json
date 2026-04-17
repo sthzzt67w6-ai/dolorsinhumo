@@ -2,32 +2,32 @@
   "posts": [
     {
       "titulo": "¿Por qué el reposo no siempre es la solución para el dolor?",
+      "slug": "reposo-y-dolor",
       "fecha": "28/03/2025",
       "tipo": "Artículo",
       "imagen": "",
       "resumen": "Uno de los mitos más comunes en rehabilitación: creer que descansar es sinónimo de recuperarse. Te explicamos cuándo moverse es la mejor medicina.",
-      "contenido": "## El mito del reposo\n\nDurante años nos enseñaron que cuando algo duele, lo mejor es descansar. Y aunque eso tiene sentido en ciertas lesiones agudas, la ciencia ha demostrado que el reposo prolongado muchas veces **empeora** la situación.\n\n### ¿Por qué el movimiento ayuda?\n\nEl tejido musculoesquelético necesita carga mecánica para regenerarse. Cuando dejamos de movernos:\n\n- Los músculos pierden fuerza rápidamente\n- Los tendones pierden su capacidad de carga\n- El sistema nervioso amplifica la señal de dolor\n- El miedo a moverse genera más tensión y más dolor\n\n### ¿Cuándo SÍ hay que descansar?\n\nHay momentos específicos donde el reposo relativo es necesario: fracturas no estabilizadas, inflamación aguda severa (primeras 24-48 horas), post-cirugía inmediata.\n\nLa clave está en el **reposo relativo**: reducir la carga, no eliminarla.\n\n### La conclusión\n\nMoverse con inteligencia, con la carga correcta y bajo guía profesional, acelera la recuperación. El objetivo nunca es no sentir nada — es volver a funcionar bien.\n\n*¿Tienes dudas sobre tu caso específico? Escríbenos.*",
-      "video_url": "",
-      "slug": "reposo-y-dolor"
+      "contenido": "## El mito del reposo\n\nDurante años nos enseñaron que cuando algo duele, lo mejor es descansar. Y aunque eso tiene sentido en ciertas lesiones agudas, la ciencia ha demostrado que el reposo prolongado muchas veces **empeora** la situación.\n\n### ¿Por qué el movimiento ayuda?\n\nEl tejido musculoesquelético necesita carga mecánica para regenerarse. Cuando dejamos de movernos:\n\n- Los músculos pierden fuerza rápidamente\n- Los tendones pierden su capacidad de carga\n- El sistema nervioso amplifica la señal de dolor\n- El miedo a moverse genera más tensión y más dolor\n\n### ¿Cuándo SÍ hay que descansar?\n\nHay momentos específicos donde el reposo relativo es necesario: fracturas no estabilizadas, inflamación aguda severa (primeras 24-48 horas), post-cirugía inmediata.\n\nLa clave está en el **reposo relativo**: reducir la carga, no eliminarla.\n\n### La conclusión\n\nMoverse con inteligencia, con la carga correcta y bajo guía profesional, acelera la recuperación. El objetivo nunca es no sentir nada — es volver a funcionar bien.\n\n_¿Tienes dudas sobre tu caso específico? Escríbenos._",
+      "video_url": ""
     },
     {
       "titulo": "Fisioterapia a domicilio en Bogotá: qué esperar en la primera sesión",
+      "slug": "primera-sesion-fisioterapia",
       "fecha": "28/03/2025",
       "tipo": "Artículo",
       "imagen": "",
       "resumen": "Si nunca has recibido fisioterapia en casa, te contamos exactamente cómo es el proceso, qué llevamos y cómo funciona la valoración inicial.",
-      "contenido": "## La primera sesión en tu casa\n\nMuchos pacientes nos preguntan qué deben preparar, qué vamos a hacer y cuánto tiempo toma. Aquí te lo explicamos sin misterios.\n\n### ¿Qué necesitas tener listo?\n\n- Un espacio de aproximadamente 2x2 metros (sala, habitación, terraza)\n- Ropa cómoda que permita ver la zona afectada\n- Si tienes exámenes previos (RMN, rayos X), tenlos a mano\n- No es necesario comprar nada especial\n\n### ¿Qué pasa durante la valoración?\n\n**Primeros 20-30 minutos — La entrevista:** Te preguntamos todo. Cuándo empezó, cómo es el dolor, qué lo mejora, qué lo empeora, qué has probado antes.\n\n**Siguientes 30-40 minutos — La evaluación:** Pruebas funcionales, evaluación de movimiento, test ortopédicos específicos según tu condición.\n\n**Últimos 20 minutos — El plan:** Te explicamos qué encontramos, qué significa y cuántas sesiones estimamos. Sin rodeos.\n\n### ¿Cuánto dura?\n\nLa valoración inicial toma entre 60 y 90 minutos. Las sesiones de seguimiento entre 45 y 60 minutos.\n\n### ¿Qué llevamos nosotros?\n\nTodo lo necesario para la sesión. No necesitas comprar equipos ni preparar nada especial.\n\n*¿Tienes preguntas antes de agendar? Escríbenos por WhatsApp.*",
-      "video_url": "",
-      "slug": "primera-sesion-fisioterapia"
+      "contenido": "## La primera sesión en tu casa\n\nMuchos pacientes nos preguntan qué deben preparar, qué vamos a hacer y cuánto tiempo toma. Aquí te lo explicamos sin misterios.\n\n### ¿Qué necesitas tener listo?\n\n- Un espacio de aproximadamente 2x2 metros (sala, habitación, terraza)\n- Ropa cómoda que permita ver la zona afectada\n- Si tienes exámenes previos (RMN, rayos X), tenlos a mano\n- No es necesario comprar nada especial\n\n### ¿Qué pasa durante la valoración?\n\n**Primeros 20-30 minutos — La entrevista:** Te preguntamos todo. Cuándo empezó, cómo es el dolor, qué lo mejora, qué lo empeora, qué has probado antes.\n\n**Siguientes 30-40 minutos — La evaluación:** Pruebas funcionales, evaluación de movimiento, test ortopédicos específicos según tu condición.\n\n**Últimos 20 minutos — El plan:** Te explicamos qué encontramos, qué significa y cuántas sesiones estimamos. Sin rodeos.\n\n### ¿Cuánto dura?\n\nLa valoración inicial toma entre 60 y 90 minutos. Las sesiones de seguimiento entre 45 y 60 minutos.\n\n### ¿Qué llevamos nosotros?\n\nTodo lo necesario para la sesión. No necesitas comprar equipos ni preparar nada especial.\n\n_¿Tienes preguntas antes de agendar? Escríbenos por WhatsApp._",
+      "video_url": ""
     },
     {
-      "video_url": "https://www.tiktok.com/@dolorsinhumo/video/7621689455597980948",
-      "tipo": "Video",
-      "fecha": "06/04/2026",
-      "slug": "esguince-de-tobillo",
-      "resumen": "Descubre qué es un esguince de tobillo, cómo identificar su gravedad y los primeros auxilios para una recuperación rápida.",
       "titulo": "Todo lo que necesitas saber sobre el esguince de tobillo",
-      "contenido": "## ¿Qué es un esguince de tobillo?\\n\\nUn esguince ocurre cuando los ligamentos se estiran más allá de sus límites o se desgarran.\\n\\n## Clasificación\\n\\n- **Grado 1**: Leve, dolor leve, puedes caminar\\n- **Grado 2**: Moderado, desgarro parcial, dificultad para apoyar\\n- **Grado 3**: Grave, desgarro completo, imposible apoyar\\n\\n## Protocolo PEACE & LOVE\\n\\n### Fase 1: PEACE (primeros 1-3 días)\\n- **P**rotección: reduce la carga\\n- **E**levación: tobillo por encima del corazón\\n- **A**ntiinflamatorios: evítalos\\n- **C**ompresión: vendaje elástico\\n- **E**ducación: escucha a los profesionales\\n\\n### Fase 2: LOVE\\n- **L**arga: carga progresiva\\n- **O**ptimismo: la actitud importa\\n- **V**ascularización: ejercicio sin dolor\\n- **E**jercicio: fuerza y propiocepción guiada"
+      "slug": "esguince-de-tobillo",
+      "fecha": "06/04/2026",
+      "tipo": "Video",
+      "resumen": "Descubre qué es un esguince de tobillo, cómo identificar su gravedad y los primeros auxilios para una recuperación rápida.",
+      "contenido": "## ¿Qué es un esguince de tobillo?\n\nUn esguince de tobillo ocurre cuando los **ligamentos que estabilizan la articulación se estiran más allá de su capacidad o se desgarran** debido a un movimiento brusco, generalmente de inversión.\n\n***\n\n## Clasificación\n\n- **Grado I:** lesión leve del ligamento, dolor leve y mínima inflamación. Generalmente es posible caminar.\n- **Grado II:** desgarro parcial del ligamento, dolor moderado, inflamación y dificultad para apoyar el pie.\n- **Grado III:** desgarro completo del ligamento, dolor intenso, inestabilidad e incapacidad para apoyar.\n\n***\n\n## Protocolo PEACE & LOVE\n\n(Enfoque moderno de manejo de lesiones de tejidos blandos)\n\n### Fase 1: **PEACE** (primeros 1–3 días)\n\n- **Protección:** reducir la carga y evitar actividades que aumenten el dolor.\n- **Elevación:** mantener el tobillo elevado por encima del nivel del corazón para ayudar a disminuir la inflamación.\n- **Evitar antiinflamatorios:** pueden interferir con el proceso natural de reparación tisular.\n- **Compresión:** vendaje elástico o media compresiva para controlar el edema.\n- **Educación:** entender la lesión y seguir las recomendaciones del profesional de salud.\n\n### Fase 2: **LOVE**\n\n- **Load (Carga):** reintroducir carga de manera progresiva según tolerancia.\n- **Optimism (Optimismo):** factores psicológicos influyen en la recuperación.\n- **Vascularisation (Vascularización):** ejercicio cardiovascular sin dolor para favorecer la circulación.\n- **Exercise (Ejercicio):** trabajo progresivo de movilidad, fuerza y propiocepción.",
+      "video_url": "https://www.tiktok.com/@dolorsinhumo/video/7621689455597980948"
     }
   ]
 }
