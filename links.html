@@ -4,78 +4,135 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Dolor Sin Humo</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{min-height:100vh;background:#0d0b09;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;overflow-x:hidden}
-.bg{position:fixed;inset:0;z-index:0;overflow:hidden}
-.bg::before{content:'';position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at center,rgba(180,60,20,0.18) 0%,rgba(210,90,20,0.08) 40%,transparent 70%);animation:breathe 4s ease-in-out infinite}
-@keyframes breathe{0%,100%{opacity:0.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.15)}}
-.smoke{position:absolute;bottom:0;border-radius:50%;animation:smoke linear infinite;opacity:0}
-@keyframes smoke{0%{transform:translateY(0) scale(1) rotate(0deg);opacity:0}10%{opacity:0.4}90%{opacity:0.05}100%{transform:translateY(-100vh) scale(4) rotate(180deg);opacity:0}}
-.page{position:relative;z-index:1;width:100%;max-width:400px;padding:52px 28px 60px;text-align:center}
-.avatar{display:inline-flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;background:linear-gradient(145deg,#c0392b,#e67e22,#c0392b);background-size:200% 200%;animation:gradShift 3s ease infinite,fadeUp 0.7s ease both;margin-bottom:18px;box-shadow:0 0 0 1px rgba(192,57,43,0.3),0 0 30px rgba(192,57,43,0.4),0 0 60px rgba(192,57,43,0.15)}
-@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.avatar svg{width:38px;height:38px;fill:rgba(255,255,255,0.95)}
-.name{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;color:#f0e8de;letter-spacing:-0.01em;line-height:1;margin-bottom:8px;animation:fadeUp 0.7s ease 0.1s both}
-.sub{font-size:0.72rem;font-weight:500;color:rgba(200,180,160,0.6);letter-spacing:0.22em;text-transform:uppercase;animation:fadeUp 0.7s ease 0.2s both;margin-bottom:36px}
-.line{display:flex;align-items:center;gap:10px;margin-bottom:32px;animation:fadeUp 0.7s ease 0.25s both}
-.line::before,.line::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(180,140,100,0.2))}
-.line::after{background:linear-gradient(to left,transparent,rgba(180,140,100,0.2))}
-.dot{width:3px;height:3px;border-radius:50%;background:rgba(192,57,43,0.7)}
-.links{display:flex;flex-direction:column;gap:12px}
-.btn{display:flex;align-items:center;gap:14px;padding:16px 20px 16px 16px;border-radius:16px;text-decoration:none;border:1px solid;transition:transform 0.18s ease,box-shadow 0.18s ease,border-color 0.18s ease;position:relative;overflow:hidden}
-.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.04),transparent);opacity:0;transition:opacity 0.18s ease}
-.btn:hover{transform:translateY(-2px)}.btn:hover::before{opacity:1}.btn:active{transform:scale(0.98)}
-.wa{background:rgba(18,140,126,0.08);border-color:rgba(18,140,126,0.25);animation:fadeUp 0.7s ease 0.35s both}
-.wa:hover{box-shadow:0 6px 24px rgba(18,140,126,0.2);border-color:rgba(37,211,102,0.4)}
-.wa .ico{background:linear-gradient(135deg,#25d366,#128c7e)}.wa .lbl{color:rgba(37,211,102,0.7)}
-.web{background:rgba(180,57,30,0.08);border-color:rgba(180,57,30,0.25);animation:fadeUp 0.7s ease 0.47s both}
-.web:hover{box-shadow:0 6px 24px rgba(192,57,43,0.22);border-color:rgba(192,57,43,0.45)}
-.web .ico{background:linear-gradient(135deg,#c0392b,#e67e22)}.web .lbl{color:rgba(230,120,50,0.8)}
-.mail{background:rgba(66,133,244,0.08);border-color:rgba(66,133,244,0.22);animation:fadeUp 0.7s ease 0.59s both}
-.mail:hover{box-shadow:0 6px 24px rgba(66,133,244,0.18);border-color:rgba(66,133,244,0.4)}
-.mail .ico{background:linear-gradient(135deg,#4285f4,#1a73e8)}.mail .lbl{color:rgba(100,160,255,0.8)}
-.ico{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
-.ico svg{width:22px;height:22px;fill:#fff}
-.txt{flex:1;text-align:left}
-.lbl{display:block;font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px}
-.ttl{display:block;font-size:0.97rem;font-weight:500;color:#ede5dc;letter-spacing:0.01em}
-.arr{color:rgba(200,180,155,0.45);font-size:1rem;transition:transform 0.18s ease,color 0.18s ease}
-.btn:hover .arr{transform:translateX(3px);color:rgba(200,180,155,0.85)}
-.foot{margin-top:38px;font-size:0.65rem;font-weight:400;color:rgba(180,160,140,0.25);letter-spacing:0.15em;text-transform:uppercase;animation:fadeUp 0.7s ease 0.7s both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+:root{--navy:#0C1F3F;--navy2:#122649;--navy3:#1A3360;--blue:#2A6DB5;--bluelt:#3A82CC;--sky:#EAF1FB;--sky2:#D4E4F5;--white:#FFFFFF}
+html,body{min-height:100vh}
+body{background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;overflow-x:hidden;position:relative}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 110%,rgba(42,109,181,0.28) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 10%,rgba(26,51,96,0.6) 0%,transparent 50%),linear-gradient(170deg,#0C1F3F 0%,#122649 60%,#0C1F3F 100%)}
+.bg-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(58,130,204,0.12) 1px,transparent 1px);background-size:28px 28px;mask-image:radial-gradient(ellipse 100% 70% at 50% 100%,black 0%,transparent 65%)}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.1;animation:drift 9s ease-in-out infinite}
+.orb1{width:350px;height:350px;background:#3A82CC;top:-100px;right:-80px}
+.orb2{width:250px;height:250px;background:#2A6DB5;bottom:0;left:-60px;animation-delay:4s}
+.orb3{width:150px;height:150px;background:#3A82CC;top:40%;left:50%;transform:translate(-50%,-50%);animation-delay:2s}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,-15px)}}
+.page{position:relative;z-index:1;width:100%;max-width:390px;margin:0 16px;padding:44px 24px 52px;text-align:center}
+
+/* Hero */
+.hero{margin-bottom:28px;animation:up .65s cubic-bezier(.22,1,.36,1) both}
+.avatar-wrap{position:relative;display:inline-block;margin-bottom:18px}
+.avatar{width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--bluelt));display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px rgba(58,130,204,0.5),0 0 0 4px rgba(42,109,181,0.12),0 12px 36px rgba(42,109,181,0.4);animation:ring 3s ease-in-out infinite}
+@keyframes ring{0%,100%{box-shadow:0 0 0 1px rgba(58,130,204,0.5),0 0 0 4px rgba(42,109,181,0.12),0 12px 36px rgba(42,109,181,0.35)}50%{box-shadow:0 0 0 1px rgba(58,130,204,0.7),0 0 0 7px rgba(42,109,181,0.1),0 12px 44px rgba(42,109,181,0.55)}}
+.avatar svg{width:34px;height:34px;fill:white}
+.status{position:absolute;bottom:3px;right:1px;width:18px;height:18px;border-radius:50%;background:#25d366;border:2.5px solid var(--navy2);display:flex;align-items:center;justify-content:center;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.6}}
+.name{font-family:'DM Serif Display',serif;font-size:1.95rem;color:#ECF3FC;letter-spacing:-0.02em;line-height:1.1;margin-bottom:10px}
+.pill{display:inline-flex;align-items:center;gap:5px;background:rgba(42,109,181,0.18);border:1px solid rgba(58,130,204,0.3);border-radius:100px;padding:5px 14px;font-size:0.68rem;font-weight:500;color:rgba(160,200,255,0.85);letter-spacing:0.1em;text-transform:uppercase}
+.pill-dot{width:5px;height:5px;border-radius:50%;background:rgba(58,130,204,0.9);box-shadow:0 0 5px rgba(58,130,204,0.7)}
+
+/* Separator */
+.sep{display:flex;align-items:center;gap:8px;margin:0 0 22px;animation:up .65s cubic-bezier(.22,1,.36,1) .08s both}
+.sep-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(42,109,181,0.25))}
+.sep-line.r{background:linear-gradient(to left,transparent,rgba(42,109,181,0.25))}
+.sep-mid{display:flex;gap:3px}
+.sep-mid span{width:2.5px;height:2.5px;border-radius:50%;background:rgba(58,130,204,0.5)}
+.sep-mid span:nth-child(2){background:rgba(58,130,204,0.85)}
+
+/* Links */
+.links{display:flex;flex-direction:column;gap:10px}
+.btn{display:flex;align-items:center;gap:12px;padding:15px 16px;border-radius:15px;text-decoration:none;border:1px solid transparent;transition:all .22s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;cursor:pointer}
+.btn:hover{transform:translateY(-2px) scale(1.01)}
+.btn:active{transform:scale(0.98)}
+.btn-shine{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,transparent 50%);pointer-events:none}
+
+.wa{background:rgba(18,140,126,0.1);border-color:rgba(37,211,102,0.2);animation:up .65s cubic-bezier(.22,1,.36,1) .18s both}
+.wa:hover{background:rgba(18,140,126,0.16);border-color:rgba(37,211,102,0.4);box-shadow:0 10px 30px rgba(18,140,126,0.18),inset 0 1px 0 rgba(255,255,255,0.05)}
+.wa .icon{background:linear-gradient(145deg,#25d366,#128c7e)}.wa .lbl{color:rgba(80,220,130,0.75)}
+
+.web{background:rgba(42,109,181,0.12);border-color:rgba(58,130,204,0.25);animation:up .65s cubic-bezier(.22,1,.36,1) .28s both}
+.web:hover{background:rgba(42,109,181,0.2);border-color:rgba(58,130,204,0.45);box-shadow:0 10px 30px rgba(42,109,181,0.2),inset 0 1px 0 rgba(255,255,255,0.05)}
+.web .icon{background:linear-gradient(145deg,#2A6DB5,#3A82CC)}.web .lbl{color:rgba(130,185,255,0.8)}
+
+.mail{background:rgba(42,109,181,0.07);border-color:rgba(58,130,204,0.18);animation:up .65s cubic-bezier(.22,1,.36,1) .38s both}
+.mail:hover{background:rgba(42,109,181,0.14);border-color:rgba(58,130,204,0.35);box-shadow:0 10px 30px rgba(42,109,181,0.15),inset 0 1px 0 rgba(255,255,255,0.04)}
+.mail .icon{background:linear-gradient(145deg,#1E3D73,#2A6DB5)}.mail .lbl{color:rgba(120,175,255,0.7)}
+
+.icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+.icon svg{width:21px;height:21px;fill:white}
+.btn-body{flex:1;text-align:left}
+.lbl{display:block;font-size:0.6rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px}
+.title{display:block;font-size:0.95rem;font-weight:500;color:rgba(220,235,255,0.9)}
+.arrow-wrap{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .22s ease}
+.arrow-wrap svg{width:14px;height:14px;fill:rgba(180,210,255,0.4);transition:all .22s ease}
+.btn:hover .arrow-wrap{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.16)}
+.btn:hover .arrow-wrap svg{fill:rgba(180,210,255,0.85);transform:translateX(1px)}
+
+/* Footer */
+.foot{margin-top:28px;animation:up .65s cubic-bezier(.22,1,.36,1) .5s both}
+.foot-inner{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:100px;background:rgba(42,109,181,0.08);border:1px solid rgba(42,109,181,0.15)}
+.foot-dot{width:4px;height:4px;border-radius:50%;background:rgba(58,130,204,0.5)}
+.foot-txt{font-size:0.67rem;font-weight:400;color:rgba(140,180,230,0.4);letter-spacing:0.1em;text-transform:uppercase}
+
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
-<div class="bg" id="bg"></div>
-<script>
-(function(){var b=document.getElementById('bg');[{s:60,l:8,d:15,dl:0},{s:90,l:28,d:20,dl:4},{s:50,l:52,d:13,dl:8},{s:110,l:72,d:22,dl:2},{s:70,l:88,d:17,dl:11}].forEach(function(p){var e=document.createElement('div');e.className='smoke';e.style.cssText='width:'+p.s+'px;height:'+p.s+'px;left:'+p.l+'%;animation-duration:'+p.d+'s;animation-delay:'+p.dl+'s;background:radial-gradient(circle,rgba(255,255,255,0.035) 0%,transparent 70%)';b.appendChild(e)})})();
-</script>
+<div class="bg">
+  <div class="bg-grad"></div>
+  <div class="bg-dots"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
 <div class="page">
-  <div class="avatar"><svg viewBox="0 0 24 24"><path d="M12 2C9.5 6 7 8.5 7 12a5 5 0 0010 0c0-1.5-.5-2.8-1.3-3.8C14.5 9.5 14 11 13 11.5c.3-1.2.1-2.5-.5-3.5C11.7 6.8 12 4.5 12 2z"/></svg></div>
-  <div class="name">Dolor Sin Humo</div>
-  <div class="sub">Fisioterapia &middot; Bogot&aacute;</div>
-  <div class="line"><div class="dot"></div></div>
+  <div class="hero">
+    <div class="avatar-wrap">
+      <div class="avatar">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="status"></div>
+    </div>
+    <div class="name">Dolor Sin Humo</div>
+    <div style="height:10px"></div>
+    <div class="pill"><div class="pill-dot"></div>Fisioterapia &middot; Bogot&aacute;</div>
+  </div>
+
+  <div class="sep">
+    <div class="sep-line"></div>
+    <div class="sep-mid"><span></span><span></span><span></span></div>
+    <div class="sep-line r"></div>
+  </div>
+
   <div class="links">
     <a class="btn wa" href="https://wa.me/573171370271" target="_blank" rel="noopener">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-      <div class="txt"><span class="lbl">Chatea con nosotros</span><span class="ttl">WhatsApp</span></div>
-      <span class="arr">&#8250;</span>
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+      <div class="btn-body"><span class="lbl">Chat directo</span><span class="title">WhatsApp</span></div>
+      <div class="arrow-wrap"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></div>
+      <div class="btn-shine"></div>
     </a>
     <a class="btn web" href="https://dolorsinhumo.com" target="_blank" rel="noopener">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.93 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a7.82 7.82 0 010-4h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A8.03 8.03 0 015.07 16zm2.95-8H5.07a8.03 8.03 0 014.33-3.56A15.65 15.65 0 008.02 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38a7.82 7.82 0 010 4h-3.38z"/></svg></div>
-      <div class="txt"><span class="lbl">Nuestro sitio web</span><span class="ttl">dolorsinhumo.com</span></div>
-      <span class="arr">&#8250;</span>
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.93 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a7.82 7.82 0 010-4h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A8.03 8.03 0 015.07 16zm2.95-8H5.07a8.03 8.03 0 014.33-3.56A15.65 15.65 0 008.02 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38a7.82 7.82 0 010 4h-3.38z"/></svg></div>
+      <div class="btn-body"><span class="lbl">Sitio web</span><span class="title">dolorsinhumo.com</span></div>
+      <div class="arrow-wrap"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></div>
+      <div class="btn-shine"></div>
     </a>
     <a class="btn mail" href="mailto:dolorsinhumo@gmail.com">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-      <div class="txt"><span class="lbl">Escr&#237;benos</span><span class="ttl">dolorsinhumo@gmail.com</span></div>
-      <span class="arr">&#8250;</span>
+      <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <div class="btn-body"><span class="lbl">Correo electr&oacute;nico</span><span class="title">dolorsinhumo@gmail.com</span></div>
+      <div class="arrow-wrap"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></div>
+      <div class="btn-shine"></div>
     </a>
   </div>
-  <div class="foot">&copy; Dolor Sin Humo &middot; Fisioterapia Bogot&aacute;</div>
+
+  <div class="foot">
+    <div class="foot-inner">
+      <div class="foot-dot"></div>
+      <span class="foot-txt">Fisioterapia a domicilio &amp; virtual</span>
+      <div class="foot-dot"></div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
