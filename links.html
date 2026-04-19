@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0C1F3F;--navy2:#122649;--blue:#2A6DB5;--bluelt:#3A82CC;--white:#FFFFFF}
+:root{--navy:#0C1F3F;--navy2:#122649;--blue:#2A6DB5;--bluelt:#3A82CC}
 html,body{min-height:100vh}
-body{background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;overflow-x:hidden;position:relative}
+body{background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;overflow-x:hidden}
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 110%,rgba(42,109,181,0.28) 0%,transparent 60%),linear-gradient(170deg,#0C1F3F 0%,#122649 60%,#0C1F3F 100%)}
 .bg-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(58,130,204,0.12) 1px,transparent 1px);background-size:28px 28px;mask-image:radial-gradient(ellipse 100% 70% at 50% 100%,black 0%,transparent 65%)}
@@ -27,7 +27,7 @@ body{background:var(--navy);display:flex;align-items:center;justify-content:cent
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.6}}
 .name{font-family:'DM Serif Display',serif;font-size:1.95rem;color:#ECF3FC;letter-spacing:-0.02em;line-height:1.1;margin-bottom:10px}
 .pill{display:inline-flex;align-items:center;gap:5px;background:rgba(42,109,181,0.18);border:1px solid rgba(58,130,204,0.3);border-radius:100px;padding:5px 14px;font-size:0.68rem;font-weight:500;color:rgba(160,200,255,0.85);letter-spacing:0.1em;text-transform:uppercase}
-.pill-dot{width:5px;height:5px;border-radius:50%;background:rgba(58,130,204,0.9);box-shadow:0 0 5px rgba(58,130,204,0.7)}
+.pill-dot{width:5px;height:5px;border-radius:50%;background:rgba(58,130,204,0.9)}
 .sep{display:flex;align-items:center;gap:8px;margin:0 0 22px;animation:up .65s cubic-bezier(.22,1,.36,1) .08s both}
 .sep-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(42,109,181,0.25))}
 .sep-line.r{background:linear-gradient(to left,transparent,rgba(42,109,181,0.25))}
@@ -35,54 +35,52 @@ body{background:var(--navy);display:flex;align-items:center;justify-content:cent
 .sep-mid span{width:2.5px;height:2.5px;border-radius:50%;background:rgba(58,130,204,0.5)}
 .sep-mid span:nth-child(2){background:rgba(58,130,204,0.85)}
 .links{display:flex;flex-direction:column;gap:10px}
-
-/* WA button — special with copy fallback */
-.btn{display:flex;align-items:center;gap:12px;padding:15px 16px;border-radius:15px;text-decoration:none;border:1px solid transparent;transition:all .22s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;cursor:pointer;width:100%;background:none;text-align:left;font-family:'Inter',sans-serif}
+.btn{display:flex;align-items:center;gap:12px;padding:15px 16px;border-radius:15px;text-decoration:none;border:1px solid transparent;transition:all .22s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;cursor:pointer;width:100%;background:none;font-family:'Inter',sans-serif}
 .btn:hover{transform:translateY(-2px) scale(1.01)}
 .btn:active{transform:scale(0.98)}
-.btn-shine{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,transparent 50%);pointer-events:none}
 .wa{background:rgba(18,140,126,0.1);border-color:rgba(37,211,102,0.2);animation:up .65s cubic-bezier(.22,1,.36,1) .18s both}
-.wa:hover{background:rgba(18,140,126,0.16);border-color:rgba(37,211,102,0.4);box-shadow:0 10px 30px rgba(18,140,126,0.18)}
+.wa:hover,.wa:active{background:rgba(18,140,126,0.16);border-color:rgba(37,211,102,0.4)}
 .wa .icon{background:linear-gradient(145deg,#25d366,#128c7e)}.wa .lbl{color:rgba(80,220,130,0.75)}
 .web{background:rgba(42,109,181,0.12);border-color:rgba(58,130,204,0.25);animation:up .65s cubic-bezier(.22,1,.36,1) .28s both}
-.web:hover{background:rgba(42,109,181,0.2);border-color:rgba(58,130,204,0.45);box-shadow:0 10px 30px rgba(42,109,181,0.2)}
+.web:hover{background:rgba(42,109,181,0.2);border-color:rgba(58,130,204,0.45)}
 .web .icon{background:linear-gradient(145deg,#2A6DB5,#3A82CC)}.web .lbl{color:rgba(130,185,255,0.8)}
 .mail{background:rgba(42,109,181,0.07);border-color:rgba(58,130,204,0.18);animation:up .65s cubic-bezier(.22,1,.36,1) .38s both}
-.mail:hover{background:rgba(42,109,181,0.14);border-color:rgba(58,130,204,0.35);box-shadow:0 10px 30px rgba(42,109,181,0.15)}
+.mail:hover{background:rgba(42,109,181,0.14);border-color:rgba(58,130,204,0.35)}
 .mail .icon{background:linear-gradient(145deg,#1E3D73,#2A6DB5)}.mail .lbl{color:rgba(120,175,255,0.7)}
 .icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
 .icon svg{width:21px;height:21px;fill:white}
-.btn-body{flex:1}
+.btn-body{flex:1;text-align:left}
 .lbl{display:block;font-size:0.6rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px}
 .title{display:block;font-size:0.95rem;font-weight:500;color:rgba(220,235,255,0.9)}
-.arrow-wrap{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .22s ease}
-.arrow-wrap svg{width:14px;height:14px;fill:rgba(180,210,255,0.4);transition:all .22s ease}
-.btn:hover .arrow-wrap{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.16)}
-.btn:hover .arrow-wrap svg{fill:rgba(180,210,255,0.85);transform:translateX(1px)}
+.arrow-wrap{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.arrow-wrap svg{width:14px;height:14px;fill:rgba(180,210,255,0.4)}
 
-/* WA Modal overlay */
-.overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(8,18,36,0.85);backdrop-filter:blur(6px);align-items:flex-end;justify-content:center;padding:0 0 20px}
-.overlay.show{display:flex;animation:fadeIn .2s ease}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal{background:#122649;border:1px solid rgba(58,130,204,0.3);border-radius:20px 20px 16px 16px;padding:28px 24px 24px;width:100%;max-width:390px;text-align:center;animation:slideUp .25s cubic-bezier(.22,1,.36,1)}
-@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
-.modal-icon{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 0 20px rgba(37,211,102,0.3)}
-.modal-icon svg{width:26px;height:26px;fill:white}
-.modal-title{font-size:1.1rem;font-weight:600;color:#ECF3FC;margin-bottom:6px}
-.modal-sub{font-size:0.82rem;color:rgba(160,200,255,0.6);margin-bottom:20px;line-height:1.5}
-.number-box{display:flex;align-items:center;justify-content:space-between;background:rgba(42,109,181,0.15);border:1px solid rgba(58,130,204,0.3);border-radius:12px;padding:14px 16px;margin-bottom:16px}
-.number-txt{font-size:1.1rem;font-weight:500;color:#ECF3FC;letter-spacing:0.05em}
-.copy-btn{background:rgba(58,130,204,0.2);border:1px solid rgba(58,130,204,0.4);border-radius:8px;padding:7px 14px;font-size:0.75rem;font-weight:600;color:rgba(140,190,255,0.9);cursor:pointer;transition:all .2s ease;font-family:'Inter',sans-serif}
-.copy-btn:hover{background:rgba(58,130,204,0.35)}
-.copy-btn.copied{background:rgba(37,211,102,0.2);border-color:rgba(37,211,102,0.4);color:rgba(80,220,130,0.9)}
-.open-wa-btn{display:block;width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#25d366,#128c7e);border:none;font-size:0.95rem;font-weight:600;color:white;cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:10px;box-shadow:0 6px 20px rgba(37,211,102,0.25);transition:all .2s ease}
-.open-wa-btn:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(37,211,102,0.35)}
-.close-btn{background:none;border:none;font-size:0.82rem;color:rgba(160,200,255,0.4);cursor:pointer;font-family:'Inter',sans-serif;padding:6px}
+/* Toast */
+.toast{
+  position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-80px);
+  z-index:200;
+  background:#0d2a1a;
+  border:1px solid rgba(37,211,102,0.5);
+  border-radius:14px;
+  padding:14px 20px;
+  display:flex;align-items:center;gap:12px;
+  min-width:280px;max-width:340px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .35s ease;
+  opacity:0;
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast-icon{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.toast-icon svg{width:18px;height:18px;fill:white}
+.toast-text{flex:1}
+.toast-title{display:block;font-size:0.88rem;font-weight:600;color:#e8f8ee;margin-bottom:2px}
+.toast-sub{display:block;font-size:0.75rem;color:rgba(140,220,160,0.7);line-height:1.4}
+.toast-num{display:inline-block;margin-top:4px;font-size:0.82rem;font-weight:600;color:#4ddb8a;background:rgba(37,211,102,0.1);border-radius:6px;padding:2px 8px;letter-spacing:0.05em}
 
 .foot{margin-top:28px;animation:up .65s cubic-bezier(.22,1,.36,1) .5s both}
 .foot-inner{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:100px;background:rgba(42,109,181,0.08);border:1px solid rgba(42,109,181,0.15)}
 .foot-dot{width:4px;height:4px;border-radius:50%;background:rgba(58,130,204,0.5)}
-.foot-txt{font-size:0.67rem;font-weight:400;color:rgba(140,180,230,0.4);letter-spacing:0.1em;text-transform:uppercase}
+.foot-txt{font-size:0.67rem;color:rgba(140,180,230,0.4);letter-spacing:0.1em;text-transform:uppercase}
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
@@ -94,18 +92,13 @@ body{background:var(--navy);display:flex;align-items:center;justify-content:cent
   <div class="orb orb2"></div>
 </div>
 
-<!-- WhatsApp modal -->
-<div class="overlay" id="waOverlay" onclick="closeWA(event)">
-  <div class="modal">
-    <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-    <div class="modal-title">Contáctanos por WhatsApp</div>
-    <div class="modal-sub">Copia el número y ábrelo en WhatsApp, o toca el botón para intentar abrirlo directo.</div>
-    <div class="number-box">
-      <span class="number-txt">+57 317 137 0271</span>
-      <button class="copy-btn" id="copyBtn" onclick="copyNumber()">Copiar</button>
-    </div>
-    <button class="open-wa-btn" onclick="openWA()">Abrir en WhatsApp</button>
-    <button class="close-btn" onclick="document.getElementById('waOverlay').classList.remove('show')">Cerrar</button>
+<!-- Toast notification -->
+<div class="toast" id="toast">
+  <div class="toast-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+  <div class="toast-text">
+    <span class="toast-title">&#x2714;&#xfe0f; N&uacute;mero copiado</span>
+    <span class="toast-sub">P&eacute;galo en WhatsApp para escribirnos</span>
+    <span class="toast-num">+57 317 137 0271</span>
   </div>
 </div>
 
@@ -121,56 +114,59 @@ body{background:var(--navy);display:flex;align-items:center;justify-content:cent
   </div>
   <div class="sep"><div class="sep-line"></div><div class="sep-mid"><span></span><span></span><span></span></div><div class="sep-line r"></div></div>
   <div class="links">
-    <button class="btn wa" onclick="document.getElementById('waOverlay').classList.add('show')">
+
+    <!-- WA: copies number directly, no external link -->
+    <button class="btn wa" onclick="copyWA(this)">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-      <div class="btn-body"><span class="lbl">Chat directo</span><span class="title">WhatsApp</span></div>
-      <div class="arrow-wrap"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></div>
-      <div class="btn-shine"></div>
+      <div class="btn-body"><span class="lbl">Toca para copiar el n&uacute;mero</span><span class="title" id="waTitle">WhatsApp · +57 317 137 0271</span></div>
+      <div class="arrow-wrap"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></div>
     </button>
+
     <a class="btn web" href="https://dolorsinhumo.com" target="_blank" rel="noopener">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.93 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a7.82 7.82 0 010-4h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A8.03 8.03 0 015.07 16zm2.95-8H5.07a8.03 8.03 0 014.33-3.56A15.65 15.65 0 008.02 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38a7.82 7.82 0 010 4h-3.38z"/></svg></div>
       <div class="btn-body"><span class="lbl">Sitio web</span><span class="title">dolorsinhumo.com</span></div>
       <div class="arrow-wrap"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></div>
-      <div class="btn-shine"></div>
     </a>
+
     <a class="btn mail" href="mailto:dolorsinhumo@gmail.com">
       <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
       <div class="btn-body"><span class="lbl">Correo electr&oacute;nico</span><span class="title">dolorsinhumo@gmail.com</span></div>
       <div class="arrow-wrap"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></div>
-      <div class="btn-shine"></div>
     </a>
   </div>
   <div class="foot"><div class="foot-inner"><div class="foot-dot"></div><span class="foot-txt">Fisioterapia a domicilio &amp; virtual</span><div class="foot-dot"></div></div></div>
 </div>
 
 <script>
-function openWA(){
-  var n='573171370271';
-  var ua=navigator.userAgent||'';
-  var tried=false;
-  if(/android/i.test(ua)){
-    window.location.href='intent://send/'+n+'#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end';
-    tried=true;
+var toastTimer;
+function copyWA(btn) {
+  var num = '+573171370271';
+  var title = document.getElementById('waTitle');
+  function showToast() {
+    var t = document.getElementById('toast');
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 3500);
+    title.textContent = '✔ Número copiado!';
+    setTimeout(function(){ title.textContent = 'WhatsApp · +57 317 137 0271'; }, 3500);
   }
-  setTimeout(function(){
-    window.location.href='https://api.whatsapp.com/send?phone='+n;
-  }, tried?1500:0);
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(num).then(showToast).catch(function(){
+        fallbackCopy(num); showToast();
+      });
+    } else {
+      fallbackCopy(num); showToast();
+    }
+  } catch(e) { fallbackCopy(num); showToast(); }
 }
-function copyNumber(){
-  var n='+573171370271';
-  var btn=document.getElementById('copyBtn');
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(n).then(function(){
-      btn.textContent='Copiado!';btn.classList.add('copied');
-      setTimeout(function(){btn.textContent='Copiar';btn.classList.remove('copied')},2000);
-    });
-  } else {
-    var t=document.createElement('textarea');t.value=n;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);
-    btn.textContent='Copiado!';btn.classList.add('copied');
-    setTimeout(function(){btn.textContent='Copiar';btn.classList.remove('copied')},2000);
-  }
+function fallbackCopy(text) {
+  var el = document.createElement('textarea');
+  el.value = text; el.style.position = 'fixed'; el.style.opacity = '0';
+  document.body.appendChild(el); el.focus(); el.select();
+  try { document.execCommand('copy'); } catch(e){}
+  document.body.removeChild(el);
 }
-function closeWA(e){if(e.target===document.getElementById('waOverlay'))document.getElementById('waOverlay').classList.remove('show')}
 </script>
 </body>
 </html>
