@@ -158,8 +158,8 @@
     .servgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
     .servcard{background:var(--off);border:1px solid var(--gray1);border-radius:var(--r);padding:2rem 1.7rem;display:flex;flex-direction:column;transition:box-shadow .3s,transform .25s,border-color .3s;position:relative}
     .servcard:hover{box-shadow:0 12px 40px rgba(12,31,63,.08);transform:translateY(-4px);border-color:var(--sky2)}
-    .servcard.feat{background:var(--navy);border-color:var(--navy)}
-    .servcard.feat:hover{box-shadow:0 16px 48px rgba(12,31,63,.3);border-color:var(--blue)}
+    .servcard.feat,.servcard.featured{background:var(--navy);border-color:var(--navy);color:var(--white)}
+    .servcard.feat:hover,.servcard.featured:hover{box-shadow:0 16px 48px rgba(12,31,63,.3);border-color:var(--blue)}
     .servbadge{position:absolute;top:-1px;right:1.5rem;background:var(--blue);color:var(--white);font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:0 0 4px 4px}
     .servico{font-size:1.5rem;margin-bottom:1.1rem}
     .servcard h3{font-size:1.15rem;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-bottom:.65rem;color:var(--text)}
@@ -220,9 +220,9 @@
     .founder-foto-sub{font-size:.78rem;color:rgba(255,255,255,.35);text-align:center;max-width:180px}
     /* Equipo secundario */
     .equipogrid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.2rem}
-    .ecard{background:var(--navy3);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);overflow:hidden;transition:transform .25s,box-shadow .3s}
+    .ecard{background:var(--navy3);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);overflow:hidden;transition:transform .25s,box-shadow .3s;isolation:isolate}
     .ecard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.25)}
-    .efoto{height:0;padding-bottom:90%;background:var(--navy4);overflow:hidden;position:relative}
+    .efoto{height:600px;background:var(--navy4);overflow:hidden;position:relative;flex-shrink:0}
     .efoto img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center top}
     .efoto-ph{display:flex;flex-direction:column;align-items:center;gap:.7rem;position:relative;z-index:1}
     .einit{width:60px;height:60px;border-radius:50%;border:2px solid rgba(100,170,235,.3);background:rgba(42,109,181,.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:#64AAEB}
@@ -569,7 +569,7 @@
         <a href="#contacto" class="btns">Agendar</a>
       </div>
     </div>
-    <div class="servcard feat">
+    <div class="servcard">
       <div class="servbadge">Más solicitado</div>
       <div class="servico">💻</div>
       <h3>Consulta virtual — toda Colombia</h3>
