@@ -857,16 +857,17 @@
     <h3 style="font-size:1.45rem;font-weight:700;letter-spacing:-.02em;margin-bottom:1.3rem;color:var(--text)">Cuéntanos tu caso</h3>
     <div class="form">
       <div class="frow">
-        <div class="field"><label>Nombre</label><input id="cf-nombre" type="text" placeholder="Tu nombre"/></div>
-        <div class="field"><label>WhatsApp</label><input id="cf-wa" type="tel" placeholder="+57 300 ..."/></div>
+        <form action="https://api.web3forms.com/submit" method="POST">
+      <div class="field"><label>Nombre</label><input id="cf-nombre" name="nombre" type="text" placeholder="Tu nombre"/></div>
+        <div class="field"><label>WhatsApp</label><input id="cf-wa" name="whatsapp" type="tel" placeholder="+57 300 ..."/></div>
       </div>
       <div class="field">
         <label>Correo electrónico</label>
-        <input id="cf-email" type="email" placeholder="tucorreo@email.com"/>
+        <input id="cf-email" name="correo" type="email" placeholder="tucorreo@email.com"/>
       </div>
       <div class="field">
         <label>Tipo de paciente</label>
-        <select id="cf-tipo">
+        <select id="cf-tipo" name="tipo_paciente">
           <option value="">Selecciona una opción</option>
           <option>Deportista con dolor osteomuscular</option>
           <option>Dolor crónico o post-cirugía</option>
@@ -879,7 +880,7 @@
       </div>
       <div class="field">
         <label>Modalidad preferida</label>
-        <select id="cf-mod">
+        <select id="cf-mod" name="modalidad">
           <option value="">Selecciona una opción</option>
           <option>A domicilio en Bogotá</option>
           <option>Virtual — videollamada</option>
@@ -888,9 +889,13 @@
       </div>
       <div class="field">
         <label>¿Qué te pasa?</label>
-        <textarea id="cf-msg" placeholder="Desde hace cuánto duele, dónde está el dolor, qué has probado antes..."></textarea>
+        <textarea id="cf-msg" name="mensaje" placeholder="Desde hace cuánto duele, dónde está el dolor, qué has probado antes..."></textarea>
       </div>
-      <button class="btnsub" onclick="handleSubmit(event)">Enviar mensaje →</button>
+      <input type="hidden" name="access_key" value="bbfb4fbf-cf23-463c-b6ff-94556779a747"/>
+      <input type="hidden" name="subject" value="Nuevo paciente — Dolor Sin Humo"/>
+      <input type="hidden" name="redirect" value="https://dolorsinhumo.com?enviado=1"/>
+      <button type="submit" class="btnsub">Enviar mensaje →</button>
+      </form>
     </div>
   </div>
 </section>
