@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Planes y Precios — Dolor Sin Humo</title>
+<link rel="icon" href="/favicon.png"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0C1F3F;--blue:#2A6DB5;--accent:#64AAEB;--white:#fff;--off:#F5F7FA;--gray1:#E8ECF2;--text:#0C1F3F;--text2:#3D5066;--r:10px;--f:'IBM Plex Sans',system-ui,sans-serif}
+body{font-family:var(--f);background:var(--off);color:var(--text)}
+a{text-decoration:none}
+header{background:var(--navy);padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.05rem;font-weight:700;color:#fff}.logo span{color:var(--accent)}
+.back{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.6);transition:color .2s}.back:hover{color:#fff}
+.hero{background:var(--navy);padding:4rem 5% 3rem;text-align:center}
+.hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;margin-bottom:.8rem}
+.hero p{font-size:1rem;color:rgba(255,255,255,.65);max-width:540px;margin:0 auto}
+main{max-width:1100px;margin:0 auto;padding:3rem 5%}
+.section-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.5rem}
+.section-h{font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:2rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem}
+.card{background:#fff;border-radius:var(--r);border:1px solid var(--gray1);padding:2rem;display:flex;flex-direction:column}
+.card.featured{background:var(--navy);border-color:var(--navy)}
+.card-badge{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--navy);padding:.25rem .75rem;border-radius:20px;display:inline-block;margin-bottom:1rem;align-self:flex-start}
+.card h3{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.4rem}
+.card.featured h3{color:#fff}
+.card .desc{font-size:.84rem;color:var(--text2);margin-bottom:1.2rem;line-height:1.6}
+.card.featured .desc{color:rgba(255,255,255,.65)}
+.price{font-size:2rem;font-weight:700;color:var(--navy);line-height:1}
+.card.featured .price{color:var(--accent)}
+.price-label{font-size:.72rem;color:var(--text2);margin-bottom:1.2rem;margin-top:.2rem}
+.card.featured .price-label{color:rgba(255,255,255,.5)}
+.divider{height:1px;background:var(--gray1);margin:1rem 0}
+.card.featured .divider{background:rgba(255,255,255,.1)}
+.features{list-style:none;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.features li{font-size:.8rem;color:var(--text2);padding-left:1.2rem;position:relative;line-height:1.4}
+.card.featured .features li{color:rgba(255,255,255,.7)}
+.features li::before{content:'✓';position:absolute;left:0;color:var(--blue);font-weight:700}
+.card.featured .features li::before{color:var(--accent)}
+.card-btn{display:block;text-align:center;margin-top:1.5rem;background:var(--navy);color:#fff;font-weight:700;font-size:.88rem;padding:.85rem;border-radius:6px;transition:background .2s}
+.card-btn:hover{background:var(--blue)}
+.card.featured .card-btn{background:var(--accent);color:var(--navy)}
+.card.featured .card-btn:hover{background:#fff}
+.note{background:#fff;border:1px solid var(--gray1);border-radius:var(--r);padding:1.5rem 2rem;font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:3rem}
+.note strong{color:var(--navy)}
+footer{background:var(--navy);padding:2rem 5%;text-align:center;font-size:.78rem;color:rgba(255,255,255,.4)}
+@media(max-width:768px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">Dolor <span>Sin Humo</span></a>
+  <a href="/" class="back">← Volver al sitio</a>
+</header>
+<div class="hero">
+  <h1>Planes y precios</h1>
+  <p>Sin contratos, sin paquetes forzados. Solo lo que necesitas.</p>
+</div>
+<main>
+  <div class="section-title">Valoración</div>
+  <div class="section-h">Primera sesión</div>
+  <div class="cards" style="grid-template-columns:repeat(2,1fr)">
+    <div class="card featured">
+      <div class="card-badge">Recomendado</div>
+      <h3>Valoración inicial completa</h3>
+      <p class="desc">60–90 min. Diagnóstico funcional real, objetivos claros y plan de tratamiento con tiempos desde el día uno.</p>
+      <div class="price">Consultar</div>
+      <div class="price-label">A domicilio o virtual</div>
+      <div class="divider"></div>
+      <ul class="features">
+        <li>Anamnesis detallada (60–90 min)</li>
+        <li>Pruebas funcionales y ortopédicas</li>
+        <li>Diagnóstico fisioterapéutico por escrito</li>
+        <li>Plan de alta con metas medibles</li>
+        <li>Disponible a domicilio en Bogotá o virtual</li>
+      </ul>
+      <a href="https://wa.me/573171370271?text=Hola%2C+quiero+agendar+una+valoraci%C3%B3n+inicial" target="_blank" class="card-btn">Agendar valoración →</a>
+    </div>
+    <div class="card">
+      <h3>Valoración virtual</h3>
+      <p class="desc">Evaluación real por videollamada. Ideal si estás fuera de Bogotá o prefieres empezar desde casa.</p>
+      <div class="price">Consultar</div>
+      <div class="price-label">Toda Colombia</div>
+      <div class="divider"></div>
+      <ul class="features">
+        <li>Evaluación visual de postura y movimiento</li>
+        <li>Diagnóstico y plan de tratamiento</li>
+        <li>Protocolo de ejercicios en video</li>
+        <li>Seguimiento activo por WhatsApp</li>
+      </ul>
+      <a href="https://wa.me/573171370271?text=Hola%2C+quiero+una+valoraci%C3%B3n+virtual" target="_blank" class="card-btn">Agendar →</a>
+    </div>
+  </div>
+
+  <div class="section-title">Terapias</div>
+  <div class="section-h">Sesiones y paquetes</div>
+  <div class="cards">
+    <div class="card">
+      <h3>Sesión individual</h3>
+      <p class="desc">Una sesión a domicilio en Bogotá. Sin compromiso de paquete.</p>
+      <div class="price">Consultar</div>
+      <div class="price-label">Por sesión · A domicilio</div>
+      <div class="divider"></div>
+      <ul class="features">
+        <li>Tratamiento manual y terapéutico</li>
+        <li>Plan de ejercicios personalizado</li>
+        <li>Informe de avance</li>
+        <li>Seguimiento por WhatsApp</li>
+      </ul>
+      <a href="https://wa.me/573171370271?text=Hola%2C+quiero+agendar+una+sesi%C3%B3n" target="_blank" class="card-btn">Agendar →</a>
+    </div>
+    <div class="card featured">
+      <div class="card-badge">Más popular</div>
+      <h3>Paquete 5 sesiones</h3>
+      <p class="desc">El plan más elegido. Ideal para condiciones agudas o recuperaciones específicas.</p>
+      <div class="price">Consultar</div>
+      <div class="price-label">5 sesiones · A domicilio</div>
+      <div class="divider"></div>
+      <ul class="features">
+        <li>Todo lo de sesión individual</li>
+        <li>Seguimiento continuo entre sesiones</li>
+        <li>Ajuste de plan según evolución</li>
+        <li>Mejor tarifa por sesión</li>
+      </ul>
+      <a href="https://wa.me/573171370271?text=Hola%2C+quiero+el+paquete+de+5+sesiones" target="_blank" class="card-btn">Agendar paquete →</a>
+    </div>
+    <div class="card">
+      <h3>Paquete 10 sesiones</h3>
+      <p class="desc">Para procesos de rehabilitación a largo plazo o condiciones crónicas.</p>
+      <div class="price">Consultar</div>
+      <div class="price-label">10 sesiones · A domicilio</div>
+      <div class="divider"></div>
+      <ul class="features">
+        <li>Todo lo de paquete 5 sesiones</li>
+        <li>Evaluación de progreso a mitad del plan</li>
+        <li>Plan de alta detallado</li>
+        <li>Mayor ahorro por sesión</li>
+      </ul>
+      <a href="https://wa.me/573171370271?text=Hola%2C+quiero+el+paquete+de+10+sesiones" target="_blank" class="card-btn">Agendar paquete →</a>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>¿Tienes dudas sobre qué plan elegir?</strong> Escríbenos por WhatsApp al <a href="https://wa.me/573171370271" style="color:var(--blue);font-weight:600">+57 317 137 0271</a> y te orientamos sin costo ni compromiso. Respondemos Lun–Sáb 7am–7pm. <br/><br/>
+    <strong>Nota:</strong> Los precios exactos se comparten por WhatsApp o correo una vez conozcamos tu caso, ya que pueden variar según la zona de desplazamiento en Bogotá y el tipo de atención requerida.
+  </div>
+</main>
+<footer>© 2025 · Dolor Sin Humo · Bogotá, Colombia · dolorsinhumo.com</footer>
+</body>
+</html>
