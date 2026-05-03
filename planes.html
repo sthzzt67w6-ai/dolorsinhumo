@@ -14,45 +14,53 @@ a{text-decoration:none}
 header{background:var(--navy);padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:1.05rem;font-weight:700;color:#fff}.logo span{color:var(--accent)}
 .back{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.6)}.back:hover{color:#fff}
-.hero{background:var(--navy);padding:4rem 5% 3rem;text-align:center}
-.hero h1{font-size:clamp(2rem,4vw,2.8rem);font-weight:700;color:#fff;margin-bottom:.8rem}
-.hero p{font-size:1rem;color:rgba(255,255,255,.65);max-width:520px;margin:0 auto}
+
+.hero{background:var(--navy);padding:4rem 5% 3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-left h1{font-size:clamp(2rem,4vw,2.8rem);font-weight:700;color:#fff;margin-bottom:.8rem}
+.hero-left p{font-size:.95rem;color:rgba(255,255,255,.65);max-width:460px;line-height:1.7}
+.hero-photos{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:.6rem;height:320px}
+.hero-photos img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.hero-photos img:first-child{grid-row:span 2;border-radius:8px}
+
 main{max-width:1100px;margin:0 auto;padding:3rem 5%}
 .section-tag{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem}
 .section-h{font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:2rem}
 .cards{display:grid;gap:1.5rem;margin-bottom:3.5rem}
 .cards-2{grid-template-columns:repeat(2,1fr)}
 .cards-3{grid-template-columns:repeat(3,1fr)}
-.card{background:#fff;border-radius:var(--r);border:1px solid var(--gray1);padding:2rem;display:flex;flex-direction:column;position:relative}
+.card{background:#fff;border-radius:var(--r);border:1px solid var(--gray1);overflow:hidden;display:flex;flex-direction:column;position:relative}
 .card.featured{background:var(--navy);border-color:var(--navy)}
-.badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--navy);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem 1rem;border-radius:0 0 6px 6px;white-space:nowrap}
+.card-img{height:200px;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .4s}
+.card:hover .card-img img{transform:scale(1.04)}
+.card-body{padding:1.8rem;display:flex;flex-direction:column;flex:1}
+.badge{position:absolute;top:12px;left:12px;background:var(--accent);color:var(--navy);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .75rem;border-radius:20px;z-index:2}
 .card h3{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.4rem}
 .card.featured h3{color:#fff}
-.card .desc{font-size:.84rem;color:var(--text2);margin-bottom:1.2rem;line-height:1.6}
+.desc{font-size:.84rem;color:var(--text2);margin-bottom:1.2rem;line-height:1.6}
 .card.featured .desc{color:rgba(255,255,255,.65)}
-.price-wrap{margin-bottom:.3rem}
-.price-old{font-size:1rem;color:var(--text2);text-decoration:line-through;margin-right:.5rem}
-.card.featured .price-old{color:rgba(255,255,255,.4)}
-.price-discount{display:inline-block;background:#dcfce7;color:#166534;font-size:.68rem;font-weight:700;padding:.15rem .5rem;border-radius:4px;vertical-align:middle}
-.price{font-size:1.9rem;font-weight:700;color:var(--navy);line-height:1.1}
+.price-wrap{margin-bottom:.25rem;display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.price-old{font-size:.95rem;color:var(--text2);text-decoration:line-through}
+.price-discount{background:#dcfce7;color:#166534;font-size:.65rem;font-weight:700;padding:.15rem .5rem;border-radius:4px}
+.price{font-size:1.9rem;font-weight:700;color:var(--navy);line-height:1}
 .card.featured .price{color:var(--accent)}
-.price-label{font-size:.72rem;color:var(--text2);margin-bottom:1.2rem;margin-top:.25rem}
+.price-label{font-size:.72rem;color:var(--text2);margin-bottom:1.2rem}
 .card.featured .price-label{color:rgba(255,255,255,.45)}
 hr{border:none;border-top:1px solid var(--gray1);margin:1rem 0}
 .card.featured hr{border-color:rgba(255,255,255,.1)}
-.features{list-style:none;flex:1;display:flex;flex-direction:column;gap:.45rem}
+.features{list-style:none;flex:1;display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.5rem}
 .features li{font-size:.8rem;color:var(--text2);padding-left:1.1rem;position:relative;line-height:1.4}
 .card.featured .features li{color:rgba(255,255,255,.7)}
 .features li::before{content:'✓';position:absolute;left:0;color:var(--blue);font-weight:700;font-size:.75rem}
 .card.featured .features li::before{color:var(--accent)}
-.btn{display:block;text-align:center;margin-top:1.5rem;background:var(--navy);color:#fff;font-weight:700;font-size:.88rem;padding:.85rem;border-radius:6px;transition:background .2s}
+.btn{display:block;text-align:center;margin-top:auto;background:var(--navy);color:#fff;font-weight:700;font-size:.88rem;padding:.85rem;border-radius:6px;transition:background .2s}
 .btn:hover{background:var(--blue)}
 .card.featured .btn{background:var(--accent);color:var(--navy)}
 .card.featured .btn:hover{background:#fff}
 .note{background:#fff;border:1px solid var(--gray1);border-radius:var(--r);padding:1.5rem 2rem;font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:3rem}
 .note strong{color:var(--navy)}
 footer{background:var(--navy);padding:2rem 5%;text-align:center;font-size:.75rem;color:rgba(255,255,255,.4)}
-@media(max-width:768px){.cards-2,.cards-3{grid-template-columns:1fr}}
+@media(max-width:768px){.cards-2,.cards-3{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.hero-photos{display:none}}
 </style>
 </head>
 <body>
@@ -60,112 +68,134 @@ footer{background:var(--navy);padding:2rem 5%;text-align:center;font-size:.75rem
   <a href="/" class="logo">Dolor <span>Sin Humo</span></a>
   <a href="/" class="back">← Volver al sitio</a>
 </header>
-<div class="hero">
-  <h1>Planes y precios</h1>
-  <p>Sin contratos, sin paquetes forzados. Elige lo que necesitas.</p>
-</div>
-<main>
 
+<div class="hero">
+  <div class="hero-left">
+    <h1>Planes y precios</h1>
+    <p>Fisioterapia profesional a domicilio y virtual en Bogotá. Sin contratos obligatorios — elige la modalidad que más se adapte a ti.</p>
+  </div>
+  <div class="hero-photos">
+    <img src="planes-2.jpg" alt="Fisioterapia a domicilio Bogotá"/>
+    <img src="planes-3.jpg" alt="Consulta virtual fisioterapia"/>
+    <img src="planes-4.jpg" alt="Valoración fisioterapéutica"/>
+  </div>
+</div>
+
+<main>
   <div class="section-tag">Valoración</div>
   <div class="section-h">Primera sesión</div>
   <div class="cards cards-2">
 
     <div class="card featured">
-      <div class="badge">Recomendado — Primera vez</div>
-      <h3 style="margin-top:1rem">Valoración presencial — Bogotá</h3>
-      <p class="desc">60–90 min a domicilio. Diagnóstico funcional real, objetivos claros y plan desde el día uno.</p>
-      <div class="price-wrap">
-        <span class="price-old">$200.000</span>
-        <span class="price-discount">30% OFF primera vez</span>
+      <div class="badge">30% OFF primera vez</div>
+      <div class="card-img"><img src="planes-4.jpg" alt="Valoración presencial"/></div>
+      <div class="card-body">
+        <h3>Valoración presencial — Bogotá</h3>
+        <p class="desc">60–90 min a domicilio. Diagnóstico funcional real, objetivos claros y plan de tratamiento con tiempos desde el día uno.</p>
+        <div class="price-wrap">
+          <span class="price-old">$200.000</span>
+          <span class="price-discount">30% OFF primera vez</span>
+        </div>
+        <div class="price">$140.000</div>
+        <div class="price-label">COP · A domicilio en Bogotá</div>
+        <hr/>
+        <ul class="features">
+          <li>Anamnesis detallada (60–90 min)</li>
+          <li>Pruebas funcionales y ortopédicas</li>
+          <li>Diagnóstico fisioterapéutico por escrito</li>
+          <li>Plan de alta con metas y tiempos</li>
+          <li>Seguimiento por WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/573171370271?text=Hola%2C+quiero+agendar+la+valoraci%C3%B3n+presencial+a+domicilio+%28primera+vez+%24140.000%29.+%C2%BFMe+puedes+confirmar+disponibilidad%3F" target="_blank" class="btn">Agendar valoración presencial →</a>
       </div>
-      <div class="price">$140.000</div>
-      <div class="price-label">COP · A domicilio en Bogotá</div>
-      <hr/>
-      <ul class="features">
-        <li>Anamnesis detallada (60–90 min)</li>
-        <li>Pruebas funcionales y ortopédicas</li>
-        <li>Diagnóstico fisioterapéutico por escrito</li>
-        <li>Plan de alta con metas y tiempos</li>
-        <li>Seguimiento por WhatsApp</li>
-      </ul>
-      <a href="https://wa.me/573171370271?text=Hola%2C+quiero+agendar+la+valoraci%C3%B3n+presencial+a+domicilio" target="_blank" class="btn">Agendar en WhatsApp →</a>
     </div>
 
     <div class="card">
-      <h3>Valoración virtual</h3>
-      <p class="desc">Evaluación real por videollamada. Ideal si estás fuera de Bogotá o prefieres empezar desde casa.</p>
-      <div class="price">$50.000</div>
-      <div class="price-label">COP · Toda Colombia</div>
-      <hr/>
-      <ul class="features">
-        <li>Evaluación de postura y movimiento</li>
-        <li>Diagnóstico y plan de tratamiento</li>
-        <li>Protocolo de ejercicios en video</li>
-        <li>Seguimiento activo por WhatsApp</li>
-        <li>Disponible toda Colombia</li>
-      </ul>
-      <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ8?gv=true" target="_blank" class="btn">Agendar en Google Calendar →</a>
+      <div class="card-img"><img src="planes-3.jpg" alt="Consulta virtual fisioterapia"/></div>
+      <div class="card-body">
+        <h3>Valoración virtual</h3>
+        <p class="desc">Evaluación real por videollamada. Ideal si estás fuera de Bogotá o prefieres empezar desde casa.</p>
+        <div class="price">$50.000</div>
+        <div class="price-label">COP · Toda Colombia</div>
+        <hr/>
+        <ul class="features">
+          <li>Evaluación de postura y movimiento</li>
+          <li>Diagnóstico y plan de tratamiento</li>
+          <li>Protocolo de ejercicios en video</li>
+          <li>Seguimiento activo por WhatsApp</li>
+          <li>Disponible toda Colombia</li>
+        </ul>
+        <a href="https://wa.me/573171370271?text=Hola%2C+quiero+agendar+una+valoraci%C3%B3n+virtual+%28%2450.000%29.+%C2%BFMe+puedes+confirmar+disponibilidad%3F" target="_blank" class="btn">Agendar valoración virtual →</a>
+      </div>
     </div>
 
   </div>
 
   <div class="section-tag">Terapias</div>
-  <div class="section-h">Sesiones y paquetes</div>
+  <div class="section-h">Sesiones y planes de recuperación</div>
   <div class="cards cards-3">
 
     <div class="card">
-      <h3>Sesión individual</h3>
-      <p class="desc">Una sesión a domicilio en Bogotá. Sin compromiso de paquete.</p>
-      <div class="price">Consultar</div>
-      <div class="price-label">COP · Por sesión · A domicilio</div>
-      <hr/>
-      <ul class="features">
-        <li>Tratamiento manual y terapéutico</li>
-        <li>Plan de ejercicios personalizado</li>
-        <li>Informe de avance por sesión</li>
-        <li>Seguimiento por WhatsApp</li>
-      </ul>
-      <a href="https://wa.me/573171370271?text=Hola%2C+quiero+agendar+una+sesi%C3%B3n+individual" target="_blank" class="btn">Agendar →</a>
+      <div class="card-img"><img src="planes-1.jpg" alt="Sesión individual fisioterapia"/></div>
+      <div class="card-body">
+        <h3>Sesión individual</h3>
+        <p class="desc">Una sesión a domicilio en Bogotá. Sin compromiso de plan.</p>
+        <div class="price">Consultar</div>
+        <div class="price-label">COP · Por sesión · A domicilio</div>
+        <hr/>
+        <ul class="features">
+          <li>Tratamiento manual y terapéutico</li>
+          <li>Plan de ejercicios personalizado</li>
+          <li>Informe de avance por sesión</li>
+          <li>Seguimiento por WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/573171370271?text=Hola%2C+quiero+agendar+una+sesi%C3%B3n+individual+de+fisioterapia+a+domicilio.+%C2%BFMe+puedes+confirmar+disponibilidad+y+precio%3F" target="_blank" class="btn">Agendar sesión →</a>
+      </div>
     </div>
 
     <div class="card featured">
       <div class="badge">Más popular</div>
-      <h3 style="margin-top:1rem">Paquete 5 sesiones</h3>
-      <p class="desc">El plan más elegido. Ideal para condiciones agudas o recuperaciones específicas.</p>
-      <div class="price">Consultar</div>
-      <div class="price-label">COP · 5 sesiones · A domicilio</div>
-      <hr/>
-      <ul class="features">
-        <li>Todo lo de sesión individual</li>
-        <li>Seguimiento continuo entre sesiones</li>
-        <li>Ajuste del plan según evolución</li>
-        <li>Mejor tarifa por sesión</li>
-      </ul>
-      <a href="https://wa.me/573171370271?text=Hola%2C+quiero+el+paquete+de+5+sesiones" target="_blank" class="btn">Agendar paquete →</a>
+      <div class="card-img"><img src="planes-2.jpg" alt="Plan 5 sesiones fisioterapia"/></div>
+      <div class="card-body">
+        <h3>Plan 5 sesiones</h3>
+        <p class="desc">El plan más elegido. Ideal para condiciones agudas o recuperaciones específicas.</p>
+        <div class="price">Consultar</div>
+        <div class="price-label">COP · 5 sesiones · A domicilio</div>
+        <hr/>
+        <ul class="features">
+          <li>Todo lo de sesión individual</li>
+          <li>Seguimiento continuo entre sesiones</li>
+          <li>Ajuste del plan según evolución</li>
+          <li>Mejor tarifa por sesión</li>
+        </ul>
+        <a href="https://wa.me/573171370271?text=Hola%2C+quiero+adquirir+el+plan+de+5+sesiones+de+fisioterapia+a+domicilio.+%C2%BFMe+puedes+dar+m%C3%A1s+informaci%C3%B3n%3F" target="_blank" class="btn">Adquirir plan 5 sesiones →</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Paquete 10 sesiones</h3>
-      <p class="desc">Para procesos de rehabilitación a largo plazo o condiciones crónicas.</p>
-      <div class="price">Consultar</div>
-      <div class="price-label">COP · 10 sesiones · A domicilio</div>
-      <hr/>
-      <ul class="features">
-        <li>Todo lo de paquete 5 sesiones</li>
-        <li>Evaluación de progreso a mitad</li>
-        <li>Plan de alta detallado</li>
-        <li>Mayor ahorro por sesión</li>
-      </ul>
-      <a href="https://wa.me/573171370271?text=Hola%2C+quiero+el+paquete+de+10+sesiones" target="_blank" class="btn">Agendar paquete →</a>
+      <div class="card-img"><img src="planes-5.jpg" alt="Plan 10 sesiones fisioterapia"/></div>
+      <div class="card-body">
+        <h3>Plan 10 sesiones</h3>
+        <p class="desc">Para procesos de rehabilitación a largo plazo o condiciones crónicas.</p>
+        <div class="price">Consultar</div>
+        <div class="price-label">COP · 10 sesiones · A domicilio</div>
+        <hr/>
+        <ul class="features">
+          <li>Todo lo de plan 5 sesiones</li>
+          <li>Evaluación de progreso a mitad</li>
+          <li>Plan de alta detallado</li>
+          <li>Mayor ahorro por sesión</li>
+        </ul>
+        <a href="https://wa.me/573171370271?text=Hola%2C+quiero+adquirir+el+plan+de+10+sesiones+de+fisioterapia+a+domicilio.+%C2%BFMe+puedes+dar+m%C3%A1s+informaci%C3%B3n+y+precio%3F" target="_blank" class="btn">Adquirir plan 10 sesiones →</a>
+      </div>
     </div>
 
   </div>
 
   <div class="note">
     <strong>¿Dudas sobre qué plan elegir?</strong> Escríbenos al <a href="https://wa.me/573171370271" style="color:var(--blue);font-weight:600">+57 317 137 0271</a> — respondemos Lun–Sáb 7am–7pm sin costo ni compromiso.<br/><br/>
-    <strong>Nota:</strong> El precio de las sesiones individuales y paquetes varía según la zona de desplazamiento en Bogotá. Te lo confirmamos por WhatsApp.
+    <strong>Nota:</strong> El precio de las sesiones individuales y planes varía según la zona de desplazamiento en Bogotá. Te lo confirmamos por WhatsApp.
   </div>
-
 </main>
 <footer>© 2025 · Dolor Sin Humo · Bogotá, Colombia · dolorsinhumo.com</footer>
 </body>
