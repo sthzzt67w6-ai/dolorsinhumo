@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet"/>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -415,48 +415,49 @@
     #read-progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0%;z-index:999;transition:width .1s linear}
   
   </style>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>emailjs.init('user_placeholder');</script>
+
+
 <!-- deploy: 1777836450117 -->
+  <link rel="stylesheet" href="refresh.css"/>
 </head>
 <body>
+<a class="skip-link" href="#hero">Saltar al contenido</a>
 
 <!-- NAV -->
-<nav id="nav">
+<nav id="nav" aria-label="Navegación principal">
   <a href="#" class="logo">Dolor <span>Sin Humo</span></a>
-  <div class="navl">
+  <div class="navl" id="main-menu">
     <a href="#para-quien">Pacientes</a>
     <a href="#servicios">Servicios</a>
     <a href="#equipo">Equipo</a>
     <a href="#blog">Blog</a>
     <a href="planes.html" target="_blank" style="font-size:.74rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5);transition:color .2s">Planes</a><a href="#contacto" class="navcta">Agenda tu cita</a>
   </div>
-  <div class="ham" onclick="toggleMenu()" aria-label="Menú"><span></span><span></span><span></span></div>
+  <button type="button" class="ham" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-menu"><span></span><span></span><span></span></button>
 </nav>
 
-<a href="https://wa.me/573171370271?text=Hola%2C%20quiero%20agendar%20una%20cita%20con%20Dolor%20Sin%20Humo" class="wa" target="_blank" rel="noopener" aria-label="WhatsApp Dolor Sin Humo">💬</a>
 
+<main>
 <!-- HERO -->
 <section id="hero" aria-label="Fisioterapia a domicilio en Bogotá — Dolor Sin Humo">
   <div class="hbg" aria-hidden="true"></div>
   <div class="hgrid" aria-hidden="true"></div>
   <div class="hleft">
     <div class="htag">Bogotá · A domicilio y virtual</div>
-    <div class="hservice-badge">🩺 Fisioterapia profesional · Bogotá, Colombia</div>
+    <div class="hero-eyebrow">FISIOTERAPIA CON UN PLAN CLARO</div>
     <h1 class="hh1">
-      Deja de vivir<br/>
-      con dolor<br/>
-      <em>y sin respuestas.</em>
+      Vuelve a moverte<br/>
+      <em>con confianza.</em>
     </h1>
     <p class="hsub">En <strong>Dolor Sin Humo</strong> ofrecemos <strong>fisioterapia a domicilio y virtual</strong> en Bogotá. Evaluamos bien, explicamos todo y te damos un plan claro desde el primer día.</p>
     <div class="htagline">Sin aparatos de moda · Sin sesiones eternas · Sin mitos</div>
     <div class="hbtns">
-      <a href="#contacto" class="btnprimary">Agenda tu cita →</a>
+      <a href="https://wa.me/573171370271?text=Hola%2C%20quiero%20agendar%20una%20valoraci%C3%B3n" target="_blank" rel="noopener" class="btnprimary">Hablemos por WhatsApp ↗</a>
       <a href="#servicios" class="btnsecondary">Ver servicios</a>
     </div>
     <div class="hmetrics">
       <div>
-        <div class="hmnum">100<span>%</span></div>
+        <div class="hmnum">Con criterio</div>
         <div class="hml">Basado en evidencia</div>
       </div>
       <div>
@@ -469,9 +470,9 @@
       </div>
     </div>
   </div>
-  <div class="hright" aria-hidden="true">
+  <div class="hright">
     <div class="hero-img-box">
-      <img src="hero.png" alt="Fisioterapeuta de Dolor Sin Humo evaluando a paciente en consultorio de Bogotá" loading="eager" style="width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;inset:0"/>
+      <img src="hero.png" alt="Fisioterapeuta de Dolor Sin Humo evaluando a paciente en consultorio de Bogotá" loading="eager" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;inset:0"/>
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(12,31,63,.65) 100%);z-index:1"></div>
       <div style="position:absolute;bottom:1rem;left:1rem;right:1rem;display:flex;justify-content:space-between;align-items:center;z-index:2">
         <span style="font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);background:rgba(12,31,63,.55);backdrop-filter:blur(6px);padding:.25rem .6rem;border-radius:4px;border:1px solid rgba(255,255,255,.12)">Fisioterapia a domicilio</span>
@@ -484,7 +485,7 @@
     </div>
     <div class="hcard">
       <div class="hcardl">Nuestra promesa</div>
-      <div class="hcardt">En la primera sesión ya sabes qué tienes, <strong>por qué duele</strong> y cuánto tiempo va a tomar mejorar.</div>
+      <div class="hcardt">Desde la primera sesión, buscamos entender tu caso y definir <strong>objetivos y próximos pasos</strong> contigo.</div>
     </div>
   </div>
 </section>
@@ -838,25 +839,6 @@
 </section>
 
 <!-- MODAL LECTURA POST -->
-<div id="post-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(12,31,63,0.92);backdrop-filter:blur(12px);overflow-y:auto;padding:2rem 5%">
-  <div style="max-width:720px;margin:0 auto;background:var(--white);border-radius:var(--r);overflow:hidden">
-    <div style="background:var(--navy);padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center">
-      <span id="modal-tipo" style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#64AAEB"></span>
-      <button onclick="closeModal()" style="background:rgba(255,255,255,.1);border:none;color:var(--white);padding:.4rem 1rem;border-radius:3px;cursor:pointer;font-family:var(--f);font-size:.82rem">✕ Cerrar</button>
-    </div>
-    <div id="modal-img-wrap"></div>
-    <div style="padding:2.5rem 2.5rem 3rem">
-      <div id="modal-fecha" style="font-size:.78rem;color:var(--gray3);margin-bottom:.6rem"></div>
-      <h2 id="modal-titulo" style="font-size:1.8rem;font-weight:700;letter-spacing:-.025em;line-height:1.15;color:var(--text);margin-bottom:1.5rem"></h2>
-      <div id="modal-contenido" style="font-size:.96rem;line-height:1.85;color:var(--text2)"></div>
-      <div id="modal-video" style="margin-top:1.5rem"></div>
-      <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--gray1)">
-        <a href="https://wa.me/573171370271?text=Hola%2C%20le%C3%AD%20el%20blog%20y%20quiero%20saber%20m%C3%A1s" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:var(--white);padding:.85rem 1.8rem;border-radius:var(--r);font-size:.88rem;font-weight:600;text-decoration:none">💬 ¿Tienes preguntas? Escríbenos</a>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- REDES -->
 <section id="redes">
   <div class="tag tagw">Síguenos</div>
@@ -879,16 +861,16 @@
 <section id="contacto">
   <div>
     <div class="tag">Contacto</div>
-    <h2 class="sh" style="margin-bottom:.5rem">¿Cuánto más<br/>vas a esperar?</h2>
+    <h2 class="sh" style="margin-bottom:.5rem">Tu recuperación<br/>empieza conversando.</h2>
     <p class="cdesc">Cuéntanos tu caso. Sin costo, sin compromiso. Respondemos en menos de 24 horas y te orientamos antes de agendar.</p>
     <div class="copts">
       <a href="https://wa.me/573171370271?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Dolor%20Sin%20Humo" class="copt" target="_blank" rel="noopener">
         <div class="cico">💬</div>
         <div><div class="cl">WhatsApp</div><div class="cv">+57 317 137 0271</div><div class="cs">Respuesta rápida · Lun–Sáb 7am–7pm</div></div>
       </a>
-      <a href="/cdn-cgi/l/email-protection#5f3b3033302d2c3631372a32301f38323e3633713c3032" class="copt">
+      <a href="mailto:dolorsinhumo@gmail.com" class="copt">
         <div class="cico">✉️</div>
-        <div><div class="cl">Correo</div><div class="cv"><span class="__cf_email__" data-cfemail="a7c3c8cbc8d5d4cec9cfd2cac8e7c0cac6cecb89c4c8ca">[email&#160;protected]</span></div><div class="cs">Para remisiones o casos detallados</div></div>
+        <div><div class="cl">Correo</div><div class="cv">dolorsinhumo@gmail.com</div><div class="cs">Para remisiones o casos detallados</div></div>
       </a>
       <div class="copt" style="cursor:default;">
         <div class="cico">📍</div>
@@ -900,17 +882,17 @@
     <div class="tag">Formulario</div>
     <h3 style="font-size:1.45rem;font-weight:700;letter-spacing:-.02em;margin-bottom:1.3rem;color:var(--text)">Cuéntanos tu caso</h3>
     <div class="form">
+      <form action="https://api.web3forms.com/submit" method="POST">
       <div class="frow">
-        <form action="https://api.web3forms.com/submit" method="POST">
-      <div class="field"><label>Nombre</label><input id="cf-nombre" name="nombre" type="text" placeholder="Tu nombre"/></div>
-        <div class="field"><label>WhatsApp</label><input id="cf-wa" name="whatsapp" type="tel" placeholder="+57 300 ..."/></div>
+      <div class="field"><label for="cf-nombre">Nombre</label><input required autocomplete="name" maxlength="100" id="cf-nombre" name="nombre" type="text" placeholder="Tu nombre"/></div>
+        <div class="field"><label for="cf-wa">WhatsApp</label><input required autocomplete="tel" maxlength="25" id="cf-wa" name="whatsapp" type="tel" placeholder="+57 300 ..."/></div>
       </div>
       <div class="field">
-        <label>Correo electrónico</label>
-        <input id="cf-email" name="correo" type="email" placeholder="tucorreo@email.com"/>
+        <label for="cf-email">Correo electrónico</label>
+        <input autocomplete="email" id="cf-email" name="correo" type="email" placeholder="tucorreo@email.com"/>
       </div>
       <div class="field">
-        <label>Tipo de paciente</label>
+        <label for="cf-tipo">Tipo de paciente</label>
         <select id="cf-tipo" name="tipo_paciente">
           <option value="">Selecciona una opción</option>
           <option>Deportista con dolor osteomuscular</option>
@@ -923,7 +905,7 @@
         </select>
       </div>
       <div class="field">
-        <label>Modalidad preferida</label>
+        <label for="cf-mod">Modalidad preferida</label>
         <select id="cf-mod" name="modalidad">
           <option value="">Selecciona una opción</option>
           <option>A domicilio en Bogotá</option>
@@ -932,21 +914,23 @@
         </select>
       </div>
       <div class="field">
-        <label>¿Qué te pasa?</label>
-        <textarea id="cf-msg" name="mensaje" placeholder="Desde hace cuánto duele, dónde está el dolor, qué has probado antes..."></textarea>
+        <label for="cf-msg">¿Qué te pasa?</label>
+        <textarea maxlength="500" id="cf-msg" name="mensaje" placeholder="Desde hace cuánto duele, dónde está el dolor, qué has probado antes..."></textarea>
       </div>
       <input type="hidden" name="access_key" value="bbfb4fbf-cf23-463c-b6ff-94556779a747"/>
       <input type="hidden" name="subject" value="Nuevo paciente — Dolor Sin Humo"/>
       <input type="hidden" name="redirect" value="https://dolorsinhumo.com/?enviado=1"/>
+      <p class="form-note">Nombre y WhatsApp son obligatorios. Usaremos tus datos para responder a esta solicitud. Evita incluir información clínica sensible.</p>
       <button type="submit" class="btnsub">Enviar mensaje →</button>
       </form>
     </div>
   </div>
 </section>
 
+</main>
 <footer>
   <div class="flogo">Dolor <span>Sin Humo</span></div>
-  <p>© 2025 · dolorsinhumo.com · Bogotá, Colombia</p>
+  <p>© 2026 · dolorsinhumo.com · Bogotá, Colombia</p>
   <div class="flinks">
     <a href="#para-quien">Pacientes</a>
     <a href="#servicios">Servicios</a>
@@ -963,7 +947,7 @@
 
   // Animaciones
   const animEls = document.querySelectorAll('.pqcard,.servcard,.tcard,.ecard,.pritem,.step');
-  if('IntersectionObserver' in window) {
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if(e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='none'; io.unobserve(e.target); }
@@ -977,25 +961,31 @@
     setTimeout(() => { animEls.forEach(el => { const r=el.getBoundingClientRect(); if(r.top<window.innerHeight){el.style.opacity='1';el.style.transform='none';} }); }, 100);
   }
 
-  // Hamburger
+  // Accessible mobile navigation: normal document flow, no focus trap needed.
+  const menuButton = document.querySelector('.ham');
+  function closeMenu() {
+    nav.classList.remove('menu-open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'Abrir menú');
+  }
   function toggleMenu() {
-    const l = document.querySelector('.navl');
-    if(l.style.display==='flex'){l.style.cssText='';}
-    else{l.style.cssText='display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(12,31,63,0.98);backdrop-filter:blur(16px);justify-content:center;align-items:center;gap:2.5rem;z-index:300;';l.querySelectorAll('a').forEach(a=>{a.style.fontSize='1.2rem';a.style.color='rgba(255,255,255,.8)';});}
+    const open = nav.classList.toggle('menu-open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
   }
-
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    const b = e.target;
-    b.textContent = '✓ Recibido — te contactamos pronto';
-    b.style.background = 'var(--blue)';
-    setTimeout(() => { b.textContent = 'Enviar mensaje →'; b.style.background = ''; }, 4000);
-  }
+  document.querySelectorAll('.navl a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && nav.classList.contains('menu-open')) {
+      closeMenu(); menuButton.focus();
+    }
+  });
+  document.addEventListener('click', event => { if (!nav.contains(event.target)) closeMenu(); });
+  matchMedia('(min-width: 961px)').addEventListener('change', closeMenu);
 
   // ── BLOG ──
   // Carga posts.json y renderiza las tarjetas
   
+function escapeHTML(value) { return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function slugify(t){return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');}
 async function loadBlog() {
     const grid = document.getElementById('blog-grid');
@@ -1006,58 +996,23 @@ async function loadBlog() {
       const posts = (data.posts || []).slice().reverse(); // más recientes primero
       if (!posts.length) { grid.innerHTML = '<p style="color:var(--text3);font-size:.9rem">Próximamente publicaremos artículos aquí.</p>'; return; }
       grid.innerHTML = posts.slice(0, 3).map((p, i) => `
-        <div class="blogcard" style="cursor:pointer" data-slug="${p.slug||p.titulo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-')}" onclick="location.href='blog.html?slug='+this.dataset.slug">
+        <a class="blogcard" href="blog.html?slug=${encodeURIComponent(p.slug || slugify(p.titulo))}">
           <div class="blogthumb">
-            ${p.imagen ? `<img src="${p.imagen}" alt="${p.titulo}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"/>` : `<div class="blogthumb-ph"><span>${p.tipo==='Video'?'🎥':'📝'}</span></div>`}
-            <div class="blogtag">${p.tipo}</div>
+            ${p.imagen ? `<img src="${escapeHTML(p.imagen)}" alt="${escapeHTML(p.titulo)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"/>` : `<div class="blogthumb-ph"><span>${p.tipo==='Video'?'🎥':'📝'}</span></div>`}
+            <div class="blogtag">${escapeHTML(p.tipo)}</div>
           </div>
           <div class="blogbody">
-            <div class="blogdate">${p.fecha}</div>
-            <h3>${p.titulo}</h3>
-            <p>${p.resumen}</p>
+            <div class="blogdate">${escapeHTML(p.fecha)}</div>
+            <h3>${escapeHTML(p.titulo)}</h3>
+            <p>${escapeHTML(p.resumen)}</p>
             <span class="bloglink">${p.tipo==='Video'?'Ver video':'Leer más'} →</span>
           </div>
-        </div>
+        </a>
       `).join('');
     } catch(err) {
       grid.innerHTML = '<p style="color:var(--text3);font-size:.9rem">Próximamente publicaremos artículos aquí.</p>';
     }
   }
-
-  function openPost(postsArr, idx) {
-    const p = postsArr[idx];
-    document.getElementById('modal-tipo').textContent = p.tipo;
-    document.getElementById('modal-fecha').textContent = p.fecha;
-    document.getElementById('modal-titulo').textContent = p.titulo;
-    // Imagen
-    const imgWrap = document.getElementById('modal-img-wrap');
-    imgWrap.innerHTML = p.imagen ? `<img src="${p.imagen}" alt="${p.titulo}" loading="lazy" style="width:100%;max-height:340px;object-fit:cover;display:block"/>` : '';
-    // Contenido markdown
-    const contenido = document.getElementById('modal-contenido');
-    contenido.innerHTML = typeof marked !== 'undefined' ? marked.parse(p.contenido || '') : (p.contenido || '').replace(/\n/g,'<br>');
-    // Aplicar estilos al contenido renderizado
-    contenido.querySelectorAll('h2,h3').forEach(h => { h.style.cssText='font-size:1.25rem;font-weight:700;color:var(--text);margin:1.5rem 0 .6rem;letter-spacing:-.01em'; });
-    contenido.querySelectorAll('p').forEach(p => { p.style.cssText='margin-bottom:1rem'; });
-    contenido.querySelectorAll('ul,ol').forEach(l => { l.style.cssText='padding-left:1.4rem;margin-bottom:1rem'; });
-    contenido.querySelectorAll('li').forEach(l => { l.style.cssText='margin-bottom:.35rem'; });
-    contenido.querySelectorAll('strong').forEach(s => { s.style.cssText='color:var(--text);font-weight:600'; });
-    // Video
-    const vidWrap = document.getElementById('modal-video');
-    vidWrap.innerHTML = p.video_url ? `<a href="${p.video_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--sky);color:var(--blue);padding:.75rem 1.4rem;border-radius:var(--r);font-size:.88rem;font-weight:600;text-decoration:none">▶ Ver video completo</a>` : '';
-    // Mostrar modal
-    const modal = document.getElementById('post-modal');
-    modal.style.display = 'block';
-    modal.scrollTop = 0;
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    document.getElementById('post-modal').style.display = 'none';
-    document.body.style.overflow = '';
-  }
-
-  // Cerrar modal con Escape
-  document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
   // Netlify Identity redirect tras login
   if(window.netlifyIdentity) {
@@ -1079,8 +1034,8 @@ async function loadBlog() {
   <!-- Toast notification -->
   <div id="toast"></div>
 
-  <!-- Improved WA float (replace existing) -->
-  <a href="https://wa.me/573171370271?text=Hola%2C+vi+su+sitio+y+tengo+una+consulta" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <!-- Contact shortcut -->
+  <a href="https://wa.me/573171370271?text=Hola%2C+vi+su+sitio+y+tengo+una+consulta" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
     <span class="wa-tooltip">¿Preguntas? Escríbenos</span>
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
@@ -1192,3 +1147,5 @@ async function loadBlog() {
 
   })();
   </script>
+</body>
+</html>
