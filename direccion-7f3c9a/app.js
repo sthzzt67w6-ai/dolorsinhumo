@@ -1,5 +1,5 @@
 'use strict';
-const repo='sthzzt67w6-ai/dolorsinhumo',path='direccion-7f3c9a/datos.json',api=`https://api.github.com/repos/${repo}/contents/${path}`,raw=`https://raw.githubusercontent.com/${repo}/main/${path}`;
+const repo='sthzzt67w6-ai/dolorsinhumo',path='direccion-7f3c9a/datos.json',api=`https://api.github.com/repos/${repo}/contents/${path}`,raw='./datos.json';
 let data,active=0,editing=false,token='',baseSha='',dirty=false,busy=false;
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function sheet(name){return data.sheets.find(s=>s.name===name)}
