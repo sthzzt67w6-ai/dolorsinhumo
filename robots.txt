@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /direccion-7f3c9a/
+Disallow: /valoracion-clinica-dsh
+Disallow: /whatsapp
+
 Sitemap: https://dolorsinhumo.com/sitemap.xml
